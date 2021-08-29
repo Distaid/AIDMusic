@@ -157,7 +157,7 @@ namespace AIDSQLCommandsManager
                 var commandCopy = new SQLCommandControl { SQLCommandName = command.SQLCommandName, SQLCommandText = command.SQLCommandText };
                 sqlCommandsFile.CommandsStack.Children.Add(commandCopy);
             }
-            sqlCommandsFile.CommandsScroll.ScrollToBottom();
+            sqlCommandsFile.CommandsScroll.ScrollToTop();
             var index = tabs.Items.Add(new TabItem { Header = "Untitled", Content = sqlCommandsFile });
             tabs.SelectedIndex = index;
         }
