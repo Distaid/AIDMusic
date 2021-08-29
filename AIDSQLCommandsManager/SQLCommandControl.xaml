@@ -35,7 +35,7 @@
         <TextBlock Text="SQL команда" Grid.Row="2" Grid.Column="0" Style="{StaticResource RightTextBlock}"/>
 
         <TextBox Grid.Row="0" Grid.Column="1" x:Name="CommandName" Style="{StaticResource FocusedTextBox}"/>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="CommandText" Style="{StaticResource FocusedMultilineTextBox}" FontFamily="Consolas"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="CommandText" Style="{StaticResource FocusedMultilineTextBox}" FontFamily="Consolas" TextWrapping="Wrap"/>
 
         <Button x:Name="RemoveCommand" Grid.Row="0" Grid.Column="2" Content="Удалить" Style="{StaticResource RoundButton}" Margin="5" Padding="5 2"/>
     </Grid>
