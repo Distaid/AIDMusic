@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="AIDSQLCommandsManager.SQLCommandControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AIDSQLCommandsManager"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="900"
+             Background="#191919"
+             BorderThickness="1"
+             BorderBrush="#28A0FF">
+    <UserControl.ContextMenu>
+        <ContextMenu Style="{StaticResource DarkContextMenu}">
+            <MenuItem x:Name="DuplicateCommand" Header="Дублировать"/>
+            <MenuItem x:Name="CopyCommand" Header="Копировать"/>
+            <MenuItem x:Name="PasteCommand" Header="Вставить"/>
+        </ContextMenu>
+    </UserControl.ContextMenu>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Название" Grid.Row="0" Grid.Column="0" Style="{StaticResource RightTextBlock}" VerticalAlignment="Center"/>
+        <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource SeparatorHorizontalStyle}"/>
+        <TextBlock Text="SQL команда" Grid.Row="2" Grid.Column="0" Style="{StaticResource RightTextBlock}"/>
+
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="CommandName" Style="{StaticResource FocusedTextBox}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="CommandText" Style="{StaticResource FocusedMultilineTextBox}" FontFamily="Consolas"/>
+
+        <Button x:Name="RemoveCommand" Grid.Row="0" Grid.Column="2" Content="Удалить" Style="{StaticResource RoundButton}" Margin="5" Padding="5 2"/>
+    </Grid>
+</UserControl>
