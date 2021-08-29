@@ -4,15 +4,16 @@
     <Style x:Key="DarkContextMenu" TargetType="{x:Type ContextMenu}">
         <Setter Property="Panel.Background" Value="#212121"/>
         <Setter Property="BorderBrush" Value="#28A0FF"/>
+        <Setter Property="Padding" Value="0"/>
     </Style>
 
     <Style TargetType="{x:Type MenuItem}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
-                    <Border Name="Border" Background="#212121" Margin="-1">
+                    <Border Name="Border" Background="#212121">
                         <Grid>
-                            <ContentPresenter Name="HeaderText" TextBlock.Foreground="White" TextBlock.FontSize="15" Margin="6 3" RecognizesAccessKey="True" ContentSource="Header"/>
+                            <ContentPresenter Name="HeaderText" TextBlock.Foreground="White" TextBlock.FontSize="15" Margin="15 3" RecognizesAccessKey="True" ContentSource="Header"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
