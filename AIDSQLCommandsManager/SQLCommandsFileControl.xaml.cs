@@ -77,6 +77,12 @@ namespace AIDSQLCommandsManager
 
         private void SaveFile_Click(object sender, RoutedEventArgs e)
         {
+            if (_currentFile == "")
+            {
+                SaveAsFile_Click(sender, e);
+                return;
+            }
+
             if (CommandsStack.Children.Count == 0)
             {
                 MessageBox.Show("Пустой список!");
