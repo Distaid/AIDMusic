@@ -57,12 +57,12 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!--<Image Grid.Column="0"
+            <Image Grid.Column="0"
                        Grid.Row="0"
                        Width="22"
                        Height="22"
                        Margin="4"
-                       Source="" />-->
+                       Source="Logo.ico" />
             <TextBlock Grid.Column="1" Text="AIDSQLCommandsManager" Style="{StaticResource TitleText}"/>
             <Button Grid.Column="2" x:Name="MinimizeButton" Style="{StaticResource TitleButton}">
                 <Path Data="M 15, 15 H 28" Style="{StaticResource ButtonPath}"/>
