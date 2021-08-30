@@ -37,8 +37,10 @@ namespace AIDSQLCommandsManager
             var commands = Parent as StackPanel;
 
             var command = new SQLCommandControl { SQLCommandName = SQLCommandName, SQLCommandText = SQLCommandText };
+            command.Tag = Tag;
             commands.Children.Add(command);
             (commands.Parent as ScrollViewer).ScrollToBottom();
+            (Tag as SQLCommandsFileControl).CommandsCounter.Text = $"Команд: {(Tag as SQLCommandsFileControl).CommandsStack.Children.Count}";
         }
 
         private void CopyCommand_Click(object sender, RoutedEventArgs e)
@@ -79,6 +81,7 @@ namespace AIDSQLCommandsManager
         {
             var commands = Parent as StackPanel;
             commands.Children.Remove(this);
+            (Tag as SQLCommandsFileControl).CommandsCounter.Text = $"Команд: {(Tag as SQLCommandsFileControl).CommandsStack.Children.Count}";
         }
     }
 }

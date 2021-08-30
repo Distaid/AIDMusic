@@ -56,9 +56,11 @@ namespace AIDSQLCommandsManager
                         var dataPart = new SQLCommandControl();
                         dataPart.SQLCommandName = item["SQL_Name"].ToString();
                         dataPart.SQLCommandText = item["SQL_Command"].ToString();
+                        dataPart.Tag = this;
                         CommandsStack.Children.Add(dataPart);
                         CommandsScroll.ScrollToBottom();
                     }
+                    CommandsCounter.Text = $"Команд: {CommandsStack.Children.Count}";
 
                     _currentFile = filename;
                     FileLabel.Text = "Открыт файл - " + _currentFile;
@@ -71,8 +73,10 @@ namespace AIDSQLCommandsManager
         private void AddCommand_Click(object sender, RoutedEventArgs e)
         {
             var command = new SQLCommandControl();
+            command.Tag = this;
             CommandsStack.Children.Add(command);
             CommandsScroll.ScrollToBottom();
+            CommandsCounter.Text = $"Команд: {CommandsStack.Children.Count}";
         }
 
         private void SaveFile_Click(object sender, RoutedEventArgs e)
@@ -135,7 +139,7 @@ namespace AIDSQLCommandsManager
 
                 _currentFile = dialog.FileName;
                 FileLabel.Text = "Открыт файл - " + _currentFile;
-                (Parent as TabItem).Header = System.IO.Path.GetFileNameWithoutExtension(FileLabel.Text);
+                (Parent as TabItem).Header = Path.GetFileNameWithoutExtension(FileLabel.Text);
             }
 
             StateLabelTimer("Сохранено успешно!");
@@ -155,9 +159,11 @@ namespace AIDSQLCommandsManager
             foreach (SQLCommandControl command in CommandsStack.Children)
             {
                 var commandCopy = new SQLCommandControl { SQLCommandName = command.SQLCommandName, SQLCommandText = command.SQLCommandText };
+                commandCopy.Tag = sqlCommandsFile;
                 sqlCommandsFile.CommandsStack.Children.Add(commandCopy);
             }
             sqlCommandsFile.CommandsScroll.ScrollToTop();
+            sqlCommandsFile.CommandsCounter.Text = $"Команд: {sqlCommandsFile.CommandsStack.Children.Count}";
             var index = tabs.Items.Add(new TabItem { Header = "Untitled", Content = sqlCommandsFile });
             tabs.SelectedIndex = index;
         }
@@ -171,8 +177,10 @@ namespace AIDSQLCommandsManager
                 data = data.Substring(14);
                 var sql = data.Split('|');
                 var command = new SQLCommandControl { SQLCommandName = sql[0].Split(':')[1], SQLCommandText = sql[1].Split(':')[1] };
+                command.Tag = this;
                 CommandsStack.Children.Add(command);
                 CommandsScroll.ScrollToBottom();
+                CommandsCounter.Text = $"Команд: {CommandsStack.Children.Count}";
             }
         }
 
