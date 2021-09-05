@@ -27,7 +27,7 @@
                     <Border BorderBrush="{TemplateBinding BorderBrush}"
                             Margin="0"
                             BorderThickness="1"
-                            CornerRadius="5"
+                            CornerRadius="10"
                             Padding="7 1 7 3"
                             Background="{TemplateBinding Background}"
                             SnapsToDevicePixels="True">
