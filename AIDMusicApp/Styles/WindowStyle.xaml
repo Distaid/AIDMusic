@@ -12,6 +12,11 @@
         <Setter Property="BorderBrush" Value="{StaticResource AIDCyan}"/>
         <Setter Property="Background" Value="#222"/>
         <Setter Property="AllowsTransparency" Value="True"/>
+        <Style.Triggers>
+            <Trigger Property="WindowState" Value="Maximized">
+                <Setter Property="BorderThickness" Value="7"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>
