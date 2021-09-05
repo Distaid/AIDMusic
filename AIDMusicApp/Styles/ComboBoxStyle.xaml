@@ -3,7 +3,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colors.xaml"/>
-        <ResourceDictionary Source="ScrollBarStyle.xaml"/>
+        <ResourceDictionary Source="ScrollViewerStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">

@@ -4,6 +4,22 @@
              xmlns:local="clr-namespace:AIDMusicApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="Styles/Colors.xaml"/>
+                <ResourceDictionary Source="Styles/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ContextMenuStyle.xaml"/>
+                <ResourceDictionary Source="Styles/MenuStyle.xaml"/>
+                <ResourceDictionary Source="Styles/PasswordBoxStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ScrollViewerStyle.xaml"/>
+                <ResourceDictionary Source="Styles/SeparatorStyle.xaml"/>
+                <ResourceDictionary Source="Styles/TextBlockStyle.xaml"/>
+                <ResourceDictionary Source="Styles/TextBoxStyle.xaml"/>
+                <ResourceDictionary Source="Styles/TitleBarStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ToolTipStyle.xaml"/>
+                <ResourceDictionary Source="Styles/WindowStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
