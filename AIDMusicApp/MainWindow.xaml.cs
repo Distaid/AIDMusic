@@ -49,7 +49,8 @@ namespace AIDMusicApp
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
         }
 
         private void TitleHideButton_Click(object sender, RoutedEventArgs e)
