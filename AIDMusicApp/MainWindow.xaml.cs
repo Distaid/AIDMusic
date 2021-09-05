@@ -23,6 +23,53 @@ namespace AIDMusicApp
         public MainWindow()
         {
             InitializeComponent();
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+
+            TitleBar.MouseDown += TitleBar_MouseDown;
+            TitleHideButton.Click += TitleHideButton_Click;
+            TitleMaximizeButton.Click += TitleMaximizeButton_Click;
+            TitleRestoreButton.Click += TitleRestoreButton_Click;
+            TitleCloseButton.Click += TitleCloseButton_Click;
+            StateChanged += MainWindow_StateChanged;
+        }
+
+        private void MainWindow_StateChanged(object sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                TitleRestoreButton.Visibility = Visibility.Visible;
+                TitleMaximizeButton.Visibility = Visibility.Hidden;
+            }
+            else if (WindowState == WindowState.Normal)
+            {
+                TitleRestoreButton.Visibility = Visibility.Hidden;
+                TitleMaximizeButton.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void TitleHideButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void TitleMaximizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Maximized;
+        }
+
+        private void TitleRestoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Normal;
+        }
+
+        private void TitleCloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
