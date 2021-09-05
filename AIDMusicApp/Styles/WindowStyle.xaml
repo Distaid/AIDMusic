@@ -11,7 +11,17 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="BorderBrush" Value="{StaticResource AIDCyan}"/>
         <Setter Property="Background" Value="#222"/>
-        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="AllowsTransparency" Value="False"/>
+        <Setter Property="ResizeMode" Value="CanResize"/>
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CaptionHeight="0"
+                              CornerRadius="0"
+                              NonClientFrameEdges="None"
+                              GlassFrameThickness="3"
+                              ResizeBorderThickness="3"/>
+            </Setter.Value>
+        </Setter>
         <Style.Triggers>
             <Trigger Property="WindowState" Value="Maximized">
                 <Setter Property="BorderThickness" Value="7"/>
