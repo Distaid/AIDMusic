@@ -17,7 +17,7 @@
                             </Grid.ColumnDefinitions>
                             <Ellipse x:Name="Circle" HorizontalAlignment="Center" Height="20" Stroke="White" VerticalAlignment="Center" Width="20"/>
                             <Path x:Name="Arrow" Data="M 1,1.5 L 4.5,5 L 8,1.5" HorizontalAlignment="Center" SnapsToDevicePixels="True" Stroke="White" StrokeThickness="2" VerticalAlignment="Center"/>
-                            <ContentPresenter x:Name="Content" Grid.Column="1" HorizontalAlignment="Left" Margin="4 0 0 0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center" TextBlock.FontSize="12" TextBlock.Foreground="White"/>
+                            <ContentPresenter x:Name="Content" Grid.Column="1" HorizontalAlignment="Left" Margin="4 0 0 0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center" TextBlock.FontSize="15" TextBlock.Foreground="White"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>

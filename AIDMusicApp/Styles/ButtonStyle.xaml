@@ -46,7 +46,7 @@
         <Setter Property="Background" Value="#171717"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="Gray"/>
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">

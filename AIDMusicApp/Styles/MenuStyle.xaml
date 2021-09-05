@@ -37,7 +37,7 @@
                     <Border x:Name="SubmenuBorder" SnapsToDevicePixels="True"
                             BorderThickness="1" Background="#212121" BorderBrush="Gray">
                         <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
-                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" TextBlock.FontSize="15" />
                         </ScrollViewer>
                     </Border>
                 </Popup>
@@ -56,7 +56,7 @@
     <ControlTemplate x:Key="{x:Static MenuItem.TopLevelItemTemplateKey}" TargetType="{x:Type MenuItem}">
         <Border x:Name="Border" Background="Transparent">
             <Grid>
-                <ContentPresenter Margin="6 3" ContentSource="Header" RecognizesAccessKey="True" />
+                <ContentPresenter Margin="6 3" ContentSource="Header" RecognizesAccessKey="True" TextBlock.FontSize="15" />
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
@@ -70,7 +70,7 @@
         <Border x:Name="Border" Background="Transparent">
             <Grid>
                 <ContentPresenter Margin="15 3 35 3" ContentSource="Header"
-                                  RecognizesAccessKey="True" TextBlock.FontSize="12"
+                                  RecognizesAccessKey="True" TextBlock.FontSize="15"
                                   TextBlock.Foreground="White"/>
             </Grid>
         </Border>
@@ -99,7 +99,7 @@
                     <Border x:Name="SubmenuBorder" SnapsToDevicePixels="True"
                             Background="#212121" BorderThickness="1" BorderBrush="Gray">
                         <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
-                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" TextBlock.FontSize="15" />
                         </ScrollViewer>
                     </Border>
                 </Popup>
