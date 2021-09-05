@@ -5,8 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AIDMusicApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Height="450" Width="800"
+        Style="{StaticResource AIDWindowStyle}">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="TitleBar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0" Source="Logo.ico" Style="{StaticResource AIDTitleImageStyle}"/>
+            <TextBlock Grid.Column="1" Text="AID - Alone In the Dark" Style="{StaticResource AIDTitleTextStyle}"/>
+            <Button Grid.Column="2" Style="{StaticResource AIDTitleButtonStyle}">
+                <Path Style="{StaticResource AIDHideButtonPathStyle}"/>
+            </Button>
+            <Button Grid.Column="3" Style="{StaticResource AIDTitleButtonStyle}">
+                <Path Style="{StaticResource AIDMaximizeButtonPathStyle}"/>
+            </Button>
+            <Button Grid.Column="3" Visibility="Hidden" Style="{StaticResource AIDTitleButtonStyle}">
+                <Path Style="{StaticResource AIDRestoreButtonPathStyle}"/>
+            </Button>
+            <Button Grid.Column="4" Style="{StaticResource AIDTitleButtonStyle}">
+                <Path Style="{StaticResource AIDCloseButtonPathStyle}"/>
+            </Button>
+        </Grid>
     </Grid>
 </Window>
