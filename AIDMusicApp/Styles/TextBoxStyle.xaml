@@ -21,9 +21,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                    <Border Name="Border" CornerRadius="10" Margin="{TemplateBinding Margin}" BorderThickness="1"
+                    <Border Name="Border" CornerRadius="10" Padding="{TemplateBinding Padding}" BorderThickness="1"
                             Background="#191919" BorderBrush="Gray">
-                        <ScrollViewer Margin="{TemplateBinding Padding}" x:Name="PART_ContentHost"/>
+                        <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -60,9 +60,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                    <Border Name="Border" CornerRadius="5" Margin="{TemplateBinding Margin}" BorderThickness="0 0 0 1"
+                    <Border Name="Border" CornerRadius="10" Padding="{TemplateBinding Padding}" BorderThickness="0 0 0 1"
                             Background="#191919" BorderBrush="Gray">
-                        <ScrollViewer Margin="{TemplateBinding Padding}" x:Name="PART_ContentHost"/>
+                        <ScrollViewer x:Name="PART_ContentHost"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
