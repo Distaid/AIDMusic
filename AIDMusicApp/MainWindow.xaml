@@ -38,5 +38,24 @@
                 <Path Style="{StaticResource AIDCloseButtonPathStyle}"/>
             </Button>
         </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Expander Header="QWErtyxf" Style="{StaticResource AIDExpanderStyle}">
+                <StackPanel>
+                    <Button Content="qwe" Style="{StaticResource AIDButtonStyle}" Margin="5 2"/>
+                    <Button Content="qwe" Style="{StaticResource AIDButtonStyle}" Margin="5 2"/>
+                    <Button Content="qwe" Style="{StaticResource AIDButtonStyle}" Margin="5 2"/>
+                </StackPanel>
+            </Expander>
+        </Grid>
     </Grid>
 </Window>
