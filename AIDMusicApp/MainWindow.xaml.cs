@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AIDMusicApp.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace AIDMusicApp
         {
             InitializeComponent();
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            MainContent.Content = new LoadingControl();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
             TitleHideButton.Click += TitleHideButton_Click;
