@@ -20,6 +20,16 @@ namespace AIDSQLCommandsManager
 
         private string _fileCode = "AIDfsqlsecret";
 
+        private bool _isDown;
+
+        private bool _isDragging;
+
+        private Point _startPoint;
+
+        private SQLCommandControl _realDragSource;
+
+        private SQLCommandControl _dummyDragSource = new SQLCommandControl();
+
         public SQLCommandsFileControl()
         {
             InitializeComponent();
@@ -32,6 +42,12 @@ namespace AIDSQLCommandsManager
             DuplicateFile.Click += DuplicateFile_Click;
             PasteFile.Click += PasteFile_Click;
             MouseDown += SQLCommandsFileControl_MouseDown;
+
+            CommandsStack.PreviewMouseLeftButtonDown += CommandsStack_PreviewMouseLeftButtonDown;
+            CommandsStack.PreviewMouseLeftButtonUp += CommandsStack_PreviewMouseLeftButtonUp;
+            CommandsStack.PreviewMouseMove += CommandsStack_PreviewMouseMove;
+            CommandsStack.DragEnter += CommandsStack_DragEnter;
+            CommandsStack.Drop += CommandsStack_Drop;
         }
 
         public SQLCommandsFileControl(string filename, JArray array)
@@ -46,6 +62,12 @@ namespace AIDSQLCommandsManager
             DuplicateFile.Click += DuplicateFile_Click;
             PasteFile.Click += PasteFile_Click;
             MouseDown += SQLCommandsFileControl_MouseDown;
+
+            CommandsStack.PreviewMouseLeftButtonDown += CommandsStack_PreviewMouseLeftButtonDown;
+            CommandsStack.PreviewMouseLeftButtonUp += CommandsStack_PreviewMouseLeftButtonUp;
+            CommandsStack.PreviewMouseMove += CommandsStack_PreviewMouseMove;
+            CommandsStack.DragEnter += CommandsStack_DragEnter;
+            CommandsStack.Drop += CommandsStack_Drop;
 
             Task.Run(() =>
             {
@@ -235,6 +257,72 @@ namespace AIDSQLCommandsManager
             writer.WriteEndArray();
 
             return true;
+        }
+
+        private void CommandsStack_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.Source != CommandsStack)
+            {
+                _isDown = true;
+                _startPoint = e.GetPosition(CommandsStack);
+            }
+        }
+
+        private void CommandsStack_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            _isDown = false;
+            _isDragging = false;
+            _realDragSource.ReleaseMouseCapture();
+        }
+
+        private void CommandsStack_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if (_isDown)
+            {
+                if ((_isDragging == false) && ((Math.Abs(e.GetPosition(CommandsStack).X - _startPoint.X) > SystemParameters.MinimumHorizontalDragDistance) ||
+                    (Math.Abs(e.GetPosition(CommandsStack).Y - _startPoint.Y) > SystemParameters.MinimumVerticalDragDistance)))
+                {
+                    _isDragging = true;
+                    _realDragSource = e.Source as SQLCommandControl;
+                    _realDragSource.CaptureMouse();
+                    DragDrop.DoDragDrop(_dummyDragSource, new DataObject("SQLCommandControl", e.Source, true), DragDropEffects.Move);
+                }
+            }
+        }
+
+        private void CommandsStack_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("SQLCommandControl"))
+            {
+                e.Effects = DragDropEffects.Move;
+            }
+        }
+
+        private void CommandsStack_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("SQLCommandControl"))
+            {
+                var droptarget = e.Source as SQLCommandControl;
+                int droptargetIndex = -1, i = 0;
+                foreach (SQLCommandControl element in CommandsStack.Children)
+                {
+                    if (element.Equals(droptarget))
+                    {
+                        droptargetIndex = i;
+                        break;
+                    }
+                    i++;
+                }
+                if (droptargetIndex != -1)
+                {
+                    CommandsStack.Children.Remove(_realDragSource);
+                    CommandsStack.Children.Insert(droptargetIndex, _realDragSource);
+                }
+
+                _isDown = false;
+                _isDragging = false;
+                _realDragSource.ReleaseMouseCapture();
+            }
         }
     }
 }

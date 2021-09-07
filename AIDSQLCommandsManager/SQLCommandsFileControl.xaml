@@ -29,7 +29,7 @@
         </Grid>
 
         <ScrollViewer x:Name="CommandsScroll" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Style="{StaticResource RoundScrollViewer}">
-            <StackPanel x:Name="CommandsStack" Background="#181818">
+            <StackPanel x:Name="CommandsStack" Background="#181818" AllowDrop="True">
                 <StackPanel.ContextMenu>
                     <ContextMenu Style="{StaticResource DarkContextMenu}">
                         <MenuItem x:Name="DuplicateFile" Header="Дублировать"/>
@@ -47,14 +47,13 @@
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" x:Name="CommandsCounter" Margin="2" HorizontalAlignment="Left" Text="Команд: 0" Foreground="White"/>
-            <TextBlock Grid.Column="1" x:Name="FileLabel" Margin="2" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow" Foreground="White"/>
-            <TextBlock Grid.Column="3" x:Name="StateLabel" Margin="2" HorizontalAlignment="Right" TextWrapping="WrapWithOverflow" Foreground="White"/>
+            <TextBlock Grid.Column="1" x:Name="FileLabel" Margin="2" TextAlignment="Left" TextTrimming="CharacterEllipsis" Foreground="White"/>
+            <TextBlock Grid.Column="2" x:Name="StateLabel" Margin="2" TextAlignment="Right" Foreground="White"/>
         </Grid>
     </Grid>
 </UserControl>
