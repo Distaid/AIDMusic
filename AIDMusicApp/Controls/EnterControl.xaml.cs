@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using AIDMusicApp.Models;
+using AIDMusicApp.Sql;
+using AIDMusicApp.Windows;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AIDMusicApp.Controls
 {
@@ -20,9 +13,72 @@ namespace AIDMusicApp.Controls
     /// </summary>
     public partial class EnterControl : UserControl
     {
+        public event Action<User> LoginClick = null;
+
+        public event Action RegistrationClick = null;
+
         public EnterControl()
         {
             InitializeComponent();
+
+            LoginButton.Click += LoginButton_Click;
+            RegistrationButton.Click += RegistrationButton_Click;
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(LoginTextBox.Text))
+            {
+                AIDMessageWindow.Show("Поле \"Логин\" обязательно для заполнения!");
+                LoginTextBox.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(PasswordTextBox.Password))
+            {
+                AIDMessageWindow.Show("Поле \"Пароль\" обязательно для заполнения!");
+                PasswordTextBox.Focus();
+                return;
+            }
+
+            Task.Run(() =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    LoginTextBox.IsEnabled = false;
+                    PasswordTextBox.IsEnabled = false;
+                    LoginButton.IsEnabled = false;
+                    RegistrationButton.IsEnabled = false;
+
+                    if (SqlDatabase.Instance.UsersAdapter.ContainsLogin(LoginTextBox.Text))
+                    {
+                        User user = SqlDatabase.Instance.UsersAdapter.GetByLogin(LoginTextBox.Text);
+
+                        if (user.Password == PasswordTextBox.Password)
+                        {
+                            LoginClick?.Invoke(user);
+                        }
+                        else
+                        {
+                            AIDMessageWindow.Show("Неверный пароль!");
+                        }
+                    }
+                    else
+                    {
+                        AIDMessageWindow.Show("Данного пользователя не существует!");
+                    }
+
+                    LoginTextBox.IsEnabled = true;
+                    PasswordTextBox.IsEnabled = true;
+                    LoginButton.IsEnabled = true;
+                    RegistrationButton.IsEnabled = true;
+                });
+            });
+        }
+
+        private void RegistrationButton_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationClick?.Invoke();
         }
     }
 }

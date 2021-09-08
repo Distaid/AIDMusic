@@ -16,8 +16,8 @@
             <TextBlock Text="Пароль" Style="{StaticResource AIDTextBlockStyle}"/>
             <PasswordBox x:Name="PasswordTextBox" MaxLength="20" HorizontalContentAlignment="Center" Style="{StaticResource AIDPasswordBoxStyle}" Margin="0 0 0 15"/>
 
-            <Button x:Name="LoginButton" Content="Войти" Width="170" Style="{StaticResource AIDButtonStyle}" Margin="5"/>
-            <Button x:Name="RegistrationButton" Content="Зарегистрироваться" Width="170" Style="{StaticResource AIDButtonStyle}" Margin="5"/>
+            <Button x:Name="LoginButton" Content="Войти" Width="150" Style="{StaticResource AIDButtonStyle}" Margin="5"/>
+            <Button x:Name="RegistrationButton" Content="Регистрация" Width="150" Style="{StaticResource AIDButtonStyle}" Margin="5"/>
         </StackPanel>
     </Grid>
 </UserControl>
