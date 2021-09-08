@@ -11,6 +11,7 @@ namespace AIDMSSQLVerify
     {
         private static List<string> _tables = new List<string>
         {
+            "AccessRights",
             "CountriesList",
             "GenresList",
             "LabelsList",
