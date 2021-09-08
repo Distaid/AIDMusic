@@ -272,7 +272,7 @@ namespace AIDSQLCommandsManager
         {
             _isDown = false;
             _isDragging = false;
-            _realDragSource.ReleaseMouseCapture();
+            _realDragSource?.ReleaseMouseCapture();
         }
 
         private void CommandsStack_PreviewMouseMove(object sender, MouseEventArgs e)
