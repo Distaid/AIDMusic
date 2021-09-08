@@ -280,7 +280,8 @@ namespace AIDSQLCommandsManager
             if (_isDown)
             {
                 if ((_isDragging == false) && ((Math.Abs(e.GetPosition(CommandsStack).X - _startPoint.X) > SystemParameters.MinimumHorizontalDragDistance) ||
-                    (Math.Abs(e.GetPosition(CommandsStack).Y - _startPoint.Y) > SystemParameters.MinimumVerticalDragDistance)))
+                    (Math.Abs(e.GetPosition(CommandsStack).Y - _startPoint.Y) > SystemParameters.MinimumVerticalDragDistance)) &&
+                    (e.OriginalSource is Border || e.OriginalSource is TextBlock || e.OriginalSource is Separator))
                 {
                     _isDragging = true;
                     _realDragSource = e.Source as SQLCommandControl;
