@@ -31,13 +31,13 @@
     <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
         <Border x:Name="Border" Background="Transparent">
             <Grid>
-                <ContentPresenter Margin="6 3" ContentSource="Header" RecognizesAccessKey="True" />
+                <ContentPresenter Margin="6 3" ContentSource="Header" RecognizesAccessKey="True" TextBlock.FontSize="15"/>
                 <Popup x:Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsSubmenuOpen}"
                        AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
                     <Border x:Name="SubmenuBorder" SnapsToDevicePixels="True"
                             BorderThickness="1" Background="#212121" BorderBrush="Gray">
                         <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
-                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" TextBlock.FontSize="15" />
+                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
                         </ScrollViewer>
                     </Border>
                 </Popup>
@@ -89,7 +89,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <ContentPresenter Margin="15 3 35 3" ContentSource="Header"
-                                  RecognizesAccessKey="True" TextBlock.FontSize="12"
+                                  RecognizesAccessKey="True" TextBlock.FontSize="15"
                                   TextBlock.Foreground="White"/>
                 <Path Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"
                       Data="M 0 0 L 0 7 L 4 3.5 Z" Fill="White"/>
@@ -99,7 +99,7 @@
                     <Border x:Name="SubmenuBorder" SnapsToDevicePixels="True"
                             Background="#212121" BorderThickness="1" BorderBrush="Gray">
                         <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
-                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" TextBlock.FontSize="15" />
+                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle"/>
                         </ScrollViewer>
                     </Border>
                 </Popup>
