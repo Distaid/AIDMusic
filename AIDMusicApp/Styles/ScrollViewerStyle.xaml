@@ -59,7 +59,7 @@
     </Style>
 
     <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
-        <Border Grid.RowSpan="3" CornerRadius="1" Background="#444">
+        <Border Grid.RowSpan="3" CornerRadius="1" Background="{TemplateBinding Background}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -84,7 +84,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type ScrollBar}">
-        <Border Grid.ColumnSpan="3" CornerRadius="2" Background="#444">
+        <Border Grid.ColumnSpan="3" CornerRadius="2" Background="{TemplateBinding Background}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -112,7 +112,8 @@
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="Width" Value="Auto"/>
-        <Setter Property="Height" Value="Auto" />
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Background" Value="#444"/>
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Horizontal">
                 <Setter Property="Template" Value="{StaticResource HorizontalScrollBar}" />
@@ -125,6 +126,7 @@
 
     <Style x:Key="AIDScrollViewerStyle" TargetType="{x:Type ScrollViewer}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Background" Value="#444"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
@@ -138,8 +140,8 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <ScrollContentPresenter/>
-                        <ScrollBar Name="PART_VerticalScrollBar" Margin="0 2" Grid.RowSpan="2" Grid.Column="1" Value="{TemplateBinding VerticalOffset}" Maximum="{TemplateBinding ScrollableHeight}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
-                        <ScrollBar Name="PART_HorizontalScrollBar" Margin="2 0" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Value="{TemplateBinding HorizontalOffset}" Maximum="{TemplateBinding ScrollableWidth}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+                        <ScrollBar Name="PART_VerticalScrollBar" Margin="0 2" Grid.RowSpan="2" Grid.Column="1" Value="{TemplateBinding VerticalOffset}" Maximum="{TemplateBinding ScrollableHeight}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Background="{TemplateBinding Background}"/>
+                        <ScrollBar Name="PART_HorizontalScrollBar" Margin="2 0" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Value="{TemplateBinding HorizontalOffset}" Maximum="{TemplateBinding ScrollableWidth}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Background="{TemplateBinding Background}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
