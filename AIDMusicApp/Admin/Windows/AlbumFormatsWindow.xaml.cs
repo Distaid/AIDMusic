@@ -7,34 +7,34 @@ using System.Windows.Input;
 namespace AIDMusicApp.Admin.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для CountriesWindow.xaml
+    /// Логика взаимодействия для AlbumFormatsWindow.xaml
     /// </summary>
-    public partial class CountriesWindow : Window
+    public partial class AlbumFormatsWindow : Window
     {
-        public Country CountryItem = null;
+        public AlbumFormat AlbumFormatItem = null;
 
-        public CountriesWindow()
+        public AlbumFormatsWindow()
         {
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
             NameTextAdd.Focus();
-            TitleText.Text = "Добавление Страны";
+            TitleText.Text = "Добавление Формата альбома";
             AddPanel.Visibility = Visibility.Visible;
 
             AddButton.Click += AddButton_Click;
         }
 
-        public CountriesWindow(Country country)
+        public AlbumFormatsWindow(AlbumFormat albumFormat)
         {
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
-            CountryItem = country.Copy();
-            NameTextEdit.Text = CountryItem.Name;
+            AlbumFormatItem = albumFormat.Copy();
+            NameTextEdit.Text = AlbumFormatItem.Name;
             NameTextEdit.Focus();
             NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
-            TitleText.Text = "Изменение Страны";
+            TitleText.Text = "Изменение Формата альбома";
             EditPanel.Visibility = Visibility.Visible;
 
             EditButton.Click += EditButton_Click;
@@ -56,7 +56,7 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            if (SqlDatabase.Instance.CountriesListAdapter.ContainsName(NameTextAdd.Text))
+            if (SqlDatabase.Instance.AlbumFormatsListAdapter.ContainsName(NameTextAdd.Text))
             {
                 AIDMessageWindow.Show("Страна с таким названием уже существует!");
                 NameTextAdd.Focus();
@@ -64,10 +64,10 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            var id = SqlDatabase.Instance.CountriesListAdapter.Insert(NameTextAdd.Text);
+            var id = SqlDatabase.Instance.AlbumFormatsListAdapter.Insert(NameTextAdd.Text);
 
             DialogResult = true;
-            CountryItem = new Country { Id = id, Name = NameTextAdd.Text };
+            AlbumFormatItem = new AlbumFormat { Id = id, Name = NameTextAdd.Text };
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -80,13 +80,13 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            if (CountryItem.Name == NameTextEdit.Text)
+            if (AlbumFormatItem.Name == NameTextEdit.Text)
             {
                 DialogResult = false;
                 return;
             }
 
-            if (SqlDatabase.Instance.CountriesListAdapter.ContainsName(NameTextEdit.Text))
+            if (SqlDatabase.Instance.AlbumFormatsListAdapter.ContainsName(NameTextEdit.Text))
             {
                 AIDMessageWindow.Show("Страна с таким названием уже существует!");
                 NameTextAdd.Focus();
@@ -94,10 +94,10 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            SqlDatabase.Instance.CountriesListAdapter.Update(CountryItem.Id, NameTextEdit.Text);
+            SqlDatabase.Instance.AlbumFormatsListAdapter.Update(AlbumFormatItem.Id, NameTextEdit.Text);
 
             DialogResult = true;
-            CountryItem.Name = NameTextEdit.Text;
+            AlbumFormatItem.Name = NameTextEdit.Text;
         }
     }
 }

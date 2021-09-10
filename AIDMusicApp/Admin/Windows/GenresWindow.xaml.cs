@@ -7,34 +7,34 @@ using System.Windows.Input;
 namespace AIDMusicApp.Admin.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для CountriesWindow.xaml
+    /// Логика взаимодействия для GenresWindow.xaml
     /// </summary>
-    public partial class CountriesWindow : Window
+    public partial class GenresWindow : Window
     {
-        public Country CountryItem = null;
+        public Genre GenreItem = null;
 
-        public CountriesWindow()
+        public GenresWindow()
         {
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
             NameTextAdd.Focus();
-            TitleText.Text = "Добавление Страны";
+            TitleText.Text = "Добавление Жанра";
             AddPanel.Visibility = Visibility.Visible;
 
             AddButton.Click += AddButton_Click;
         }
 
-        public CountriesWindow(Country country)
+        public GenresWindow(Genre genre)
         {
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
-            CountryItem = country.Copy();
-            NameTextEdit.Text = CountryItem.Name;
+            GenreItem = genre.Copy();
+            NameTextEdit.Text = GenreItem.Name;
             NameTextEdit.Focus();
             NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
-            TitleText.Text = "Изменение Страны";
+            TitleText.Text = "Изменение Жанра";
             EditPanel.Visibility = Visibility.Visible;
 
             EditButton.Click += EditButton_Click;
@@ -56,7 +56,7 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            if (SqlDatabase.Instance.CountriesListAdapter.ContainsName(NameTextAdd.Text))
+            if (SqlDatabase.Instance.GenresListAdapter.ContainsName(NameTextAdd.Text))
             {
                 AIDMessageWindow.Show("Страна с таким названием уже существует!");
                 NameTextAdd.Focus();
@@ -64,10 +64,10 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            var id = SqlDatabase.Instance.CountriesListAdapter.Insert(NameTextAdd.Text);
+            var id = SqlDatabase.Instance.GenresListAdapter.Insert(NameTextAdd.Text);
 
             DialogResult = true;
-            CountryItem = new Country { Id = id, Name = NameTextAdd.Text };
+            GenreItem = new Genre { Id = id, Name = NameTextAdd.Text };
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -80,13 +80,13 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            if (CountryItem.Name == NameTextEdit.Text)
+            if (GenreItem.Name == NameTextEdit.Text)
             {
                 DialogResult = false;
                 return;
             }
 
-            if (SqlDatabase.Instance.CountriesListAdapter.ContainsName(NameTextEdit.Text))
+            if (SqlDatabase.Instance.GenresListAdapter.ContainsName(NameTextEdit.Text))
             {
                 AIDMessageWindow.Show("Страна с таким названием уже существует!");
                 NameTextAdd.Focus();
@@ -94,10 +94,10 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            SqlDatabase.Instance.CountriesListAdapter.Update(CountryItem.Id, NameTextEdit.Text);
+            SqlDatabase.Instance.GenresListAdapter.Update(GenreItem.Id, NameTextEdit.Text);
 
             DialogResult = true;
-            CountryItem.Name = NameTextEdit.Text;
+            GenreItem.Name = NameTextEdit.Text;
         }
     }
 }

@@ -73,8 +73,20 @@
     <Compile Include="Admin\Controls\CountryItemControl.xaml.cs">
       <DependentUpon>CountryItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Windows\AlbumFormatsWindow.xaml.cs">
+      <DependentUpon>AlbumFormatsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Windows\CountriesWindow.xaml.cs">
       <DependentUpon>CountriesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\GenresWindow.xaml.cs">
+      <DependentUpon>GenresWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\LabelsWindow.xaml.cs">
+      <DependentUpon>LabelsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\SkillsWindow.xaml.cs">
+      <DependentUpon>SkillsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RegistrationControl.xaml.cs">
       <DependentUpon>RegistrationControl.xaml</DependentUpon>
@@ -110,7 +122,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\Windows\AlbumFormatsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Admin\Windows\CountriesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Windows\GenresWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Windows\LabelsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Windows\SkillsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
