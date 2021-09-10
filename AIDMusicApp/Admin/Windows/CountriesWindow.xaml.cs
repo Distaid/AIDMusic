@@ -1,4 +1,6 @@
 ﻿using AIDMusicApp.Models;
+using AIDMusicApp.Sql;
+using AIDMusicApp.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,17 +59,53 @@ namespace AIDMusicApp.Admin.Windows
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(NameTextAdd.Text))
+            {
+                AIDMessageWindow.Show("Поле должно быть заполнено!");
+                NameTextAdd.Text = "";
+                NameTextAdd.Focus();
+                return;
+            }
+
+            if (SqlDatabase.Instance.CountriesListAdapter.ContainsName(NameTextAdd.Text))
+            {
+                AIDMessageWindow.Show("Страна с таким названием уже существует!");
+                NameTextAdd.Focus();
+                NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+                return;
+            }
+
+            var id = SqlDatabase.Instance.CountriesListAdapter.Insert(NameTextAdd.Text);
+
             DialogResult = true;
-            CountryItem = new Country { Id = 1, Name = NameTextAdd.Text };
+            CountryItem = new Country { Id = id, Name = NameTextAdd.Text };
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if (CountryItem.Name == NameTextAdd.Text)
+            if (string.IsNullOrWhiteSpace(NameTextEdit.Text))
+            {
+                AIDMessageWindow.Show("Поле должно быть заполнено!");
+                NameTextAdd.Text = "";
+                NameTextAdd.Focus();
+                return;
+            }
+
+            if (CountryItem.Name == NameTextEdit.Text)
             {
                 DialogResult = false;
                 return;
             }
+
+            if (SqlDatabase.Instance.CountriesListAdapter.ContainsName(NameTextEdit.Text))
+            {
+                AIDMessageWindow.Show("Страна с таким названием уже существует!");
+                NameTextAdd.Focus();
+                NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+                return;
+            }
+
+            SqlDatabase.Instance.CountriesListAdapter.Update(CountryItem.Id, NameTextEdit.Text);
 
             DialogResult = true;
             CountryItem.Name = NameTextEdit.Text;
