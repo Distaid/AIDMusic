@@ -1,0 +1,64 @@
+﻿<Window x:Class="AIDMusicApp.Admin.Windows.CountriesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AIDMusicApp.Admin.Windows"
+        mc:Ignorable="d"
+        Height="160" Width="350"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Style="{StaticResource AIDWindowStyle}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="TitleBar" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="TitleText" Grid.Column="0" Style="{StaticResource AIDTitleTextStyle}" Text="Header"/>
+            <Button x:Name="CloseButton" Grid.Column="1" IsCancel="True" Style="{StaticResource AIDTitleButtonStyle}">
+                <Path Style="{StaticResource AIDCloseButtonPathStyle}"/>
+            </Button>
+        </Grid>
+
+        <Grid x:Name="AddPanel" Grid.Row="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="NameTextAdd" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource AIDTextBoxBottomStyle}" Margin="15 35 15 10"/>
+
+            <Button x:Name="AddButton" Grid.Row="1" Grid.Column="0" IsDefault="True" Content="Добавить" Style="{StaticResource AIDButtonStyle}" Width="100" Margin="10"/>
+            <Button x:Name="CancelAddButton" Grid.Row="1" Grid.Column="1" IsCancel="True" Content="Отмена" Style="{StaticResource AIDButtonStyle}" Width="100" Margin="10"/>
+        </Grid>
+
+        <Grid x:Name="EditPanel" Grid.Row="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="NameTextEdit" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource AIDTextBoxBottomStyle}" Margin="15 35 15 10"/>
+
+            <Button x:Name="EditButton" Grid.Row="1" Grid.Column="0" IsDefault="True" Content="Изменить" Style="{StaticResource AIDButtonStyle}" Width="100" Margin="10"/>
+            <Button x:Name="CancelEditButton" Grid.Row="1" Grid.Column="1" IsCancel="True" Content="Отмена" Style="{StaticResource AIDButtonStyle}" Width="100" Margin="10"/>
+        </Grid>
+    </Grid>
+</Window>
