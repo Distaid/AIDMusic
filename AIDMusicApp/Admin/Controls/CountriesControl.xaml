@@ -18,8 +18,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="SearchTextBox" Style="{StaticResource AIDTextBoxStyle}" Margin="10 5"/>
-            <Button Grid.Column="1" x:Name="SearchButton" Content="Поиск" Style="{StaticResource AIDButtonStyle}" Margin="10 5" Width="80"/>
+            <TextBox x:Name="SearchTextBox" Style="{StaticResource AIDTextBoxStyle}" Margin="10 5" ContextMenu="{x:Null}"/>
+            <Button Grid.Column="1" x:Name="SearchButton" Content="Поиск" Style="{StaticResource AIDButtonStyle}" Margin="10 8" Width="80"/>
         </Grid>
 
         <Border Grid.Row="1" Background="#191919" Margin="10 5">

@@ -11,16 +11,16 @@
             <TextBlock Text="РЕГИСТРАЦИЯ" Foreground="White" FontSize="35" TextAlignment="Center" Margin="0 0 0 15"/>
 
             <TextBlock Text="Логин" Style="{StaticResource AIDTextBlockStyle}"/>
-            <TextBox x:Name="LoginTextBox" MaxLength="20" TextAlignment="Center" Style="{StaticResource AIDTextBoxStyle}" Margin="0 0 0 15"/>
+            <TextBox x:Name="LoginTextBox" MaxLength="20" TextAlignment="Center" Style="{StaticResource AIDTextBoxStyle}" Margin="0 0 0 15" ContextMenu="{x:Null}"/>
 
             <TextBlock Text="Пароль" Style="{StaticResource AIDTextBlockStyle}"/>
-            <PasswordBox x:Name="PasswordTextBox" MaxLength="20" HorizontalContentAlignment="Center" Style="{StaticResource AIDPasswordBoxStyle}" Margin="0 0 0 15"/>
+            <PasswordBox x:Name="PasswordTextBox" MaxLength="20" HorizontalContentAlignment="Center" Style="{StaticResource AIDPasswordBoxStyle}" Margin="0 0 0 15" ContextMenu="{x:Null}"/>
 
             <TextBlock ToolTip="Не обязательное поле" Style="{StaticResource AIDTextBlockStyle}">Почта (qwerty@gmail.com)<Run Foreground="{StaticResource AIDCyan}">*</Run></TextBlock>
-            <TextBox x:Name="EmailTextBox" MaxLength="50" TextAlignment="Center" Style="{StaticResource AIDTextBoxStyle}" Margin="0 0 0 15"/>
+            <TextBox x:Name="EmailTextBox" MaxLength="50" TextAlignment="Center" Style="{StaticResource AIDTextBoxStyle}" Margin="0 0 0 15" ContextMenu="{x:Null}"/>
 
             <TextBlock ToolTip="Не обязательное поле" Style="{StaticResource AIDTextBlockStyle}">Номер телефона (+375#########)<Run Foreground="{StaticResource AIDCyan}">*</Run></TextBlock>
-            <TextBox x:Name="PhoneTextBox" MaxLength="50" TextAlignment="Center" Style="{StaticResource AIDTextBoxStyle}" Margin="0 0 0 15"/>
+            <TextBox x:Name="PhoneTextBox" MaxLength="50" TextAlignment="Center" Style="{StaticResource AIDTextBoxStyle}" Margin="0 0 0 15" ContextMenu="{x:Null}"/>
 
             <Button x:Name="RegisterButton" Content="Зарегистрироваться" Width="170" Style="{StaticResource AIDButtonStyle}" Margin="5"/>
             <Button x:Name="BackButton" Content="Назад" Width="170" Style="{StaticResource AIDButtonStyle}" Margin="5"/>
