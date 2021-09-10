@@ -1,4 +1,5 @@
-﻿using AIDMusicApp.Controls;
+﻿using AIDMusicApp.Admin.Controls;
+using AIDMusicApp.Controls;
 using AIDMusicApp.Models;
 using AIDMusicApp.Sql;
 using System;
@@ -133,7 +134,7 @@ namespace AIDMusicApp
             {
                 case 3:
                     MainContent.Content = null;
-                    //MainContent.Content = new AdminControlPanel(user);
+                    MainContent.Content = new AdminMainControl();
                     //(MainContent.Content as AdminControlPanel).Logout += MainWindow_Logout;
                     break;
                 default:
