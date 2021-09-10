@@ -10,7 +10,7 @@ namespace AIDMusicApp.Sql
     {
         public LabelsListAdapter(SqlConnection connection, string file) : base(connection, file) { }
 
-        public IEnumerable<Country> GetAll()
+        public IEnumerable<Label> GetAll()
         {
             using (var adapter = new SqlDataAdapter(_sqlComands["SQL_Select_LabelsList"], _sqlConnection))
             {
@@ -19,7 +19,7 @@ namespace AIDMusicApp.Sql
 
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
-                    yield return new Country
+                    yield return new Label
                     {
                         Id = Convert.ToInt32(row[0]),
                         Name = Convert.ToString(row[1])
