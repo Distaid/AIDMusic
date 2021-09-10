@@ -79,7 +79,11 @@
     <Compile Include="Controls\RegistrationControl.xaml.cs">
       <DependentUpon>RegistrationControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\AlbumFormat.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Label.cs" />
+    <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Sql\AlbumFormatsAdapter.cs" />
     <Compile Include="Sql\BaseAdapter.cs" />
