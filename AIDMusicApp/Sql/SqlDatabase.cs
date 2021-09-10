@@ -16,6 +16,12 @@ namespace AIDMusicApp.Sql
 
         public UsersAdapter UsersAdapter = null;
 
+        public CountriesListAdapter CountriesListAdapter = null;
+        public GenresListAdapter GenresListAdapter = null;
+        public LabelsListAdapter LabelsListAdapter = null;
+        public SkillsListAdapter SkillsListAdapter = null;
+        public AlbumFormatsListAdapter AlbumFormatsListAdapter = null;
+
         protected SqlDatabase()
         {
             try
@@ -54,6 +60,11 @@ namespace AIDMusicApp.Sql
             try
             {
                 UsersAdapter = new UsersAdapter(_sqlConnection, "SQLCommands\\SQLUsers.aid");
+                CountriesListAdapter = new CountriesListAdapter(_sqlConnection, "SQLCommands\\SQLCountriesList.aid");
+                LabelsListAdapter = new LabelsListAdapter(_sqlConnection, "SQLCommands\\SQLGenresList.aid");
+                LabelsListAdapter = new LabelsListAdapter(_sqlConnection, "SQLCommands\\SQLLabelsList.aid");
+                SkillsListAdapter = new SkillsListAdapter(_sqlConnection, "SQLCommands\\SQLSkillsList.aid");
+                AlbumFormatsListAdapter = new AlbumFormatsListAdapter(_sqlConnection, "SQLCommands\\SQLAlbumFormatsList.aid");
             }
             catch
             {
