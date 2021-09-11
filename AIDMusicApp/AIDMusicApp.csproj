@@ -70,6 +70,9 @@
     <Compile Include="Admin\Controls\AlbumFormatItemControl.xaml.cs">
       <DependentUpon>AlbumFormatItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Controls\AlbumFormatsControl.xaml.cs">
+      <DependentUpon>AlbumFormatsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Controls\CountriesControl.xaml.cs">
       <DependentUpon>CountriesControl.xaml</DependentUpon>
     </Compile>
@@ -79,11 +82,20 @@
     <Compile Include="Admin\Controls\GenreItemControl.xaml.cs">
       <DependentUpon>GenreItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Controls\GenresControl.xaml.cs">
+      <DependentUpon>GenresControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Controls\LabelItemControl.xaml.cs">
       <DependentUpon>LabelItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Controls\LabelsControl.xaml.cs">
+      <DependentUpon>LabelsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Controls\SkillItemControl.xaml.cs">
       <DependentUpon>SkillItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Controls\SkillsControl.xaml.cs">
+      <DependentUpon>SkillsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin\Windows\AlbumFormatsWindow.xaml.cs">
       <DependentUpon>AlbumFormatsWindow.xaml</DependentUpon>
@@ -130,6 +142,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\Controls\AlbumFormatsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Admin\Controls\CountriesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,11 +158,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\Controls\GenresControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Admin\Controls\LabelItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\Controls\LabelsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Admin\Controls\SkillItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Controls\SkillsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="AIDMusicApp.Admin.Controls.LabelsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AIDMusicApp.Admin.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             Height="Auto" Width="Auto">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="SearchTextBox" Style="{StaticResource AIDTextBoxStyle}" Margin="10 5" ContextMenu="{x:Null}"/>
+            <Button Grid.Column="1" x:Name="SearchButton" Content="Поиск" Style="{StaticResource AIDButtonStyle}" Margin="10 8" Width="80"/>
+        </Grid>
+
+        <Border Grid.Row="1" Background="#191919" Margin="10 5">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Style="{StaticResource AIDScrollViewerStyle}" Background="Transparent">
+                <WrapPanel x:Name="LabelsItems" Margin="5">
+                    <WrapPanel.Resources>
+                        <Style TargetType="{x:Type local:LabelItemControl}">
+                            <Setter Property="Margin" Value="5"/>
+                        </Style>
+                    </WrapPanel.Resources>
+
+                    <Border BorderThickness="1" BorderBrush="{StaticResource AIDCyan}" CornerRadius="10" Margin="5" Width="250" Height="120">
+                        <Button x:Name="AddItemButton" Content="+" Style="{StaticResource AIDButtonStyle}" Width="26" Height="26"/>
+                    </Border>
+                </WrapPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>
