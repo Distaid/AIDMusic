@@ -61,7 +61,7 @@ namespace AIDMusicApp.Sql
             {
                 UsersAdapter = new UsersAdapter(_sqlConnection, "SQLCommands\\SQLUsers.aid");
                 CountriesListAdapter = new CountriesListAdapter(_sqlConnection, "SQLCommands\\SQLCountriesList.aid");
-                LabelsListAdapter = new LabelsListAdapter(_sqlConnection, "SQLCommands\\SQLGenresList.aid");
+                GenresListAdapter = new GenresListAdapter(_sqlConnection, "SQLCommands\\SQLGenresList.aid");
                 LabelsListAdapter = new LabelsListAdapter(_sqlConnection, "SQLCommands\\SQLLabelsList.aid");
                 SkillsListAdapter = new SkillsListAdapter(_sqlConnection, "SQLCommands\\SQLSkillsList.aid");
                 AlbumFormatsListAdapter = new AlbumFormatsListAdapter(_sqlConnection, "SQLCommands\\SQLAlbumFormatsList.aid");
