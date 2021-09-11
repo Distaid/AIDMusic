@@ -19,7 +19,7 @@ namespace AIDMusicApp.Admin.Windows
 
             TitleBar.MouseDown += TitleBar_MouseDown;
             NameTextAdd.Focus();
-            TitleText.Text = "Добавление Жанра";
+            TitleText.Text = "Добавление Навыка";
             AddPanel.Visibility = Visibility.Visible;
 
             AddButton.Click += AddButton_Click;
@@ -34,7 +34,7 @@ namespace AIDMusicApp.Admin.Windows
             NameTextEdit.Text = SkillItem.Name;
             NameTextEdit.Focus();
             NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
-            TitleText.Text = "Изменение Жанра";
+            TitleText.Text = "Изменение Навыка";
             EditPanel.Visibility = Visibility.Visible;
 
             EditButton.Click += EditButton_Click;
