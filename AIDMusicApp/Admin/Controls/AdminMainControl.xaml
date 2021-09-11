@@ -15,10 +15,10 @@
         <Menu Grid.Row="0" Style="{StaticResource AIDMenuStyle}">
             <MenuItem Header="Статичные таблицы" Style="{StaticResource AIDMenuItemStyle}">
                 <MenuItem x:Name="CountriesButton" Header="Страны" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Жанры" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Лэйблы" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Навыки" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Форматы альбомов" Style="{StaticResource AIDMenuItemStyle}"/>
+                <MenuItem x:Name="GenresButton" Header="Жанры" Style="{StaticResource AIDMenuItemStyle}"/>
+                <MenuItem x:Name="LabelsButton" Header="Лэйблы" Style="{StaticResource AIDMenuItemStyle}"/>
+                <MenuItem x:Name="SkillsButton" Header="Навыки" Style="{StaticResource AIDMenuItemStyle}"/>
+                <MenuItem x:Name="AlbumFormatsButton" Header="Форматы альбомов" Style="{StaticResource AIDMenuItemStyle}"/>
             </MenuItem>
             <MenuItem Header="Таблицы данных" Style="{StaticResource AIDMenuItemStyle}">
                 <MenuItem Header="Пользователи" Style="{StaticResource AIDMenuItemStyle}"/>

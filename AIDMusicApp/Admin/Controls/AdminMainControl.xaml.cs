@@ -24,13 +24,44 @@ namespace AIDMusicApp.Admin.Controls
         {
             InitializeComponent();
 
-            CountriesButton.Click += CountriesButton_Click;
+            CountriesButton.Click += ChangePanel;
+            GenresButton.Click += ChangePanel;
+            LabelsButton.Click += ChangePanel;
+            SkillsButton.Click += ChangePanel;
+            AlbumFormatsButton.Click += ChangePanel;
         }
 
-        private void CountriesButton_Click(object sender, RoutedEventArgs e)
+        private void ChangePanel(object sender, RoutedEventArgs e)
         {
-            if (!(MainContent.Content is CountriesControl))
-                MainContent.Content = new CountriesControl();
+            var item = sender as MenuItem;
+
+            switch (item.Name)
+            {
+                case "CountriesButton":
+                    if (!(MainContent.Content is CountriesControl))
+                        MainContent.Content = new CountriesControl();
+                    break;
+
+                case "GenresButton":
+                    if (!(MainContent.Content is GenresControl))
+                        MainContent.Content = new GenresControl();
+                    break;
+
+                case "LabelsButton":
+                    if (!(MainContent.Content is LabelsControl))
+                        MainContent.Content = new LabelsControl();
+                    break;
+
+                case "SkillsButton":
+                    if (!(MainContent.Content is SkillsControl))
+                        MainContent.Content = new SkillsControl();
+                    break;
+
+                case "AlbumFormatsButton":
+                    if (!(MainContent.Content is AlbumFormatsControl))
+                        MainContent.Content = new AlbumFormatsControl();
+                    break;
+            }
         }
     }
 }
