@@ -1,18 +1,7 @@
 ﻿using AIDMusicApp.Sql;
 using AIDMusicApp.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace AIDMusicApp.Admin.Windows
 {
@@ -29,7 +18,7 @@ namespace AIDMusicApp.Admin.Windows
 
             TitleBar.MouseDown += TitleBar_MouseDown;
             NameTextAdd.Focus();
-            TitleText.Text = "Добавление Жанра";
+            TitleText.Text = "Добавление Лэйбла";
             AddPanel.Visibility = Visibility.Visible;
 
             AddButton.Click += AddButton_Click;
@@ -44,7 +33,7 @@ namespace AIDMusicApp.Admin.Windows
             NameTextEdit.Text = LabelItem.Name;
             NameTextEdit.Focus();
             NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
-            TitleText.Text = "Изменение Жанра";
+            TitleText.Text = "Изменение Лэйбла";
             EditPanel.Visibility = Visibility.Visible;
 
             EditButton.Click += EditButton_Click;
