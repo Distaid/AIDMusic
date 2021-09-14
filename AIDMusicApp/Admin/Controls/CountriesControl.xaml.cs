@@ -1,5 +1,6 @@
 ﻿using AIDMusicApp.Admin.Windows;
 using AIDMusicApp.Sql;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,18 +20,29 @@ namespace AIDMusicApp.Admin.Controls
             SearchTextBox.TextChanged += SearchTextBox_TextChanged;
             SearchButton.Click += SearchButton_Click;
 
-            Task.Run(() =>
+            Task.Run(async () =>
             {
-                Dispatcher.Invoke(() =>
+                await Dispatcher.BeginInvoke(new Action(() =>
                 {
                     AddItemButton.IsEnabled = false;
-                    foreach (var country in SqlDatabase.Instance.CountriesListAdapter.GetAll())
+                }));
+                await Task.Delay(1);
+
+                foreach (var country in SqlDatabase.Instance.CountriesListAdapter.GetAll())
+                {
+                    await Dispatcher.BeginInvoke(new Action(() =>
                     {
                         var item = new CountryItemControl(country);
-                        CountriesItems.Children.Insert(CountriesItems.Children.Count - 1, item);
-                    }
+                        CountriesItems.Children.Add(item);
+                    }));
+                    await Task.Delay(1);
+                }
+
+                await Dispatcher.BeginInvoke(new Action(() =>
+                {
                     AddItemButton.IsEnabled = true;
-                });
+                }));
+                await Task.Delay(1);
             });
         }
 
@@ -42,6 +54,8 @@ namespace AIDMusicApp.Admin.Controls
                 {
                     item.Visibility = Visibility.Visible;
                 }
+
+                AddItemButton.IsEnabled = true;
             }
         }
 
@@ -50,15 +64,15 @@ namespace AIDMusicApp.Admin.Controls
             if (SearchTextBox.Text.Length == 0)
                 return;
 
-            for (var i = 0; i < CountriesItems.Children.Count - 1; i++)
+            foreach (CountryItemControl item in CountriesItems.Children)
             {
-                if ((CountriesItems.Children[i] as CountryItemControl).CountryItem.Name.Contains(SearchTextBox.Text))
-                    CountriesItems.Children[i].Visibility = Visibility.Visible;
+                if (item.CountryItem.Name.Contains(SearchTextBox.Text))
+                    item.Visibility = Visibility.Visible;
                 else
-                    CountriesItems.Children[i].Visibility = Visibility.Collapsed;
+                    item.Visibility = Visibility.Collapsed;
             }
 
-            CountriesItems.Children[CountriesItems.Children.Count - 1].Visibility = Visibility.Collapsed;
+            AddItemButton.IsEnabled = false;
         }
 
         private void AddItemButton_Click(object sender, RoutedEventArgs e)
@@ -67,7 +81,7 @@ namespace AIDMusicApp.Admin.Controls
             if (addWindow.ShowDialog() == true)
             {
                 var item = new CountryItemControl(addWindow.CountryItem);
-                CountriesItems.Children.Insert(CountriesItems.Children.Count - 1, item);
+                CountriesItems.Children.Add(item);
             }
         }
     }

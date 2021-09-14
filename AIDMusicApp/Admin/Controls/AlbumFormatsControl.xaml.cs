@@ -1,5 +1,6 @@
 ﻿using AIDMusicApp.Admin.Windows;
 using AIDMusicApp.Sql;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,18 +20,29 @@ namespace AIDMusicApp.Admin.Controls
             SearchTextBox.TextChanged += SearchTextBox_TextChanged;
             SearchButton.Click += SearchButton_Click;
 
-            Task.Run(() =>
+            Task.Run(async () =>
             {
-                Dispatcher.Invoke(() =>
+                await Dispatcher.BeginInvoke(new Action(() =>
                 {
                     AddItemButton.IsEnabled = false;
-                    foreach (var albumFormat in SqlDatabase.Instance.AlbumFormatsListAdapter.GetAll())
+                }));
+                await Task.Delay(1);
+
+                foreach (var albumFormat in SqlDatabase.Instance.AlbumFormatsListAdapter.GetAll())
+                {
+                    await Dispatcher.BeginInvoke(new Action(() =>
                     {
                         var item = new AlbumFormatItemControl(albumFormat);
-                        AlbumFormatsItems.Children.Insert(AlbumFormatsItems.Children.Count - 1, item);
-                    }
+                        AlbumFormatsItems.Children.Add(item);
+                    }));
+                    await Task.Delay(1);
+                }
+
+                await Dispatcher.BeginInvoke(new Action(() =>
+                {
                     AddItemButton.IsEnabled = true;
-                });
+                }));
+                await Task.Delay(1);
             });
         }
 
@@ -42,6 +54,8 @@ namespace AIDMusicApp.Admin.Controls
                 {
                     item.Visibility = Visibility.Visible;
                 }
+
+                AddItemButton.IsEnabled = true;
             }
         }
 
@@ -50,15 +64,15 @@ namespace AIDMusicApp.Admin.Controls
             if (SearchTextBox.Text.Length == 0)
                 return;
 
-            for (var i = 0; i < AlbumFormatsItems.Children.Count - 1; i++)
+            foreach (AlbumFormatItemControl item in AlbumFormatsItems.Children)
             {
-                if ((AlbumFormatsItems.Children[i] as AlbumFormatItemControl).AlbumFormatItem.Name.Contains(SearchTextBox.Text))
-                    AlbumFormatsItems.Children[i].Visibility = Visibility.Visible;
+                if (item.AlbumFormatItem.Name.Contains(SearchTextBox.Text))
+                    item.Visibility = Visibility.Visible;
                 else
-                    AlbumFormatsItems.Children[i].Visibility = Visibility.Collapsed;
+                    item.Visibility = Visibility.Collapsed;
             }
 
-            AlbumFormatsItems.Children[AlbumFormatsItems.Children.Count - 1].Visibility = Visibility.Collapsed;
+            AddItemButton.IsEnabled = false;
         }
 
         private void AddItemButton_Click(object sender, RoutedEventArgs e)
@@ -67,7 +81,7 @@ namespace AIDMusicApp.Admin.Controls
             if (addWindow.ShowDialog() == true)
             {
                 var item = new AlbumFormatItemControl(addWindow.AlbumFormatItem);
-                AlbumFormatsItems.Children.Insert(AlbumFormatsItems.Children.Count - 1, item);
+                AlbumFormatsItems.Children.Add(item);
             }
         }
     }

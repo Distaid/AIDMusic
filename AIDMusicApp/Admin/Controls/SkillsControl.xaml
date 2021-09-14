@@ -15,11 +15,14 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="SearchTextBox" Style="{StaticResource AIDTextBoxStyle}" Margin="10 5" ContextMenu="{x:Null}"/>
-            <Button Grid.Column="1" x:Name="SearchButton" Content="Поиск" Style="{StaticResource AIDButtonStyle}" Margin="10 8" Width="80"/>
+
+            <Button x:Name="AddItemButton" Content="Добавить" Style="{StaticResource AIDButtonStyle}" Margin="10 5"/>
+            <TextBox Grid.Column="1" x:Name="SearchTextBox" Style="{StaticResource AIDTextBoxStyle}" Margin="10 5" ContextMenu="{x:Null}" Width="270" HorizontalAlignment="Right"/>
+            <Button Grid.Column="2" x:Name="SearchButton" Content="Поиск" Style="{StaticResource AIDButtonStyle}" Margin="10 5" Width="80"/>
         </Grid>
 
         <Border Grid.Row="1" Background="#191919" Margin="10 5">
@@ -30,10 +33,6 @@
                             <Setter Property="Margin" Value="5"/>
                         </Style>
                     </WrapPanel.Resources>
-
-                    <Border BorderThickness="1" BorderBrush="{StaticResource AIDCyan}" CornerRadius="10" Margin="5" Width="250" Height="120">
-                        <Button x:Name="AddItemButton" Content="+" Style="{StaticResource AIDButtonStyle}" Width="26" Height="26"/>
-                    </Border>
                 </WrapPanel>
             </ScrollViewer>
         </Border>
