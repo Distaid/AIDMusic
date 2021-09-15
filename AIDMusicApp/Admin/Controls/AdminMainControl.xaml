@@ -21,7 +21,7 @@
                 <MenuItem x:Name="AlbumFormatsButton" Header="Форматы альбомов" Style="{StaticResource AIDMenuItemStyle}"/>
             </MenuItem>
             <MenuItem Header="Таблицы данных" Style="{StaticResource AIDMenuItemStyle}">
-                <MenuItem Header="Пользователи" Style="{StaticResource AIDMenuItemStyle}"/>
+                <MenuItem x:Name="UsersButton" Header="Пользователи" Style="{StaticResource AIDMenuItemStyle}"/>
                 <MenuItem Header="Группы" Style="{StaticResource AIDMenuItemStyle}"/>
                 <MenuItem Header="Альбомы" Style="{StaticResource AIDMenuItemStyle}"/>
                 <MenuItem Header="Песни" Style="{StaticResource AIDMenuItemStyle}"/>

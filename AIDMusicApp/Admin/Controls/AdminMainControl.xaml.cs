@@ -29,6 +29,7 @@ namespace AIDMusicApp.Admin.Controls
             LabelsButton.Click += ChangePanel;
             SkillsButton.Click += ChangePanel;
             AlbumFormatsButton.Click += ChangePanel;
+            UsersButton.Click += ChangePanel;
         }
 
         private void ChangePanel(object sender, RoutedEventArgs e)
@@ -60,6 +61,11 @@ namespace AIDMusicApp.Admin.Controls
                 case "AlbumFormatsButton":
                     if (!(MainContent.Content is AlbumFormatsControl))
                         MainContent.Content = new AlbumFormatsControl();
+                    break;
+
+                case "UsersButton":
+                    if (!(MainContent.Content is UsersControl))
+                        MainContent.Content = new UsersControl();
                     break;
             }
         }

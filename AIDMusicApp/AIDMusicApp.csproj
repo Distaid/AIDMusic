@@ -97,6 +97,12 @@
     <Compile Include="Admin\Controls\SkillsControl.xaml.cs">
       <DependentUpon>SkillsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Controls\UserItemControl.xaml.cs">
+      <DependentUpon>UserItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Controls\UsersControl.xaml.cs">
+      <DependentUpon>UsersControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Windows\AlbumFormatsWindow.xaml.cs">
       <DependentUpon>AlbumFormatsWindow.xaml</DependentUpon>
     </Compile>
@@ -115,12 +121,14 @@
     <Compile Include="Controls\RegistrationControl.xaml.cs">
       <DependentUpon>RegistrationControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Access.cs" />
     <Compile Include="Models\AlbumFormat.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Label.cs" />
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Sql\AccessAdapter.cs" />
     <Compile Include="Sql\AlbumFormatsAdapter.cs" />
     <Compile Include="Sql\BaseAdapter.cs" />
     <Compile Include="Sql\CountriesListAdapter.cs" />
@@ -175,6 +183,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Admin\Controls\SkillsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Controls\UserItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Controls\UsersControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -326,6 +342,8 @@
   <ItemGroup>
     <Resource Include="Logo.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\person-default.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
