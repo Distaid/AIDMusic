@@ -21,6 +21,7 @@ namespace AIDMusicApp.Sql
         public LabelsListAdapter LabelsListAdapter = null;
         public SkillsListAdapter SkillsListAdapter = null;
         public AlbumFormatsListAdapter AlbumFormatsListAdapter = null;
+        public AccessAdapter AccessAdapter = null;
 
         protected SqlDatabase()
         {
@@ -65,6 +66,7 @@ namespace AIDMusicApp.Sql
                 LabelsListAdapter = new LabelsListAdapter(_sqlConnection, "SQLCommands\\SQLLabelsList.aid");
                 SkillsListAdapter = new SkillsListAdapter(_sqlConnection, "SQLCommands\\SQLSkillsList.aid");
                 AlbumFormatsListAdapter = new AlbumFormatsListAdapter(_sqlConnection, "SQLCommands\\SQLAlbumFormatsList.aid");
+                AccessAdapter = new AccessAdapter(_sqlConnection, "SQLCommands\\SQLAccessRights.aid");
             }
             catch
             {
