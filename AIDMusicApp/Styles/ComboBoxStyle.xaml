@@ -55,13 +55,12 @@
                                           Content="{TemplateBinding SelectionBoxItem}"
                                           ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                          Margin="5 5 25 5"
-                                          VerticalAlignment="Center" HorizontalAlignment="Left">
-                        </ContentPresenter>
+                                          Margin="5 4 25 4"
+                                          VerticalAlignment="Center" HorizontalAlignment="Left"/>
                         <TextBox x:Name="PART_EditableTextBox" Style="{x:Null}"
                                  Template="{StaticResource ComboBoxTextBox}"
                                  HorizontalAlignment="Left" VerticalAlignment="Center"
-                                 Margin="5 5 25 5" Focusable="True" Background="Transparent"
+                                 Margin="5 4 25 4" Focusable="True" Background="Transparent"
                                  Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}" />
                         <Popup x:Name="Popup" Placement="Bottom"
                                IsOpen="{TemplateBinding IsDropDownOpen}"
