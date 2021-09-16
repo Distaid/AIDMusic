@@ -27,7 +27,12 @@
                 Email = Email,
                 AccessId = AccessId
             };
-            Avatar.CopyTo(user.Avatar, 0);
+
+            if (Avatar != null)
+            {
+                user.Avatar = new byte[Avatar.Length];
+                Avatar.CopyTo(user.Avatar, 0);
+            }
 
             return user;
         }
