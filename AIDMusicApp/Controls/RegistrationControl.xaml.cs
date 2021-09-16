@@ -37,7 +37,7 @@ namespace AIDMusicApp.Controls
             if (SqlDatabase.Instance.UsersAdapter.ContainsLogin(LoginTextBox.Text))
             {
                 AIDMessageWindow.Show("Пользователь с таким логином уже существует!");
-                PhoneTextBox.Focus();
+                LoginTextBox.Focus();
                 return;
             }
 
@@ -57,7 +57,7 @@ namespace AIDMusicApp.Controls
                     return;
                 }
 
-                if (SqlDatabase.Instance.UsersAdapter.ContainsLogin(PhoneTextBox.Text))
+                if (SqlDatabase.Instance.UsersAdapter.ContainsPhone(PhoneTextBox.Text))
                 {
                     AIDMessageWindow.Show("Пользователь с таким номером телефона уже существует!");
                     PhoneTextBox.Focus();
@@ -74,7 +74,7 @@ namespace AIDMusicApp.Controls
                     return;
                 }
 
-                if (SqlDatabase.Instance.UsersAdapter.ContainsLogin(EmailTextBox.Text))
+                if (SqlDatabase.Instance.UsersAdapter.ContainsEmail(EmailTextBox.Text))
                 {
                     AIDMessageWindow.Show("Пользователь с такой почтой уже существует!");
                     EmailTextBox.Focus();
