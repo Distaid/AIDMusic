@@ -17,11 +17,11 @@ namespace AIDMusicApp.Admin.Windows
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
-            NameTextAdd.Focus();
+            NameText.Focus();
             TitleText.Text = "Добавление Лэйбла";
-            AddPanel.Visibility = Visibility.Visible;
 
-            AddButton.Click += AddButton_Click;
+            ConfirmButton.Content = "Добавить";
+            ConfirmButton.Click += AddButton_Click;
         }
 
         public LabelsWindow(Models.Label label)
@@ -30,13 +30,13 @@ namespace AIDMusicApp.Admin.Windows
 
             TitleBar.MouseDown += TitleBar_MouseDown;
             LabelItem = label.Copy();
-            NameTextEdit.Text = LabelItem.Name;
-            NameTextEdit.Focus();
-            NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+            NameText.Text = LabelItem.Name;
+            NameText.Focus();
+            NameText.CaretIndex = NameText.Text.Length;
             TitleText.Text = "Изменение Лэйбла";
-            EditPanel.Visibility = Visibility.Visible;
 
-            EditButton.Click += EditButton_Click;
+            ConfirmButton.Content = "Изменить";
+            ConfirmButton.Click += EditButton_Click;
         }
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -47,56 +47,56 @@ namespace AIDMusicApp.Admin.Windows
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(NameTextAdd.Text))
+            if (string.IsNullOrWhiteSpace(NameText.Text))
             {
                 AIDMessageWindow.Show("Поле должно быть заполнено!");
-                NameTextAdd.Text = "";
-                NameTextAdd.Focus();
+                NameText.Text = "";
+                NameText.Focus();
                 return;
             }
 
-            if (SqlDatabase.Instance.LabelsListAdapter.ContainsName(NameTextAdd.Text))
+            if (SqlDatabase.Instance.LabelsListAdapter.ContainsName(NameText.Text))
             {
                 AIDMessageWindow.Show("Страна с таким названием уже существует!");
-                NameTextAdd.Focus();
-                NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+                NameText.Focus();
+                NameText.CaretIndex = NameText.Text.Length;
                 return;
             }
 
-            var id = SqlDatabase.Instance.LabelsListAdapter.Insert(NameTextAdd.Text);
+            var id = SqlDatabase.Instance.LabelsListAdapter.Insert(NameText.Text);
 
             DialogResult = true;
-            LabelItem = new Models.Label { Id = id, Name = NameTextAdd.Text };
+            LabelItem = new Models.Label { Id = id, Name = NameText.Text };
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(NameTextEdit.Text))
+            if (string.IsNullOrWhiteSpace(NameText.Text))
             {
                 AIDMessageWindow.Show("Поле должно быть заполнено!");
-                NameTextAdd.Text = "";
-                NameTextAdd.Focus();
+                NameText.Text = "";
+                NameText.Focus();
                 return;
             }
 
-            if (LabelItem.Name == NameTextEdit.Text)
+            if (LabelItem.Name == NameText.Text)
             {
                 DialogResult = false;
                 return;
             }
 
-            if (SqlDatabase.Instance.LabelsListAdapter.ContainsName(NameTextEdit.Text))
+            if (SqlDatabase.Instance.LabelsListAdapter.ContainsName(NameText.Text))
             {
                 AIDMessageWindow.Show("Страна с таким названием уже существует!");
-                NameTextAdd.Focus();
-                NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+                NameText.Focus();
+                NameText.CaretIndex = NameText.Text.Length;
                 return;
             }
 
-            SqlDatabase.Instance.SkillsListAdapter.Update(LabelItem.Id, NameTextEdit.Text);
+            SqlDatabase.Instance.SkillsListAdapter.Update(LabelItem.Id, NameText.Text);
 
             DialogResult = true;
-            LabelItem.Name = NameTextEdit.Text;
+            LabelItem.Name = NameText.Text;
         }
     }
 }

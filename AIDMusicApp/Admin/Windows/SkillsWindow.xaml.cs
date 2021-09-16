@@ -18,11 +18,11 @@ namespace AIDMusicApp.Admin.Windows
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
-            NameTextAdd.Focus();
+            NameText.Focus();
             TitleText.Text = "Добавление Навыка";
-            AddPanel.Visibility = Visibility.Visible;
 
-            AddButton.Click += AddButton_Click;
+            ConfirmButton.Content = "Добавить";
+            ConfirmButton.Click += AddButton_Click;
         }
 
         public SkillsWindow(Skill skill)
@@ -31,13 +31,13 @@ namespace AIDMusicApp.Admin.Windows
 
             TitleBar.MouseDown += TitleBar_MouseDown;
             SkillItem = skill.Copy();
-            NameTextEdit.Text = SkillItem.Name;
-            NameTextEdit.Focus();
-            NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+            NameText.Text = SkillItem.Name;
+            NameText.Focus();
+            NameText.CaretIndex = NameText.Text.Length;
             TitleText.Text = "Изменение Навыка";
-            EditPanel.Visibility = Visibility.Visible;
 
-            EditButton.Click += EditButton_Click;
+            ConfirmButton.Content = "Изменить";
+            ConfirmButton.Click += EditButton_Click;
         }
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -48,56 +48,56 @@ namespace AIDMusicApp.Admin.Windows
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(NameTextAdd.Text))
+            if (string.IsNullOrWhiteSpace(NameText.Text))
             {
                 AIDMessageWindow.Show("Поле должно быть заполнено!");
-                NameTextAdd.Text = "";
-                NameTextAdd.Focus();
+                NameText.Text = "";
+                NameText.Focus();
                 return;
             }
 
-            if (SqlDatabase.Instance.SkillsListAdapter.ContainsName(NameTextAdd.Text))
+            if (SqlDatabase.Instance.SkillsListAdapter.ContainsName(NameText.Text))
             {
                 AIDMessageWindow.Show("Страна с таким названием уже существует!");
-                NameTextAdd.Focus();
-                NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+                NameText.Focus();
+                NameText.CaretIndex = NameText.Text.Length;
                 return;
             }
 
-            var id = SqlDatabase.Instance.SkillsListAdapter.Insert(NameTextAdd.Text);
+            var id = SqlDatabase.Instance.SkillsListAdapter.Insert(NameText.Text);
 
             DialogResult = true;
-            SkillItem = new Skill { Id = id, Name = NameTextAdd.Text };
+            SkillItem = new Skill { Id = id, Name = NameText.Text };
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(NameTextEdit.Text))
+            if (string.IsNullOrWhiteSpace(NameText.Text))
             {
                 AIDMessageWindow.Show("Поле должно быть заполнено!");
-                NameTextAdd.Text = "";
-                NameTextAdd.Focus();
+                NameText.Text = "";
+                NameText.Focus();
                 return;
             }
 
-            if (SkillItem.Name == NameTextEdit.Text)
+            if (SkillItem.Name == NameText.Text)
             {
                 DialogResult = false;
                 return;
             }
 
-            if (SqlDatabase.Instance.SkillsListAdapter.ContainsName(NameTextEdit.Text))
+            if (SqlDatabase.Instance.SkillsListAdapter.ContainsName(NameText.Text))
             {
                 AIDMessageWindow.Show("Страна с таким названием уже существует!");
-                NameTextAdd.Focus();
-                NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+                NameText.Focus();
+                NameText.CaretIndex = NameText.Text.Length;
                 return;
             }
 
-            SqlDatabase.Instance.SkillsListAdapter.Update(SkillItem.Id, NameTextEdit.Text);
+            SqlDatabase.Instance.SkillsListAdapter.Update(SkillItem.Id, NameText.Text);
 
             DialogResult = true;
-            SkillItem.Name = NameTextEdit.Text;
+            SkillItem.Name = NameText.Text;
         }
     }
 }

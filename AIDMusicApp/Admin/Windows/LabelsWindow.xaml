@@ -27,7 +27,7 @@
             </Button>
         </Grid>
 
-        <Grid x:Name="AddPanel" Grid.Row="1" Visibility="Collapsed">
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -38,27 +38,10 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="NameTextAdd" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource AIDTextBoxBottomStyle}" Margin="15 35 15 10" ContextMenu="{x:Null}"/>
+            <TextBox x:Name="NameText" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource AIDTextBoxBottomStyle}" Margin="15 35 15 10" ContextMenu="{x:Null}"/>
 
-            <Button x:Name="AddButton" Grid.Row="1" Grid.Column="0" IsDefault="True" Content="Добавить" Style="{StaticResource AIDButtonStyle}" Width="100" Margin="10"/>
-            <Button x:Name="CancelAddButton" Grid.Row="1" Grid.Column="1" IsCancel="True" Content="Отмена" Style="{StaticResource AIDButtonStyle}" Width="100" Margin="10"/>
-        </Grid>
-
-        <Grid x:Name="EditPanel" Grid.Row="1" Visibility="Collapsed">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBox x:Name="NameTextEdit" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource AIDTextBoxBottomStyle}" Margin="15 35 15 10" ContextMenu="{x:Null}"/>
-
-            <Button x:Name="EditButton" Grid.Row="1" Grid.Column="0" IsDefault="True" Content="Изменить" Style="{StaticResource AIDButtonStyle}" Width="100" Margin="10"/>
-            <Button x:Name="CancelEditButton" Grid.Row="1" Grid.Column="1" IsCancel="True" Content="Отмена" Style="{StaticResource AIDButtonStyle}" Width="100" Margin="10"/>
+            <Button x:Name="ConfirmButton" Grid.Row="1" Grid.Column="0" IsDefault="True" Style="{StaticResource AIDButtonStyle}" Width="100" Margin="10"/>
+            <Button x:Name="CancelButton" Grid.Row="1" Grid.Column="1" IsCancel="True" Content="Отмена" Style="{StaticResource AIDButtonStyle}" Width="100" Margin="10"/>
         </Grid>
     </Grid>
 </Window>

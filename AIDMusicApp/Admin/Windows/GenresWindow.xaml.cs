@@ -18,11 +18,11 @@ namespace AIDMusicApp.Admin.Windows
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
-            NameTextAdd.Focus();
+            NameText.Focus();
             TitleText.Text = "Добавление Жанра";
-            AddPanel.Visibility = Visibility.Visible;
 
-            AddButton.Click += AddButton_Click;
+            ConfirmButton.Content = "Добавить";
+            ConfirmButton.Click += AddButton_Click;
         }
 
         public GenresWindow(Genre genre)
@@ -31,13 +31,13 @@ namespace AIDMusicApp.Admin.Windows
 
             TitleBar.MouseDown += TitleBar_MouseDown;
             GenreItem = genre.Copy();
-            NameTextEdit.Text = GenreItem.Name;
-            NameTextEdit.Focus();
-            NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+            NameText.Text = GenreItem.Name;
+            NameText.Focus();
+            NameText.CaretIndex = NameText.Text.Length;
             TitleText.Text = "Изменение Жанра";
-            EditPanel.Visibility = Visibility.Visible;
 
-            EditButton.Click += EditButton_Click;
+            ConfirmButton.Content = "Изменить";
+            ConfirmButton.Click += EditButton_Click;
         }
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -48,56 +48,56 @@ namespace AIDMusicApp.Admin.Windows
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(NameTextAdd.Text))
+            if (string.IsNullOrWhiteSpace(NameText.Text))
             {
                 AIDMessageWindow.Show("Поле должно быть заполнено!");
-                NameTextAdd.Text = "";
-                NameTextAdd.Focus();
+                NameText.Text = "";
+                NameText.Focus();
                 return;
             }
 
-            if (SqlDatabase.Instance.GenresListAdapter.ContainsName(NameTextAdd.Text))
+            if (SqlDatabase.Instance.GenresListAdapter.ContainsName(NameText.Text))
             {
                 AIDMessageWindow.Show("Страна с таким названием уже существует!");
-                NameTextAdd.Focus();
-                NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+                NameText.Focus();
+                NameText.CaretIndex = NameText.Text.Length;
                 return;
             }
 
-            var id = SqlDatabase.Instance.GenresListAdapter.Insert(NameTextAdd.Text);
+            var id = SqlDatabase.Instance.GenresListAdapter.Insert(NameText.Text);
 
             DialogResult = true;
-            GenreItem = new Genre { Id = id, Name = NameTextAdd.Text };
+            GenreItem = new Genre { Id = id, Name = NameText.Text };
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(NameTextEdit.Text))
+            if (string.IsNullOrWhiteSpace(NameText.Text))
             {
                 AIDMessageWindow.Show("Поле должно быть заполнено!");
-                NameTextAdd.Text = "";
-                NameTextAdd.Focus();
+                NameText.Text = "";
+                NameText.Focus();
                 return;
             }
 
-            if (GenreItem.Name == NameTextEdit.Text)
+            if (GenreItem.Name == NameText.Text)
             {
                 DialogResult = false;
                 return;
             }
 
-            if (SqlDatabase.Instance.GenresListAdapter.ContainsName(NameTextEdit.Text))
+            if (SqlDatabase.Instance.GenresListAdapter.ContainsName(NameText.Text))
             {
                 AIDMessageWindow.Show("Страна с таким названием уже существует!");
-                NameTextAdd.Focus();
-                NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+                NameText.Focus();
+                NameText.CaretIndex = NameText.Text.Length;
                 return;
             }
 
-            SqlDatabase.Instance.GenresListAdapter.Update(GenreItem.Id, NameTextEdit.Text);
+            SqlDatabase.Instance.GenresListAdapter.Update(GenreItem.Id, NameText.Text);
 
             DialogResult = true;
-            GenreItem.Name = NameTextEdit.Text;
+            GenreItem.Name = NameText.Text;
         }
     }
 }

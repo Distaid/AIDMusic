@@ -18,11 +18,11 @@ namespace AIDMusicApp.Admin.Windows
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
-            NameTextAdd.Focus();
+            NameText.Focus();
             TitleText.Text = "Добавление Страны";
-            AddPanel.Visibility = Visibility.Visible;
 
-            AddButton.Click += AddButton_Click;
+            ConfirmButton.Content = "Добавить";
+            ConfirmButton.Click += AddButton_Click;
         }
 
         public CountriesWindow(Country country)
@@ -31,13 +31,13 @@ namespace AIDMusicApp.Admin.Windows
 
             TitleBar.MouseDown += TitleBar_MouseDown;
             CountryItem = country.Copy();
-            NameTextEdit.Text = CountryItem.Name;
-            NameTextEdit.Focus();
-            NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+            NameText.Text = CountryItem.Name;
+            NameText.Focus();
+            NameText.CaretIndex = NameText.Text.Length;
             TitleText.Text = "Изменение Страны";
-            EditPanel.Visibility = Visibility.Visible;
 
-            EditButton.Click += EditButton_Click;
+            ConfirmButton.Content = "Изменить";
+            ConfirmButton.Click += EditButton_Click;
         }
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -48,56 +48,56 @@ namespace AIDMusicApp.Admin.Windows
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(NameTextAdd.Text))
+            if (string.IsNullOrWhiteSpace(NameText.Text))
             {
                 AIDMessageWindow.Show("Поле должно быть заполнено!");
-                NameTextAdd.Text = "";
-                NameTextAdd.Focus();
+                NameText.Text = "";
+                NameText.Focus();
                 return;
             }
 
-            if (SqlDatabase.Instance.CountriesListAdapter.ContainsName(NameTextAdd.Text))
+            if (SqlDatabase.Instance.CountriesListAdapter.ContainsName(NameText.Text))
             {
                 AIDMessageWindow.Show("Страна с таким названием уже существует!");
-                NameTextAdd.Focus();
-                NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+                NameText.Focus();
+                NameText.CaretIndex = NameText.Text.Length;
                 return;
             }
 
-            var id = SqlDatabase.Instance.CountriesListAdapter.Insert(NameTextAdd.Text);
+            var id = SqlDatabase.Instance.CountriesListAdapter.Insert(NameText.Text);
 
             DialogResult = true;
-            CountryItem = new Country { Id = id, Name = NameTextAdd.Text };
+            CountryItem = new Country { Id = id, Name = NameText.Text };
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(NameTextEdit.Text))
+            if (string.IsNullOrWhiteSpace(NameText.Text))
             {
                 AIDMessageWindow.Show("Поле должно быть заполнено!");
-                NameTextAdd.Text = "";
-                NameTextAdd.Focus();
+                NameText.Text = "";
+                NameText.Focus();
                 return;
             }
 
-            if (CountryItem.Name == NameTextEdit.Text)
+            if (CountryItem.Name == NameText.Text)
             {
                 DialogResult = false;
                 return;
             }
 
-            if (SqlDatabase.Instance.CountriesListAdapter.ContainsName(NameTextEdit.Text))
+            if (SqlDatabase.Instance.CountriesListAdapter.ContainsName(NameText.Text))
             {
                 AIDMessageWindow.Show("Страна с таким названием уже существует!");
-                NameTextAdd.Focus();
-                NameTextEdit.CaretIndex = NameTextEdit.Text.Length;
+                NameText.Focus();
+                NameText.CaretIndex = NameText.Text.Length;
                 return;
             }
 
-            SqlDatabase.Instance.CountriesListAdapter.Update(CountryItem.Id, NameTextEdit.Text);
+            SqlDatabase.Instance.CountriesListAdapter.Update(CountryItem.Id, NameText.Text);
 
             DialogResult = true;
-            CountryItem.Name = NameTextEdit.Text;
+            CountryItem.Name = NameText.Text;
         }
     }
 }
