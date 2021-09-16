@@ -26,6 +26,8 @@ namespace AIDMusicApp.Admin.Controls
                 await Dispatcher.BeginInvoke(new Action(() =>
                 {
                     AddItemButton.IsEnabled = false;
+                    SearchTextBox.IsEnabled = false;
+                    SearchButton.IsEnabled = false;
                 }));
                 await Task.Delay(1);
 
@@ -42,6 +44,8 @@ namespace AIDMusicApp.Admin.Controls
                 await Dispatcher.BeginInvoke(new Action(() =>
                 {
                     AddItemButton.IsEnabled = true;
+                    SearchTextBox.IsEnabled = true;
+                    SearchButton.IsEnabled = true;
                 }));
                 await Task.Delay(1);
             });
