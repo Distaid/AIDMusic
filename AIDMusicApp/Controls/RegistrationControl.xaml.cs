@@ -34,6 +34,13 @@ namespace AIDMusicApp.Controls
                 return;
             }
 
+            if (SqlDatabase.Instance.UsersAdapter.ContainsLogin(LoginTextBox.Text))
+            {
+                AIDMessageWindow.Show("Пользователь с таким логином уже существует!");
+                PhoneTextBox.Focus();
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(PasswordTextBox.Password))
             {
                 AIDMessageWindow.Show("Поле \"Пароль\" обязательно для заполнения!");
@@ -49,6 +56,13 @@ namespace AIDMusicApp.Controls
                     PhoneTextBox.Focus();
                     return;
                 }
+
+                if (SqlDatabase.Instance.UsersAdapter.ContainsLogin(PhoneTextBox.Text))
+                {
+                    AIDMessageWindow.Show("Пользователь с таким номером телефона уже существует!");
+                    PhoneTextBox.Focus();
+                    return;
+                }
             }
 
             if (!string.IsNullOrWhiteSpace(EmailTextBox.Text))
@@ -59,40 +73,20 @@ namespace AIDMusicApp.Controls
                     EmailTextBox.Focus();
                     return;
                 }
+
+                if (SqlDatabase.Instance.UsersAdapter.ContainsLogin(EmailTextBox.Text))
+                {
+                    AIDMessageWindow.Show("Пользователь с такой почтой уже существует!");
+                    EmailTextBox.Focus();
+                    return;
+                }
             }
 
-            Task.Run(() =>
-            {
-                Dispatcher.Invoke(() =>
-                {
-                    LoginTextBox.IsEnabled = false;
-                    PasswordTextBox.IsEnabled = false;
-                    PhoneTextBox.IsEnabled = false;
-                    EmailTextBox.IsEnabled = false;
-                    RegisterButton.IsEnabled = false;
-                    BackButton.IsEnabled = false;
+            SqlDatabase.Instance.UsersAdapter.Insert(LoginTextBox.Text, PasswordTextBox.Password, PhoneTextBox.Text, EmailTextBox.Text, 1, null);
 
-                    if (SqlDatabase.Instance.UsersAdapter.ContainsLogin(LoginTextBox.Text) ||
-                        SqlDatabase.Instance.UsersAdapter.ContainsPhone(PhoneTextBox.Text) ||
-                        SqlDatabase.Instance.UsersAdapter.ContainsEmail(EmailTextBox.Text))
-                    {
-                        AIDMessageWindow.Show("Пользователь с такими данными уже существует!");
-                        LoginTextBox.IsEnabled = true;
-                        PasswordTextBox.IsEnabled = true;
-                        PhoneTextBox.IsEnabled = true;
-                        EmailTextBox.IsEnabled = true;
-                        RegisterButton.IsEnabled = true;
-                        BackButton.IsEnabled = true;
-                        return;
-                    }
+            AIDMessageWindow.Show("Пользователь успешно добавлен!");
 
-                    SqlDatabase.Instance.UsersAdapter.Insert(LoginTextBox.Text, PasswordTextBox.Password, PhoneTextBox.Text, EmailTextBox.Text, 1, null);
-
-                    AIDMessageWindow.Show("Пользователь успешно добавлен!");
-
-                    RegisterClick?.Invoke(LoginTextBox.Text, PasswordTextBox.Password);
-                });
-            });
+            RegisterClick?.Invoke(LoginTextBox.Text, PasswordTextBox.Password);
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

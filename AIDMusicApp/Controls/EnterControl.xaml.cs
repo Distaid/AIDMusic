@@ -41,39 +41,23 @@ namespace AIDMusicApp.Controls
                 return;
             }
 
-            Task.Run(() =>
+            if (SqlDatabase.Instance.UsersAdapter.ContainsLogin(LoginTextBox.Text))
             {
-                Dispatcher.Invoke(() =>
+                User user = SqlDatabase.Instance.UsersAdapter.GetByLogin(LoginTextBox.Text);
+
+                if (user.Password == PasswordTextBox.Password)
                 {
-                    LoginTextBox.IsEnabled = false;
-                    PasswordTextBox.IsEnabled = false;
-                    LoginButton.IsEnabled = false;
-                    RegistrationButton.IsEnabled = false;
-
-                    if (SqlDatabase.Instance.UsersAdapter.ContainsLogin(LoginTextBox.Text))
-                    {
-                        User user = SqlDatabase.Instance.UsersAdapter.GetByLogin(LoginTextBox.Text);
-
-                        if (user.Password == PasswordTextBox.Password)
-                        {
-                            LoginClick?.Invoke(user);
-                        }
-                        else
-                        {
-                            AIDMessageWindow.Show("Неверный пароль!");
-                        }
-                    }
-                    else
-                    {
-                        AIDMessageWindow.Show("Данного пользователя не существует!");
-                    }
-
-                    LoginTextBox.IsEnabled = true;
-                    PasswordTextBox.IsEnabled = true;
-                    LoginButton.IsEnabled = true;
-                    RegistrationButton.IsEnabled = true;
-                });
-            });
+                    LoginClick?.Invoke(user);
+                }
+                else
+                {
+                    AIDMessageWindow.Show("Неверный пароль!");
+                }
+            }
+            else
+            {
+                AIDMessageWindow.Show("Данного пользователя не существует!");
+            }
         }
 
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)
