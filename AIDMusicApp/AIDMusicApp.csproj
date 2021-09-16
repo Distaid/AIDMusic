@@ -91,6 +91,9 @@
     <Compile Include="Admin\Controls\LabelsControl.xaml.cs">
       <DependentUpon>LabelsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Controls\MusicianItemControl.xaml.cs">
+      <DependentUpon>MusicianItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Controls\SkillItemControl.xaml.cs">
       <DependentUpon>SkillItemControl.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,9 @@
     </Compile>
     <Compile Include="Admin\Windows\SkillsWindow.xaml.cs">
       <DependentUpon>SkillsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Windows\UsersWindow.xaml.cs">
+      <DependentUpon>UsersWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RegistrationControl.xaml.cs">
       <DependentUpon>RegistrationControl.xaml</DependentUpon>
@@ -178,6 +184,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\Controls\MusicianItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Admin\Controls\SkillItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -211,6 +221,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Admin\Windows\SkillsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Windows\UsersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

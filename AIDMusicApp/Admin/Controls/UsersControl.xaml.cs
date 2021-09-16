@@ -1,4 +1,5 @@
-﻿using AIDMusicApp.Sql;
+﻿using AIDMusicApp.Admin.Windows;
+using AIDMusicApp.Sql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,15 +56,12 @@ namespace AIDMusicApp.Admin.Controls
 
         private void AddItemButton_Click(object sender, RoutedEventArgs e)
         {
-            //var addWindow = new SkillsWindow();
-            //if (addWindow.ShowDialog() == true)
-            //{
-            //    var item = new SkillItemControl(addWindow.SkillItem);
-            //    SkillsItems.Children.Add(item);
-            //}
-
-            //var item = new UserItemControl();
-            //UsersItems.Children.Add(item);
+            var addWindow = new UsersWindow();
+            if (addWindow.ShowDialog() == true)
+            {
+                var item = new UserItemControl(addWindow.UserItem);
+                UsersItems.Children.Add(item);
+            }
         }
     }
 }

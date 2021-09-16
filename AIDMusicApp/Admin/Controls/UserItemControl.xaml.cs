@@ -1,4 +1,5 @@
-﻿using AIDMusicApp.Models;
+﻿using AIDMusicApp.Admin.Windows;
+using AIDMusicApp.Models;
 using AIDMusicApp.Sql;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,30 @@ namespace AIDMusicApp.Admin.Controls
             if (UserItem.AccessId == 3)
                 RemoveButton.IsEnabled = false;
 
+            EditButton.Click += EditButton_Click;
             RemoveButton.Click += RemoveButton_Click;
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            var editWindow = new UsersWindow(UserItem);
+            if (editWindow.ShowDialog() == true)
+            {
+                UserItem = editWindow.UserItem;
+                LoginText.Text = UserItem.Login;
+                EmailText.Text = UserItem.Email;
+                PhoneText.Text = UserItem.Phone;
+                AccessText.Text = SqlDatabase.Instance.AccessAdapter.GetById(UserItem.AccessId).Name;
+
+                if (UserItem.Avatar != null)
+                {
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    image.StreamSource = new MemoryStream(UserItem.Avatar); ;
+                    image.EndInit();
+                    AvatarImage.ImageSource = image;
+                }
+            }
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
