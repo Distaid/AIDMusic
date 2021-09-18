@@ -47,11 +47,11 @@
                 <TextBlock Grid.Column="1" Grid.Row="0" Text="Логин" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" Foreground="{StaticResource AIDCyan}"/>
                 <TextBlock Grid.Column="2" Grid.Row="0" x:Name="LoginText" Text="LOGIN" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" x:FieldModifier="private"/>
 
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="Почта" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" Foreground="{StaticResource AIDCyan}"/>
-                <TextBlock Grid.Column="2" Grid.Row="1" x:Name="EmailText" Text="EMAIL" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" x:FieldModifier="private"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="Номер" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" Foreground="{StaticResource AIDCyan}" ToolTip="Номер телефона"/>
+                <TextBlock Grid.Column="2" Grid.Row="1" x:Name="PhoneText" Text="PHONE" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" x:FieldModifier="private"/>
 
-                <TextBlock Grid.Column="1" Grid.Row="2" Text="Номер" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" Foreground="{StaticResource AIDCyan}" ToolTip="Номер телефона"/>
-                <TextBlock Grid.Column="2" Grid.Row="2" x:Name="PhoneText" Text="PHONE" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" x:FieldModifier="private"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="Почта" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" Foreground="{StaticResource AIDCyan}"/>
+                <TextBlock Grid.Column="2" Grid.Row="2" x:Name="EmailText" Text="EMAIL" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" x:FieldModifier="private"/>
                 
                 <TextBlock Grid.Column="1" Grid.Row="3" Text="Доступ" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" Foreground="{StaticResource AIDCyan}"/>
                 <TextBlock Grid.Column="2" Grid.Row="3" x:Name="AccessText" Text="ACCESS" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" x:FieldModifier="private"/>

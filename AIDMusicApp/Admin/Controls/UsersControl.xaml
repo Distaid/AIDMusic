@@ -17,11 +17,17 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <Button x:Name="AddItemButton" Content="Добавить" Style="{StaticResource AIDButtonStyle}" Margin="10 5"/>
             <TextBox Grid.Column="1" x:Name="SearchTextBox" Style="{StaticResource AIDTextBoxStyle}" Margin="10 5" ContextMenu="{x:Null}" Width="270" HorizontalAlignment="Right"/>
-            <Button Grid.Column="2" x:Name="SearchButton" Content="Поиск" Style="{StaticResource AIDButtonStyle}" Margin="10 5" Width="80"/>
+            <ComboBox Grid.Column="2" x:Name="SearchField" Style="{StaticResource AIDComboBoxStyle}" Margin="10 5" Width="85">
+                <ComboBoxItem Content="Логин" IsSelected="True"/>
+                <ComboBoxItem Content="Номер"/>
+                <ComboBoxItem Content="Почта"/>
+            </ComboBox>
+            <Button Grid.Column="3" x:Name="SearchButton" Content="Поиск" Style="{StaticResource AIDButtonStyle}" Margin="10 5" Width="80"/>
         </Grid>
 
         <Border Grid.Row="1" Background="#191919" Margin="10 5">
