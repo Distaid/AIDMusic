@@ -94,6 +94,9 @@
     <Compile Include="Admin\Controls\MusicianItemControl.xaml.cs">
       <DependentUpon>MusicianItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Controls\MusiciansControl.xaml.cs">
+      <DependentUpon>MusiciansControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Controls\SkillItemControl.xaml.cs">
       <DependentUpon>SkillItemControl.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,9 @@
     <Compile Include="Admin\Windows\LabelsWindow.xaml.cs">
       <DependentUpon>LabelsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Windows\MusiciansWindow.xaml.cs">
+      <DependentUpon>MusiciansWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Windows\SkillsWindow.xaml.cs">
       <DependentUpon>SkillsWindow.xaml</DependentUpon>
     </Compile>
@@ -132,6 +138,8 @@
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Label.cs" />
+    <Compile Include="Models\Musician.cs" />
+    <Compile Include="Models\MusicianSkill.cs" />
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Sql\AccessAdapter.cs" />
@@ -141,6 +149,8 @@
     <Compile Include="Sql\FileLoader.cs" />
     <Compile Include="Sql\GenresListAdapter.cs" />
     <Compile Include="Sql\LabelsListAdapter.cs" />
+    <Compile Include="Sql\MusiciansAdapter.cs" />
+    <Compile Include="Sql\MusicianSkillsAdapter.cs" />
     <Compile Include="Sql\SkillsListAdapter.cs" />
     <Compile Include="Sql\SqlDatabase.cs" />
     <Compile Include="Sql\UsersAdapter.cs" />
@@ -188,6 +198,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\Controls\MusiciansControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Admin\Controls\SkillItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,6 +231,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Admin\Windows\LabelsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Windows\MusiciansWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,6 +294,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\ExpanderStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ListBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

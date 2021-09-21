@@ -25,7 +25,7 @@
                 <MenuItem Header="Группы" Style="{StaticResource AIDMenuItemStyle}"/>
                 <MenuItem Header="Альбомы" Style="{StaticResource AIDMenuItemStyle}"/>
                 <MenuItem Header="Песни" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Музыканты" Style="{StaticResource AIDMenuItemStyle}"/>
+                <MenuItem x:Name="MusiciansButton" Header="Музыканты" Style="{StaticResource AIDMenuItemStyle}"/>
             </MenuItem>
             <MenuItem Header="Таблицы связи" Style="{StaticResource AIDMenuItemStyle}">
                 <MenuItem Header="Жанры группы" Style="{StaticResource AIDMenuItemStyle}"/>
