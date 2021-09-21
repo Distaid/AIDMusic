@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Styles/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="Styles/ContextMenuStyle.xaml"/>
                 <ResourceDictionary Source="Styles/ExpanderStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ListBoxStyle.xaml"/>
                 <ResourceDictionary Source="Styles/MenuStyle.xaml"/>
                 <ResourceDictionary Source="Styles/PasswordBoxStyle.xaml"/>
                 <ResourceDictionary Source="Styles/ScrollViewerStyle.xaml"/>
