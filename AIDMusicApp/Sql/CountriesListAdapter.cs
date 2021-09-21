@@ -71,5 +71,23 @@ namespace AIDMusicApp.Sql
 
             return true;
         }
+
+        public Country GetById(int id)
+        {
+            var comand = _sqlComands["SQL_Select_CountriesList_ById"].Replace("@id", $"{id}");
+            using (var adapter = new SqlDataAdapter(comand, _sqlConnection))
+            {
+                var ds = new DataSet();
+                adapter.Fill(ds);
+
+                var row = ds.Tables[0].Rows[0];
+
+                return new Country
+                {
+                    Id = Convert.ToInt32(row[0]),
+                    Name = Convert.ToString(row[1]),
+                };
+            }
+        }
     }
 }
