@@ -16,6 +16,7 @@ namespace AIDMusicApp.Windows
             MessageText.Text = message;
 
             MouseDown += MessageWindow_MouseDown;
+            OKButton.Focus();
         }
 
         public MessageWindow(string header, string message)
@@ -26,6 +27,7 @@ namespace AIDMusicApp.Windows
             MessageText.Text = message;
 
             MouseDown += MessageWindow_MouseDown;
+            OKButton.Focus();
         }
 
         private void MessageWindow_MouseDown(object sender, MouseButtonEventArgs e)
