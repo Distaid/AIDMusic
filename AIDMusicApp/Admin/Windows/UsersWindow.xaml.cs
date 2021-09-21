@@ -183,12 +183,15 @@ namespace AIDMusicApp.Admin.Windows
                 AccessId = Convert.ToInt32((AccessId.SelectedItem as ComboBoxItem).Tag)
             };
 
-            var stream = (AvatarImage.ImageSource as BitmapImage).StreamSource;
-            if (stream.Length != 0)
+            if (AvatarImage.ImageSource as BitmapImage != null)
             {
-                stream.Seek(0, SeekOrigin.Begin);
-                UserItem.Avatar = new byte[stream.Length];
-                stream.Read(UserItem.Avatar, 0, UserItem.Avatar.Length);
+                var stream = (AvatarImage.ImageSource as BitmapImage).StreamSource;
+                if (stream.Length != 0)
+                {
+                    stream.Seek(0, SeekOrigin.Begin);
+                    UserItem.Avatar = new byte[stream.Length];
+                    stream.Read(UserItem.Avatar, 0, UserItem.Avatar.Length);
+                }
             }
 
             UserItem.Id = SqlDatabase.Instance.UsersAdapter.Insert(UserItem.Login, UserItem.Password, UserItem.Phone, UserItem.Email, UserItem.AccessId, UserItem.Avatar);
@@ -255,10 +258,16 @@ namespace AIDMusicApp.Admin.Windows
             UserItem.Email = EmailText.Text;
             UserItem.AccessId = Convert.ToInt32((AccessId.SelectedItem as ComboBoxItem).Tag);
 
-            var stream = (AvatarImage.ImageSource as BitmapImage).StreamSource;
-            stream.Seek(0, SeekOrigin.Begin);
-            UserItem.Avatar = new byte[stream.Length];
-            stream.Read(UserItem.Avatar, 0, UserItem.Avatar.Length);
+            if (AvatarImage.ImageSource as BitmapImage != null)
+            {
+                var stream = (AvatarImage.ImageSource as BitmapImage).StreamSource;
+                if (stream.Length != 0)
+                {
+                    stream.Seek(0, SeekOrigin.Begin);
+                    UserItem.Avatar = new byte[stream.Length];
+                    stream.Read(UserItem.Avatar, 0, UserItem.Avatar.Length);
+                }
+            }
 
             DialogResult = true;
             SqlDatabase.Instance.UsersAdapter.Update(UserItem.Id, UserItem.Login, UserItem.Password, UserItem.Phone, UserItem.Email, UserItem.AccessId, UserItem.Avatar);
