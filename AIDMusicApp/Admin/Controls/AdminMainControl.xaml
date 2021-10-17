@@ -27,20 +27,9 @@
                 <MenuItem Header="Песни" Style="{StaticResource AIDMenuItemStyle}"/>
                 <MenuItem x:Name="MusiciansButton" Header="Музыканты" Style="{StaticResource AIDMenuItemStyle}"/>
             </MenuItem>
-            <MenuItem Header="Таблицы связи" Style="{StaticResource AIDMenuItemStyle}">
-                <MenuItem Header="Жанры группы" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Жанры альбома" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Жанры песни" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Контракты" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Текущий состав" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Бывшие участники" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Навыки музыкантов" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Дискография" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Трэклисты" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Feat" Style="{StaticResource AIDMenuItemStyle}"/>
-                <MenuItem Header="Covers" Style="{StaticResource AIDMenuItemStyle}"/>
-            </MenuItem>
         </Menu>
+
+        <Button Grid.Row="0" x:Name="ExitButton" Content="Выход" Style="{StaticResource AIDButtonStyle}" HorizontalAlignment="Right" Margin="5 0" Width="80"/>
 
         <ContentControl x:Name="MainContent" Grid.Row="1"/>
     </Grid>
