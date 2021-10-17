@@ -1,10 +1,33 @@
-﻿namespace AIDMusicApp.Models
-{
-    public class Skill
-    {
-        public int Id { get; set; }
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-        public string Name { get; set; }
+namespace AIDMusicApp.Models
+{
+    public class Skill : INotifyPropertyChanged
+    {
+        private int _id;
+
+        private string _name;
+
+        public int Id
+        {
+            get => _id;
+            set
+            {
+                _id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged("Name");
+            }
+        }
 
         public Skill Copy()
         {
@@ -13,6 +36,13 @@
                 Id = Id,
                 Name = Name
             };
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

@@ -11,27 +11,25 @@ namespace AIDMusicApp.Admin.Controls
     /// </summary>
     public partial class AlbumFormatItemControl : UserControl
     {
-        public AlbumFormat AlbumFormatItem { get; private set; }
-
         public AlbumFormatItemControl(AlbumFormat albumFormat)
         {
             InitializeComponent();
 
-            AlbumFormatItem = albumFormat;
-            IdText.Text = AlbumFormatItem.Id.ToString();
-            NameText.Text = AlbumFormatItem.Name;
+            AlbumFormatItem.Id = albumFormat.Id;
+            AlbumFormatItem.Name = albumFormat.Name;
 
             EditButton.Click += EditButton_Click;
             RemoveButton.Click += RemoveButton_Click;
         }
+
+        public AlbumFormat AlbumFormatItem => (AlbumFormat)Resources["AlbumFormatItem"];
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var editWindow = new AlbumFormatsWindow(AlbumFormatItem);
             if (editWindow.ShowDialog() == true)
             {
-                AlbumFormatItem = editWindow.AlbumFormatItem;
-                NameText.Text = AlbumFormatItem.Name;
+                AlbumFormatItem.Name = editWindow.AlbumFormatItem.Name;
             }
         }
 

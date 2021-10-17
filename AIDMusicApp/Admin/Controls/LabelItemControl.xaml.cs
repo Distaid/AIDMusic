@@ -10,27 +10,25 @@ namespace AIDMusicApp.Admin.Controls
     /// </summary>
     public partial class LabelItemControl : UserControl
     {
-        public Models.Label LabelItem { get; private set; }
-
         public LabelItemControl(Models.Label label)
         {
             InitializeComponent();
 
-            LabelItem = label;
-            IdText.Text = LabelItem.Id.ToString();
-            NameText.Text = LabelItem.Name;
+            LabelItem.Id = label.Id;
+            LabelItem.Name = label.Name;
 
             EditButton.Click += EditButton_Click;
             RemoveButton.Click += RemoveButton_Click;
         }
+
+        public Models.Label LabelItem => (Models.Label)Resources["LabelItem"];
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var editWindow = new LabelsWindow(LabelItem);
             if (editWindow.ShowDialog() == true)
             {
-                LabelItem = editWindow.LabelItem;
-                NameText.Text = LabelItem.Name;
+                LabelItem.Name = editWindow.LabelItem.Name;
             }
         }
 

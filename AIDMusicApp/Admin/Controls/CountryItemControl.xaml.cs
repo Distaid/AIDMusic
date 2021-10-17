@@ -11,27 +11,25 @@ namespace AIDMusicApp.Admin.Controls
     /// </summary>
     public partial class CountryItemControl : UserControl
     {
-        public Country CountryItem { get; private set; }
-
         public CountryItemControl(Country country)
         {
             InitializeComponent();
 
-            CountryItem = country;
-            IdText.Text = CountryItem.Id.ToString();
-            NameText.Text = CountryItem.Name;
+            CountryItem.Id = country.Id;
+            CountryItem.Name = country.Name;
 
             EditButton.Click += EditButton_Click;
             RemoveButton.Click += RemoveButton_Click;
         }
+
+        public Country CountryItem => (Country)Resources["CountryItem"];
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var editWindow = new CountriesWindow(CountryItem);
             if (editWindow.ShowDialog() == true)
             {
-                CountryItem = editWindow.CountryItem;
-                NameText.Text = CountryItem.Name;
+                CountryItem.Name = editWindow.CountryItem.Name;
             }
         }
 

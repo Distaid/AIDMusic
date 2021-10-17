@@ -11,27 +11,25 @@ namespace AIDMusicApp.Admin.Controls
     /// </summary>
     public partial class GenreItemControl : UserControl
     {
-        public Genre GenreItem { get; private set; }
-
         public GenreItemControl(Genre genre)
         {
             InitializeComponent();
 
-            GenreItem = genre;
-            IdText.Text = GenreItem.Id.ToString();
-            NameText.Text = GenreItem.Name;
+            GenreItem.Id = genre.Id;
+            GenreItem.Name = genre.Name;
 
             EditButton.Click += EditButton_Click;
             RemoveButton.Click += RemoveButton_Click;
         }
+
+        public Genre GenreItem => (Genre)Resources["GenreItem"];
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var editWindow = new GenresWindow(GenreItem);
             if (editWindow.ShowDialog() == true)
             {
-                GenreItem = editWindow.GenreItem;
-                NameText.Text = GenreItem.Name;
+                GenreItem.Name = editWindow.GenreItem.Name;
             }
         }
 

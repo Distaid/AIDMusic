@@ -4,9 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AIDMusicApp.Admin.Controls"
+             xmlns:local1="clr-namespace:AIDMusicApp.Models"
              mc:Ignorable="d"
              d:DesignHeight="120" d:DesignWidth="250"
              Height="120" Width="250">
+    <UserControl.Resources>
+        <local1:Label x:Key="LabelItem"/>
+    </UserControl.Resources>
+    
     <Border Background="#222222" BorderThickness="1" BorderBrush="{StaticResource AIDCyan}" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -22,9 +27,9 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="ID" Style="{StaticResource AIDTextBlockStyle}" Margin="10 3" HorizontalAlignment="Left"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="IdText" Text="ID" Style="{StaticResource AIDTextBlockStyle}" Margin="10 3" HorizontalAlignment="Right" x:FieldModifier="private"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="IdText" Text="{Binding Source={StaticResource LabelItem}, Path=Id, Mode=TwoWay}" Style="{StaticResource AIDTextBlockStyle}" Margin="10 3" HorizontalAlignment="Right" x:FieldModifier="private"/>
 
-            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" x:Name="NameText" Text="NAME" Style="{StaticResource AIDTextBlockStyle}" x:FieldModifier="private"
+            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" x:Name="NameText" Text="{Binding Source={StaticResource LabelItem}, Path=Name, TargetNullValue=NAME, Mode=TwoWay}" Style="{StaticResource AIDTextBlockStyle}" x:FieldModifier="private"
                        Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center"/>
 
             <Separator Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource AIDSeparatorHorizontalStyle}"/>

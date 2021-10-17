@@ -11,27 +11,25 @@ namespace AIDMusicApp.Admin.Controls
     /// </summary>
     public partial class SkillItemControl : UserControl
     {
-        public Skill SkillItem { get; private set; }
-
         public SkillItemControl(Skill skill)
         {
             InitializeComponent();
 
-            SkillItem = skill;
-            IdText.Text = SkillItem.Id.ToString();
-            NameText.Text = SkillItem.Name;
+            SkillItem.Id = skill.Id;
+            SkillItem.Name = skill.Name;
 
             EditButton.Click += EditButton_Click;
             RemoveButton.Click += RemoveButton_Click;
         }
+
+        public Skill SkillItem => (Skill)Resources["SkillItem"];
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var editWindow = new SkillsWindow(SkillItem);
             if (editWindow.ShowDialog() == true)
             {
-                SkillItem = editWindow.SkillItem;
-                NameText.Text = SkillItem.Name;
+                SkillItem.Name = editWindow.SkillItem.Name;
             }
         }
 
