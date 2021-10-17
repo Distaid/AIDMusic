@@ -20,9 +20,13 @@ namespace AIDMusicApp.Admin.Controls
     /// </summary>
     public partial class AdminMainControl : UserControl
     {
+        public event Action ExitClick = null;
+
         public AdminMainControl()
         {
             InitializeComponent();
+
+            ExitButton.Click += ExitButton_Click;
 
             CountriesButton.Click += ChangePanel;
             GenresButton.Click += ChangePanel;
@@ -31,6 +35,11 @@ namespace AIDMusicApp.Admin.Controls
             AlbumFormatsButton.Click += ChangePanel;
             UsersButton.Click += ChangePanel;
             MusiciansButton.Click += ChangePanel;
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExitClick?.Invoke();
         }
 
         private void ChangePanel(object sender, RoutedEventArgs e)
