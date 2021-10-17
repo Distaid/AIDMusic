@@ -135,11 +135,19 @@ namespace AIDMusicApp
                 case 3:
                     MainContent.Content = null;
                     MainContent.Content = new AdminMainControl();
-                    //(MainContent.Content as AdminControlPanel).Logout += MainWindow_Logout;
+                    (MainContent.Content as AdminMainControl).ExitClick += MainWindow_ExitClick;
                     break;
                 default:
                     break;
             }
+        }
+
+        private void MainWindow_ExitClick()
+        {
+            MainContent.Content = null;
+            MainContent.Content = _enterControl;
+            _enterControl.LoginTextBox.Text = "";
+            _enterControl.PasswordTextBox.Password = "";
         }
 
         private void _enterControl_RegistrationClick()
