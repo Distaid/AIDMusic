@@ -46,7 +46,6 @@ namespace AIDMusicApp.Admin.Controls
                     SearchTextBox.IsEnabled = true;
                     SearchButton.IsEnabled = true;
                 }));
-                await Task.Delay(1);
             });
         }
 
