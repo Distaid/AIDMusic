@@ -130,9 +130,9 @@ namespace AIDMusicApp
 
         private void _enterControl_LoginClick(User user)
         {
-            switch (user.AccessId)
+            switch (user.AccessId.Name)
             {
-                case 3:
+                case "Администратор":
                     MainContent.Content = null;
                     MainContent.Content = new AdminMainControl();
                     (MainContent.Content as AdminMainControl).ExitClick += MainWindow_ExitClick;

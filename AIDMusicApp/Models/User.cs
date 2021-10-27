@@ -12,7 +12,7 @@
 
         public string Email { get; set; }
 
-        public int AccessId { get; set; }
+        public Access AccessId { get; set; }
 
         public byte[] Avatar { get; set; }
 
@@ -25,7 +25,7 @@
                 Password = Password,
                 Phone = Phone,
                 Email = Email,
-                AccessId = AccessId
+                AccessId = AccessId.Copy()
             };
 
             if (Avatar != null)

@@ -40,11 +40,11 @@ namespace AIDMusicApp.Admin.Windows
 
             foreach (var access in SqlDatabase.Instance.AccessAdapter.GetAll())
             {
+                if (access.Name == "Администратор")
+                    continue;
                 var item = new ComboBoxItem();
                 item.Content = access.Name;
-                item.Tag = access.Id;
-                if (access.Id == 3)
-                    item.IsEnabled = false;
+                item.Tag = access;
                 AccessId.Items.Add(item);
             }
             AccessId.SelectedIndex = 0;
@@ -66,17 +66,17 @@ namespace AIDMusicApp.Admin.Windows
             PasswordText.Password = UserItem.Password;
             PhoneText.Text = UserItem.Phone;
             EmailText.Text = UserItem.Email;
-            if (UserItem.AccessId == 3)
+            if (UserItem.AccessId.Name == "Администратор")
                 AccessId.IsEnabled = false;
 
             foreach (var access in SqlDatabase.Instance.AccessAdapter.GetAll())
             {
                 var item = new ComboBoxItem();
                 item.Content = access.Name;
-                item.Tag = access.Id;
-                if (access.Id == 3)
+                item.Tag = access;
+                if (access.Name == "Администратор")
                     item.IsEnabled = false;
-                if (access.Id == UserItem.AccessId)
+                if (access.Id == UserItem.AccessId.Id)
                     item.IsSelected = true;
                 AccessId.Items.Add(item);
             }
@@ -180,7 +180,7 @@ namespace AIDMusicApp.Admin.Windows
                 Password = PasswordText.Password,
                 Phone = PhoneText.Text,
                 Email = EmailText.Text,
-                AccessId = Convert.ToInt32((AccessId.SelectedItem as ComboBoxItem).Tag)
+                AccessId = (Access)(AccessId.SelectedItem as ComboBoxItem).Tag
             };
 
             if (AvatarImage.ImageSource as BitmapImage != null)
@@ -194,7 +194,7 @@ namespace AIDMusicApp.Admin.Windows
                 }
             }
 
-            UserItem.Id = SqlDatabase.Instance.UsersAdapter.Insert(UserItem.Login, UserItem.Password, UserItem.Phone, UserItem.Email, UserItem.AccessId, UserItem.Avatar);
+            UserItem.Id = SqlDatabase.Instance.UsersAdapter.Insert(UserItem.Login, UserItem.Password, UserItem.Phone, UserItem.Email, UserItem.AccessId.Id, UserItem.Avatar);
 
             DialogResult = true;
         }
@@ -256,7 +256,7 @@ namespace AIDMusicApp.Admin.Windows
             UserItem.Password = PasswordText.Password;
             UserItem.Phone = PhoneText.Text;
             UserItem.Email = EmailText.Text;
-            UserItem.AccessId = Convert.ToInt32((AccessId.SelectedItem as ComboBoxItem).Tag);
+            UserItem.AccessId = (Access)(AccessId.SelectedItem as ComboBoxItem).Tag;
 
             if (AvatarImage.ImageSource as BitmapImage != null)
             {
@@ -270,7 +270,7 @@ namespace AIDMusicApp.Admin.Windows
             }
 
             DialogResult = true;
-            SqlDatabase.Instance.UsersAdapter.Update(UserItem.Id, UserItem.Login, UserItem.Password, UserItem.Phone, UserItem.Email, UserItem.AccessId, UserItem.Avatar);
+            SqlDatabase.Instance.UsersAdapter.Update(UserItem.Id, UserItem.Login, UserItem.Password, UserItem.Phone, UserItem.Email, UserItem.AccessId.Id, UserItem.Avatar);
         }
     }
 }

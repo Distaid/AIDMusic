@@ -27,7 +27,7 @@ namespace AIDMusicApp.Sql
                         Password = Convert.ToString(row[2]),
                         Phone = Convert.ToString(row[3]),
                         Email = Convert.ToString(row[4]),
-                        AccessId = Convert.ToInt32(row[5]),
+                        AccessId = SqlDatabase.Instance.AccessAdapter.GetById(Convert.ToInt32(row[5])),
                         Avatar = row[6].Equals(DBNull.Value) ? null : (byte[])row[6]
                     };
                 }
@@ -51,7 +51,7 @@ namespace AIDMusicApp.Sql
                     Password = Convert.ToString(row[2]),
                     Phone = Convert.ToString(row[3]),
                     Email = Convert.ToString(row[4]),
-                    AccessId = Convert.ToInt32(row[5]),
+                    AccessId = SqlDatabase.Instance.AccessAdapter.GetById(Convert.ToInt32(row[5])),
                     Avatar = row[6].Equals(DBNull.Value) ? null : (byte[])row[6]
                 };
             }

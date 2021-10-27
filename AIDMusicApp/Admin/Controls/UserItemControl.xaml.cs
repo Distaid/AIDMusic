@@ -35,7 +35,7 @@ namespace AIDMusicApp.Admin.Controls
             LoginText.Text = UserItem.Login;
             EmailText.Text = UserItem.Email;
             PhoneText.Text = UserItem.Phone;
-            AccessText.Text = SqlDatabase.Instance.AccessAdapter.GetById(UserItem.AccessId).Name;
+            AccessText.Text = UserItem.AccessId.Name;
 
             if (UserItem.Avatar != null)
             {
@@ -46,7 +46,7 @@ namespace AIDMusicApp.Admin.Controls
                 AvatarImage.ImageSource = image;
             }
 
-            if (UserItem.AccessId == 3)
+            if (UserItem.AccessId.Name == "Администратор")
                 RemoveButton.IsEnabled = false;
 
             EditButton.Click += EditButton_Click;
@@ -62,7 +62,7 @@ namespace AIDMusicApp.Admin.Controls
                 LoginText.Text = UserItem.Login;
                 EmailText.Text = UserItem.Email;
                 PhoneText.Text = UserItem.Phone;
-                AccessText.Text = SqlDatabase.Instance.AccessAdapter.GetById(UserItem.AccessId).Name;
+                AccessText.Text = UserItem.AccessId.Name;
 
                 if (UserItem.Avatar != null)
                 {
