@@ -1,40 +1,41 @@
 ﻿using AIDMusicApp.Admin.Windows;
+using AIDMusicApp.Models;
 using AIDMusicApp.Sql;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AIDMusicApp.Admin.Controls
+namespace AIDMusicApp.Admin.Controls.Countries
 {
     /// <summary>
-    /// Логика взаимодействия для LabelItemControl.xaml
+    /// Логика взаимодействия для CountryItemControl.xaml
     /// </summary>
-    public partial class LabelItemControl : UserControl
+    public partial class CountryItemControl : UserControl
     {
-        public LabelItemControl(Models.Label label)
+        public CountryItemControl(Country country)
         {
             InitializeComponent();
 
-            LabelItem.Id = label.Id;
-            LabelItem.Name = label.Name;
+            CountryItem.Id = country.Id;
+            CountryItem.Name = country.Name;
 
             EditButton.Click += EditButton_Click;
             RemoveButton.Click += RemoveButton_Click;
         }
 
-        public Models.Label LabelItem => (Models.Label)Resources["LabelItem"];
+        public Country CountryItem => (Country)Resources["CountryItem"];
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            var editWindow = new LabelsWindow(LabelItem);
+            var editWindow = new CountriesWindow(CountryItem);
             if (editWindow.ShowDialog() == true)
             {
-                LabelItem.Name = editWindow.LabelItem.Name;
+                CountryItem.Name = editWindow.CountryItem.Name;
             }
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            SqlDatabase.Instance.LabelsListAdapter.Delete(LabelItem.Id);
+            SqlDatabase.Instance.CountriesListAdapter.Delete(CountryItem.Id);
             (Parent as WrapPanel).Children.Remove(this);
         }
     }

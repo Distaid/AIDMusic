@@ -4,7 +4,7 @@ using AIDMusicApp.Sql;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AIDMusicApp.Admin.Controls
+namespace AIDMusicApp.Admin.Controls.AlbumFormats
 {
     /// <summary>
     /// Логика взаимодействия для AlbumFormatItemControl.xaml

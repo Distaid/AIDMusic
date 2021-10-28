@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AIDMusicApp.Admin.Controls
+namespace AIDMusicApp.Admin.Controls.Skills
 {
     /// <summary>
     /// Логика взаимодействия для SkillsControl.xaml

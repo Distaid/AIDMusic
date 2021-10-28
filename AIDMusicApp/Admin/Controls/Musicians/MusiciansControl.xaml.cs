@@ -15,14 +15,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AIDMusicApp.Admin.Controls
+namespace AIDMusicApp.Admin.Controls.Musicians
 {
     /// <summary>
-    /// Логика взаимодействия для UsersControl.xaml
+    /// Логика взаимодействия для MusiciansControl.xaml
     /// </summary>
-    public partial class UsersControl : UserControl
+    public partial class MusiciansControl : UserControl
     {
-        public UsersControl()
+        public MusiciansControl()
         {
             InitializeComponent();
 
@@ -35,16 +35,16 @@ namespace AIDMusicApp.Admin.Controls
                     AddItemButton.IsEnabled = false;
                     SearchTextBox.IsEnabled = false;
                     SearchButton.IsEnabled = false;
-                    SearchField.IsEnabled = false;
+                    //SearchField.IsEnabled = false;
                 }));
                 await Task.Delay(1);
 
-                foreach (var user in SqlDatabase.Instance.UsersAdapter.GetAll())
+                foreach (var musician in SqlDatabase.Instance.MusiciansAdapter.GetAll())
                 {
                     await Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        var item = new UserItemControl(user);
-                        UsersItems.Children.Add(item);
+                        var item = new MusicianItemControl(musician);
+                        MusiciansItems.Children.Add(item);
                     }));
                     await Task.Delay(1);
                 }
@@ -54,7 +54,7 @@ namespace AIDMusicApp.Admin.Controls
                     AddItemButton.IsEnabled = true;
                     SearchTextBox.IsEnabled = true;
                     SearchButton.IsEnabled = true;
-                    SearchField.IsEnabled = true;
+                    //SearchField.IsEnabled = true;
                 }));
                 await Task.Delay(1);
             });
@@ -62,11 +62,11 @@ namespace AIDMusicApp.Admin.Controls
 
         private void AddItemButton_Click(object sender, RoutedEventArgs e)
         {
-            var addWindow = new UsersWindow();
+            var addWindow = new MusiciansWindow();
             if (addWindow.ShowDialog() == true)
             {
-                var item = new UserItemControl(addWindow.UserItem);
-                UsersItems.Children.Add(item);
+                var item = new MusicianItemControl(addWindow.MusicianItem);
+                MusiciansItems.Children.Add(item);
             }
         }
     }

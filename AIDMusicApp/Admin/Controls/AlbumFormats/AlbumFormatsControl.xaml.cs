@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AIDMusicApp.Admin.Controls
+namespace AIDMusicApp.Admin.Controls.AlbumFormats
 {
     /// <summary>
-    /// Логика взаимодействия для CountriesControl.xaml
+    /// Логика взаимодействия для AlbumFormatsControl.xaml
     /// </summary>
-    public partial class CountriesControl : UserControl
+    public partial class AlbumFormatsControl : UserControl
     {
-        public CountriesControl()
+        public AlbumFormatsControl()
         {
             InitializeComponent();
 
@@ -30,12 +30,12 @@ namespace AIDMusicApp.Admin.Controls
                 }));
                 await Task.Delay(1);
 
-                foreach (var country in SqlDatabase.Instance.CountriesListAdapter.GetAll())
+                foreach (var albumFormat in SqlDatabase.Instance.AlbumFormatsListAdapter.GetAll())
                 {
                     await Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        var item = new CountryItemControl(country);
-                        CountriesItems.Children.Add(item);
+                        var item = new AlbumFormatItemControl(albumFormat);
+                        AlbumFormatsItems.Children.Add(item);
                     }));
                     await Task.Delay(1);
                 }
@@ -53,7 +53,7 @@ namespace AIDMusicApp.Admin.Controls
         {
             if (SearchTextBox.Text.Length == 0)
             {
-                foreach (UIElement item in CountriesItems.Children)
+                foreach (UIElement item in AlbumFormatsItems.Children)
                 {
                     item.Visibility = Visibility.Visible;
                 }
@@ -67,9 +67,9 @@ namespace AIDMusicApp.Admin.Controls
             if (SearchTextBox.Text.Length == 0)
                 return;
 
-            foreach (CountryItemControl item in CountriesItems.Children)
+            foreach (AlbumFormatItemControl item in AlbumFormatsItems.Children)
             {
-                if (item.CountryItem.Name.Contains(SearchTextBox.Text))
+                if (item.AlbumFormatItem.Name.Contains(SearchTextBox.Text))
                     item.Visibility = Visibility.Visible;
                 else
                     item.Visibility = Visibility.Collapsed;
@@ -80,11 +80,11 @@ namespace AIDMusicApp.Admin.Controls
 
         private void AddItemButton_Click(object sender, RoutedEventArgs e)
         {
-            var addWindow = new CountriesWindow();
+            var addWindow = new AlbumFormatsWindow();
             if (addWindow.ShowDialog() == true)
             {
-                var item = new CountryItemControl(addWindow.CountryItem);
-                CountriesItems.Children.Add(item);
+                var item = new AlbumFormatItemControl(addWindow.AlbumFormatItem);
+                AlbumFormatsItems.Children.Add(item);
             }
         }
     }

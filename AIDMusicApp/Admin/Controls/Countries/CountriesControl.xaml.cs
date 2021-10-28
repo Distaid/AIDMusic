@@ -1,19 +1,18 @@
 ﻿using AIDMusicApp.Admin.Windows;
 using AIDMusicApp.Sql;
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AIDMusicApp.Admin.Controls
+namespace AIDMusicApp.Admin.Controls.Countries
 {
     /// <summary>
-    /// Логика взаимодействия для GenresControl.xaml
+    /// Логика взаимодействия для CountriesControl.xaml
     /// </summary>
-    public partial class GenresControl : UserControl
+    public partial class CountriesControl : UserControl
     {
-        public GenresControl()
+        public CountriesControl()
         {
             InitializeComponent();
 
@@ -31,12 +30,12 @@ namespace AIDMusicApp.Admin.Controls
                 }));
                 await Task.Delay(1);
 
-                foreach (var genre in SqlDatabase.Instance.GenresListAdapter.GetAll())
+                foreach (var country in SqlDatabase.Instance.CountriesListAdapter.GetAll())
                 {
                     await Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        var item = new GenreItemControl(genre);
-                        GenresItems.Children.Add(item);
+                        var item = new CountryItemControl(country);
+                        CountriesItems.Children.Add(item);
                     }));
                     await Task.Delay(1);
                 }
@@ -54,11 +53,11 @@ namespace AIDMusicApp.Admin.Controls
         {
             if (SearchTextBox.Text.Length == 0)
             {
-                foreach (UIElement item in GenresItems.Children)
+                foreach (UIElement item in CountriesItems.Children)
                 {
                     item.Visibility = Visibility.Visible;
                 }
-                
+
                 AddItemButton.IsEnabled = true;
             }
         }
@@ -68,9 +67,9 @@ namespace AIDMusicApp.Admin.Controls
             if (SearchTextBox.Text.Length == 0)
                 return;
 
-            foreach (GenreItemControl item in GenresItems.Children)
+            foreach (CountryItemControl item in CountriesItems.Children)
             {
-                if (item.GenreItem.Name.Contains(SearchTextBox.Text))
+                if (item.CountryItem.Name.Contains(SearchTextBox.Text))
                     item.Visibility = Visibility.Visible;
                 else
                     item.Visibility = Visibility.Collapsed;
@@ -81,11 +80,11 @@ namespace AIDMusicApp.Admin.Controls
 
         private void AddItemButton_Click(object sender, RoutedEventArgs e)
         {
-            var addWindow = new GenresWindow();
+            var addWindow = new CountriesWindow();
             if (addWindow.ShowDialog() == true)
             {
-                var item = new GenreItemControl(addWindow.GenreItem);
-                GenresItems.Children.Add(item);
+                var item = new CountryItemControl(addWindow.CountryItem);
+                CountriesItems.Children.Add(item);
             }
         }
     }

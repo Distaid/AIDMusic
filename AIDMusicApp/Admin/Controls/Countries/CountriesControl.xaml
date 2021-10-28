@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="AIDMusicApp.Admin.Controls.SkillsControl"
+﻿<UserControl x:Class="AIDMusicApp.Admin.Controls.Countries.CountriesControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:AIDMusicApp.Admin.Controls"
+             xmlns:local="clr-namespace:AIDMusicApp.Admin.Controls.Countries"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              Height="Auto" Width="Auto">
@@ -27,9 +27,9 @@
 
         <Border Grid.Row="1" Background="#191919" Margin="10 5">
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Style="{StaticResource AIDScrollViewerStyle}" Background="Transparent">
-                <WrapPanel x:Name="SkillsItems" Margin="5">
+                <WrapPanel x:Name="CountriesItems" Margin="5">
                     <WrapPanel.Resources>
-                        <Style TargetType="{x:Type local:SkillItemControl}">
+                        <Style TargetType="{x:Type local:CountryItemControl}">
                             <Setter Property="Margin" Value="5"/>
                         </Style>
                     </WrapPanel.Resources>

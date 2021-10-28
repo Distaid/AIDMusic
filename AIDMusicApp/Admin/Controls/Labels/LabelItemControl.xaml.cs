@@ -1,41 +1,40 @@
 ﻿using AIDMusicApp.Admin.Windows;
-using AIDMusicApp.Models;
 using AIDMusicApp.Sql;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AIDMusicApp.Admin.Controls
+namespace AIDMusicApp.Admin.Controls.Labels
 {
     /// <summary>
-    /// Логика взаимодействия для SkillItemControl.xaml
+    /// Логика взаимодействия для LabelItemControl.xaml
     /// </summary>
-    public partial class SkillItemControl : UserControl
+    public partial class LabelItemControl : UserControl
     {
-        public SkillItemControl(Skill skill)
+        public LabelItemControl(Models.Label label)
         {
             InitializeComponent();
 
-            SkillItem.Id = skill.Id;
-            SkillItem.Name = skill.Name;
+            LabelItem.Id = label.Id;
+            LabelItem.Name = label.Name;
 
             EditButton.Click += EditButton_Click;
             RemoveButton.Click += RemoveButton_Click;
         }
 
-        public Skill SkillItem => (Skill)Resources["SkillItem"];
+        public Models.Label LabelItem => (Models.Label)Resources["LabelItem"];
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            var editWindow = new SkillsWindow(SkillItem);
+            var editWindow = new LabelsWindow(LabelItem);
             if (editWindow.ShowDialog() == true)
             {
-                SkillItem.Name = editWindow.SkillItem.Name;
+                LabelItem.Name = editWindow.LabelItem.Name;
             }
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            SqlDatabase.Instance.SkillsListAdapter.Delete(SkillItem.Id);
+            SqlDatabase.Instance.LabelsListAdapter.Delete(LabelItem.Id);
             (Parent as WrapPanel).Children.Remove(this);
         }
     }

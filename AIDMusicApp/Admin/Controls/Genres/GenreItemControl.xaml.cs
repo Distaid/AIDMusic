@@ -4,7 +4,7 @@ using AIDMusicApp.Sql;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AIDMusicApp.Admin.Controls
+namespace AIDMusicApp.Admin.Controls.Genres
 {
     /// <summary>
     /// Логика взаимодействия для GenreItemControl.xaml
