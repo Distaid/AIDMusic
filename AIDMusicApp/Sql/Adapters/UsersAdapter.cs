@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 
-namespace AIDMusicApp.Sql
+namespace AIDMusicApp.Sql.Adapters
 {
     public class UsersAdapter : BaseAdapter
     {

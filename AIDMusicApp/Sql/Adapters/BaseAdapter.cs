@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 
-namespace AIDMusicApp.Sql
+namespace AIDMusicApp.Sql.Adapters
 {
     public abstract class BaseAdapter
     {

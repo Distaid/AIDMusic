@@ -4,22 +4,22 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace AIDMusicApp.Sql
+namespace AIDMusicApp.Sql.Adapters
 {
-    public class SkillsListAdapter : BaseAdapter
+    public class AlbumFormatsListAdapter : BaseAdapter
     {
-        public SkillsListAdapter(SqlConnection connection, string file) : base(connection, file) { }
+        public AlbumFormatsListAdapter(SqlConnection connection, string file) : base(connection, file) { }
 
-        public IEnumerable<Skill> GetAll()
+        public IEnumerable<AlbumFormat> GetAll()
         {
-            using (var adapter = new SqlDataAdapter(_sqlComands["SQL_Select_SkillsList"], _sqlConnection))
+            using (var adapter = new SqlDataAdapter(_sqlComands["SQL_Select_AlbumFormatsList"], _sqlConnection))
             {
                 var ds = new DataSet();
                 adapter.Fill(ds);
 
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
-                    yield return new Skill
+                    yield return new AlbumFormat
                     {
                         Id = Convert.ToInt32(row[0]),
                         Name = Convert.ToString(row[1])
@@ -30,7 +30,7 @@ namespace AIDMusicApp.Sql
 
         public int Insert(string name)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Insert_SkillsList"], _sqlConnection))
+            using (var adapter = new SqlCommand(_sqlComands["SQL_Insert_AlbumFormatsList"], _sqlConnection))
             {
                 adapter.Parameters.AddWithValue("@name", name);
 
@@ -40,7 +40,7 @@ namespace AIDMusicApp.Sql
 
         public void Update(int id, string name)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Update_SkillsList"], _sqlConnection))
+            using (var adapter = new SqlCommand(_sqlComands["SQL_Update_AlbumFormatsList"], _sqlConnection))
             {
                 adapter.Parameters.AddWithValue("@id", id);
                 adapter.Parameters.AddWithValue("@name", name);
@@ -51,7 +51,7 @@ namespace AIDMusicApp.Sql
 
         public void Delete(int id)
         {
-            using (var adapter = new SqlCommand(_sqlComands[$"SQL_Delete_SkillsList"], _sqlConnection))
+            using (var adapter = new SqlCommand(_sqlComands[$"SQL_Delete_AlbumFormatsList"], _sqlConnection))
             {
                 adapter.Parameters.AddWithValue("@id", id);
 
@@ -61,7 +61,7 @@ namespace AIDMusicApp.Sql
 
         public bool ContainsName(string name)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_SkillsList_Name"], _sqlConnection))
+            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_AlbumFormatsList_Name"], _sqlConnection))
             {
                 adapter.Parameters.AddWithValue("@name", name);
 
