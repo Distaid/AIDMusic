@@ -10,7 +10,7 @@ namespace AIDMusicApp.Sql.Adapters
     {
         public MusicianSkillsAdapter(SqlConnection connection, string file) : base(connection, file) { }
 
-        public IEnumerable<MusicianSkill> GetAll()
+        public IEnumerable<MusicianSkills> GetAll()
         {
             using (var adapter = new SqlDataAdapter(_sqlComands["SQL_Select_MusicianSkills"], _sqlConnection))
             {
@@ -19,7 +19,7 @@ namespace AIDMusicApp.Sql.Adapters
 
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
-                    yield return new MusicianSkill
+                    yield return new MusicianSkills
                     {
                         Id = Convert.ToInt32(row[0]),
                         MusicianId = Convert.ToInt32(row[1]),
@@ -73,7 +73,7 @@ namespace AIDMusicApp.Sql.Adapters
             }
         }
 
-        public MusicianSkill GetById(int id)
+        public MusicianSkills GetById(int id)
         {
             using (var command = new SqlCommand(_sqlComands["SQL_Select_MusicianSkills_ById"], _sqlConnection))
             {
@@ -86,7 +86,7 @@ namespace AIDMusicApp.Sql.Adapters
 
                     DataRow row = ds.Tables[0].Rows[0];
 
-                    return new MusicianSkill
+                    return new MusicianSkills
                     {
                         Id = Convert.ToInt32(row[0]),
                         MusicianId = Convert.ToInt32(row[1]),

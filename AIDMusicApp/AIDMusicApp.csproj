@@ -67,46 +67,52 @@
     <Compile Include="Admin\Controls\AdminMainControl.xaml.cs">
       <DependentUpon>AdminMainControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\AlbumFormatItemControl.xaml.cs">
+    <Compile Include="Admin\Controls\AlbumFormats\AlbumFormatItemControl.xaml.cs">
       <DependentUpon>AlbumFormatItemControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\AlbumFormatsControl.xaml.cs">
+    <Compile Include="Admin\Controls\AlbumFormats\AlbumFormatsControl.xaml.cs">
       <DependentUpon>AlbumFormatsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\CountriesControl.xaml.cs">
+    <Compile Include="Admin\Controls\Albums\AlbumItemControl.xaml.cs">
+      <DependentUpon>AlbumItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Controls\Countries\CountriesControl.xaml.cs">
       <DependentUpon>CountriesControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\CountryItemControl.xaml.cs">
+    <Compile Include="Admin\Controls\Countries\CountryItemControl.xaml.cs">
       <DependentUpon>CountryItemControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\GenreItemControl.xaml.cs">
+    <Compile Include="Admin\Controls\Genres\GenreItemControl.xaml.cs">
       <DependentUpon>GenreItemControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\GenresControl.xaml.cs">
+    <Compile Include="Admin\Controls\Genres\GenresControl.xaml.cs">
       <DependentUpon>GenresControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\LabelItemControl.xaml.cs">
+    <Compile Include="Admin\Controls\Groups\GroupItemControl.xaml.cs">
+      <DependentUpon>GroupItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Controls\Labels\LabelItemControl.xaml.cs">
       <DependentUpon>LabelItemControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\LabelsControl.xaml.cs">
+    <Compile Include="Admin\Controls\Labels\LabelsControl.xaml.cs">
       <DependentUpon>LabelsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\MusicianItemControl.xaml.cs">
+    <Compile Include="Admin\Controls\Musicians\MusicianItemControl.xaml.cs">
       <DependentUpon>MusicianItemControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\MusiciansControl.xaml.cs">
+    <Compile Include="Admin\Controls\Musicians\MusiciansControl.xaml.cs">
       <DependentUpon>MusiciansControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\SkillItemControl.xaml.cs">
+    <Compile Include="Admin\Controls\Skills\SkillItemControl.xaml.cs">
       <DependentUpon>SkillItemControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\SkillsControl.xaml.cs">
+    <Compile Include="Admin\Controls\Skills\SkillsControl.xaml.cs">
       <DependentUpon>SkillsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\UserItemControl.xaml.cs">
+    <Compile Include="Admin\Controls\Users\UserItemControl.xaml.cs">
       <DependentUpon>UserItemControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Controls\UsersControl.xaml.cs">
+    <Compile Include="Admin\Controls\Users\UsersControl.xaml.cs">
       <DependentUpon>UsersControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin\Windows\AlbumFormatsWindow.xaml.cs">
@@ -134,26 +140,39 @@
       <DependentUpon>RegistrationControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Access.cs" />
+    <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumFormat.cs" />
+    <Compile Include="Models\AlbumGenres.cs" />
+    <Compile Include="Models\Contracts.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Cover.cs" />
+    <Compile Include="Models\CurrentMembers.cs" />
+    <Compile Include="Models\Discography.cs" />
+    <Compile Include="Models\Feat.cs" />
+    <Compile Include="Models\FormerMembers.cs" />
     <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\GroupGenres.cs" />
     <Compile Include="Models\Label.cs" />
     <Compile Include="Models\Musician.cs" />
-    <Compile Include="Models\MusicianSkill.cs" />
+    <Compile Include="Models\MusicianSkills.cs" />
     <Compile Include="Models\Skill.cs" />
+    <Compile Include="Models\Song.cs" />
+    <Compile Include="Models\SongGenres.cs" />
+    <Compile Include="Models\TrackList.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Sql\AccessAdapter.cs" />
-    <Compile Include="Sql\AlbumFormatsAdapter.cs" />
-    <Compile Include="Sql\BaseAdapter.cs" />
-    <Compile Include="Sql\CountriesListAdapter.cs" />
+    <Compile Include="Sql\Adapters\AccessAdapter.cs" />
+    <Compile Include="Sql\Adapters\AlbumFormatsAdapter.cs" />
+    <Compile Include="Sql\Adapters\BaseAdapter.cs" />
+    <Compile Include="Sql\Adapters\CountriesListAdapter.cs" />
     <Compile Include="Sql\FileLoader.cs" />
-    <Compile Include="Sql\GenresListAdapter.cs" />
-    <Compile Include="Sql\LabelsListAdapter.cs" />
-    <Compile Include="Sql\MusiciansAdapter.cs" />
-    <Compile Include="Sql\MusicianSkillsAdapter.cs" />
-    <Compile Include="Sql\SkillsListAdapter.cs" />
+    <Compile Include="Sql\Adapters\GenresListAdapter.cs" />
+    <Compile Include="Sql\Adapters\LabelsListAdapter.cs" />
+    <Compile Include="Sql\Adapters\MusiciansAdapter.cs" />
+    <Compile Include="Sql\Adapters\MusicianSkillsAdapter.cs" />
+    <Compile Include="Sql\Adapters\SkillsListAdapter.cs" />
     <Compile Include="Sql\SqlDatabase.cs" />
-    <Compile Include="Sql\UsersAdapter.cs" />
+    <Compile Include="Sql\Adapters\UsersAdapter.cs" />
     <Compile Include="Windows\AIDMessageWindow.cs" />
     <Compile Include="Windows\MessageWindow.xaml.cs">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
@@ -162,59 +181,67 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\AlbumFormatItemControl.xaml">
+    <Page Include="Admin\Controls\AlbumFormats\AlbumFormatItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\AlbumFormatsControl.xaml">
+    <Page Include="Admin\Controls\AlbumFormats\AlbumFormatsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\CountriesControl.xaml">
+    <Page Include="Admin\Controls\Albums\AlbumItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\CountryItemControl.xaml">
+    <Page Include="Admin\Controls\Countries\CountriesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\GenreItemControl.xaml">
+    <Page Include="Admin\Controls\Countries\CountryItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\GenresControl.xaml">
+    <Page Include="Admin\Controls\Genres\GenreItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\LabelItemControl.xaml">
+    <Page Include="Admin\Controls\Genres\GenresControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\LabelsControl.xaml">
+    <Page Include="Admin\Controls\Groups\GroupItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\MusicianItemControl.xaml">
+    <Page Include="Admin\Controls\Labels\LabelItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\MusiciansControl.xaml">
+    <Page Include="Admin\Controls\Labels\LabelsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\SkillItemControl.xaml">
+    <Page Include="Admin\Controls\Musicians\MusicianItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\SkillsControl.xaml">
+    <Page Include="Admin\Controls\Musicians\MusiciansControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\UserItemControl.xaml">
+    <Page Include="Admin\Controls\Skills\SkillItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\Controls\UsersControl.xaml">
+    <Page Include="Admin\Controls\Skills\SkillsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Controls\Users\UserItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Controls\Users\UsersControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
