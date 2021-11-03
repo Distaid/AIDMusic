@@ -1,20 +1,20 @@
 ﻿namespace AIDMusicApp.Models
 {
-    public class MusicianSkill
+    public class CurrentMembers
     {
         public int Id { get; set; }
 
         public int MusicianId { get; set; }
 
-        public int SkillId { get; set; }
+        public int GroupId { get; set; }
 
-        public MusicianSkill Copy()
+        public CurrentMembers Copy()
         {
-            return new MusicianSkill
+            return new CurrentMembers
             {
                 Id = Id,
                 MusicianId = MusicianId,
-                SkillId = SkillId
+                GroupId = GroupId
             };
         }
     }
