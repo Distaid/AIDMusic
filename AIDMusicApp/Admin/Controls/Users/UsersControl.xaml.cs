@@ -1,19 +1,9 @@
 ﻿using AIDMusicApp.Admin.Windows;
 using AIDMusicApp.Sql;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AIDMusicApp.Admin.Controls.Users
 {
@@ -56,7 +46,6 @@ namespace AIDMusicApp.Admin.Controls.Users
                     SearchButton.IsEnabled = true;
                     SearchField.IsEnabled = true;
                 }));
-                await Task.Delay(1);
             });
         }
 

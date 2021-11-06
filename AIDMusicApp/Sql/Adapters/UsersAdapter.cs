@@ -63,18 +63,18 @@ namespace AIDMusicApp.Sql.Adapters
 
         public User Insert(string login, string password, string phone, string email, int accessId, byte[] avatar)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Insert"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Insert"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@login", login);
-                adapter.Parameters.AddWithValue("@password", password);
-                adapter.Parameters.AddWithValue("@phone", !string.IsNullOrWhiteSpace(phone) ? phone : SqlString.Null);
-                adapter.Parameters.AddWithValue("@email", !string.IsNullOrWhiteSpace(email) ? email : SqlString.Null);
-                adapter.Parameters.AddWithValue("@access_id", accessId);
-                adapter.Parameters.AddWithValue("@avatar", avatar ?? SqlBinary.Null);
+                command.Parameters.AddWithValue("@login", login);
+                command.Parameters.AddWithValue("@password", password);
+                command.Parameters.AddWithValue("@phone", !string.IsNullOrWhiteSpace(phone) ? phone : SqlString.Null);
+                command.Parameters.AddWithValue("@email", !string.IsNullOrWhiteSpace(email) ? email : SqlString.Null);
+                command.Parameters.AddWithValue("@access_id", accessId);
+                command.Parameters.AddWithValue("@avatar", avatar ?? SqlBinary.Null);
 
                 return new User
                 {
-                    Id = Convert.ToInt32(adapter.ExecuteScalar()),
+                    Id = Convert.ToInt32(command.ExecuteScalar()),
                     Login = login,
                     Password = password,
                     Phone = !string.IsNullOrWhiteSpace(phone) ? phone : "",
@@ -87,71 +87,65 @@ namespace AIDMusicApp.Sql.Adapters
 
         public void Update(int id, string login, string password, string phone, string email, int access_id, byte[] avatar)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Update"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Update"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@id", id);
-                adapter.Parameters.AddWithValue("@login", login);
-                adapter.Parameters.AddWithValue("@password", password);
-                adapter.Parameters.AddWithValue("@phone", !string.IsNullOrWhiteSpace(phone) ? phone : SqlString.Null);
-                adapter.Parameters.AddWithValue("@email", !string.IsNullOrWhiteSpace(email) ? email : SqlString.Null);
-                adapter.Parameters.AddWithValue("@access_id", access_id);
-                adapter.Parameters.AddWithValue("@avatar", avatar ?? SqlBinary.Null);
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@login", login);
+                command.Parameters.AddWithValue("@password", password);
+                command.Parameters.AddWithValue("@phone", !string.IsNullOrWhiteSpace(phone) ? phone : SqlString.Null);
+                command.Parameters.AddWithValue("@email", !string.IsNullOrWhiteSpace(email) ? email : SqlString.Null);
+                command.Parameters.AddWithValue("@access_id", access_id);
+                command.Parameters.AddWithValue("@avatar", avatar ?? SqlBinary.Null);
 
-                adapter.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Delete(int id)
         {
-            using (var adapter = new SqlCommand(_sqlComands[$"SQL_Delete"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands[$"SQL_Delete"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@id", id);
 
-                adapter.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 
         public bool ContainsLogin(string login)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_Login"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Check_Login"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@login", login);
+                command.Parameters.AddWithValue("@login", login);
 
-                var count = Convert.ToInt32(adapter.ExecuteScalar());
-                if (count == 0) return false;
+                var count = Convert.ToInt32(command.ExecuteScalar());
+                return count != 0;
             }
-
-            return true;
         }
 
         public bool ContainsPhone(string phone)
         {
             if (string.IsNullOrWhiteSpace(phone)) return false;
 
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_Phone"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Check_Phone"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@phone", phone);
+                command.Parameters.AddWithValue("@phone", phone);
 
-                var count = Convert.ToInt32(adapter.ExecuteScalar());
-                if (count == 0) return false;
+                var count = Convert.ToInt32(command.ExecuteScalar());
+                return count != 0;
             }
-
-            return true;
         }
 
         public bool ContainsEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email)) return false;
 
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_Email"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Check_Email"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@email", email);
 
-                var count = Convert.ToInt32(adapter.ExecuteScalar());
-                if (count == 0) return false;
+                var count = Convert.ToInt32(command.ExecuteScalar());
+                return count != 0;
             }
-
-            return true;
         }
     }
 }
