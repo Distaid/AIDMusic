@@ -27,15 +27,12 @@ namespace AIDMusicApp.Admin.Controls.AlbumFormats
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var editWindow = new AlbumFormatsWindow(AlbumFormatItem);
-            if (editWindow.ShowDialog() == true)
-            {
-                AlbumFormatItem.Name = editWindow.AlbumFormatItem.Name;
-            }
+            editWindow.ShowDialog();
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            SqlDatabase.Instance.AlbumFormatsListAdapter.Delete(AlbumFormatItem.Id);
+            AlbumFormatItem.Delete();
             (Parent as WrapPanel).Children.Remove(this);
         }
     }

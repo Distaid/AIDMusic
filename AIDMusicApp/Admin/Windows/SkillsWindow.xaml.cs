@@ -30,7 +30,7 @@ namespace AIDMusicApp.Admin.Windows
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
-            SkillItem = skill.Copy();
+            SkillItem = skill;
             NameText.Text = SkillItem.Name;
             NameText.Focus();
             NameText.CaretIndex = NameText.Text.Length;
@@ -64,10 +64,9 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            var id = SqlDatabase.Instance.SkillsListAdapter.Insert(NameText.Text);
+            SkillItem = SqlDatabase.Instance.SkillsListAdapter.Insert(NameText.Text);
 
             DialogResult = true;
-            SkillItem = new Skill { Id = id, Name = NameText.Text };
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -94,10 +93,9 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            SqlDatabase.Instance.SkillsListAdapter.Update(SkillItem.Id, NameText.Text);
+            SkillItem.Update(NameText.Text);
 
             DialogResult = true;
-            SkillItem.Name = NameText.Text;
         }
     }
 }

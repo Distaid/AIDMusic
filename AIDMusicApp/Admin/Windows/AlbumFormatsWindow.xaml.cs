@@ -30,7 +30,7 @@ namespace AIDMusicApp.Admin.Windows
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
-            AlbumFormatItem = albumFormat.Copy();
+            AlbumFormatItem = albumFormat;
             NameText.Text = AlbumFormatItem.Name;
             NameText.Focus();
             NameText.CaretIndex = NameText.Text.Length;
@@ -64,10 +64,9 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            var id = SqlDatabase.Instance.AlbumFormatsListAdapter.Insert(NameText.Text);
+            AlbumFormatItem = SqlDatabase.Instance.AlbumFormatsListAdapter.Insert(NameText.Text);
 
             DialogResult = true;
-            AlbumFormatItem = new AlbumFormat { Id = id, Name = NameText.Text };
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -94,10 +93,9 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            SqlDatabase.Instance.AlbumFormatsListAdapter.Update(AlbumFormatItem.Id, NameText.Text);
+            AlbumFormatItem.Update(NameText.Text);
 
             DialogResult = true;
-            AlbumFormatItem.Name = NameText.Text;
         }
     }
 }

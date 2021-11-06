@@ -27,15 +27,12 @@ namespace AIDMusicApp.Admin.Controls.Skills
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var editWindow = new SkillsWindow(SkillItem);
-            if (editWindow.ShowDialog() == true)
-            {
-                SkillItem.Name = editWindow.SkillItem.Name;
-            }
+            editWindow.ShowDialog();
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            SqlDatabase.Instance.SkillsListAdapter.Delete(SkillItem.Id);
+            SkillItem.Delete();
             (Parent as WrapPanel).Children.Remove(this);
         }
     }

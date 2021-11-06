@@ -30,7 +30,7 @@ namespace AIDMusicApp.Admin.Windows
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
-            CountryItem = country.Copy();
+            CountryItem = country;
             NameText.Text = CountryItem.Name;
             NameText.Focus();
             NameText.CaretIndex = NameText.Text.Length;
@@ -64,10 +64,9 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            var id = SqlDatabase.Instance.CountriesListAdapter.Insert(NameText.Text);
+            CountryItem = SqlDatabase.Instance.CountriesListAdapter.Insert(NameText.Text);
 
             DialogResult = true;
-            CountryItem = new Country { Id = id, Name = NameText.Text };
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -94,10 +93,9 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            SqlDatabase.Instance.CountriesListAdapter.Update(CountryItem.Id, NameText.Text);
+            CountryItem.Update(NameText.Text);
 
             DialogResult = true;
-            CountryItem.Name = NameText.Text;
         }
     }
 }

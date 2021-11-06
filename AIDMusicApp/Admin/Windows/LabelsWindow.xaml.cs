@@ -29,7 +29,7 @@ namespace AIDMusicApp.Admin.Windows
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
-            LabelItem = label.Copy();
+            LabelItem = label;
             NameText.Text = LabelItem.Name;
             NameText.Focus();
             NameText.CaretIndex = NameText.Text.Length;
@@ -63,10 +63,9 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            var id = SqlDatabase.Instance.LabelsListAdapter.Insert(NameText.Text);
+            LabelItem = SqlDatabase.Instance.LabelsListAdapter.Insert(NameText.Text);
 
             DialogResult = true;
-            LabelItem = new Models.Label { Id = id, Name = NameText.Text };
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -93,10 +92,9 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            SqlDatabase.Instance.SkillsListAdapter.Update(LabelItem.Id, NameText.Text);
+            LabelItem.Update(NameText.Text);
 
             DialogResult = true;
-            LabelItem.Name = NameText.Text;
         }
     }
 }

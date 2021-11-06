@@ -26,15 +26,12 @@ namespace AIDMusicApp.Admin.Controls.Labels
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var editWindow = new LabelsWindow(LabelItem);
-            if (editWindow.ShowDialog() == true)
-            {
-                LabelItem.Name = editWindow.LabelItem.Name;
-            }
+            editWindow.ShowDialog();
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            SqlDatabase.Instance.LabelsListAdapter.Delete(LabelItem.Id);
+            LabelItem.Delete();
             (Parent as WrapPanel).Children.Remove(this);
         }
     }

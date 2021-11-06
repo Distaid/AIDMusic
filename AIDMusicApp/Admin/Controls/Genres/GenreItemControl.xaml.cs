@@ -27,15 +27,12 @@ namespace AIDMusicApp.Admin.Controls.Genres
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var editWindow = new GenresWindow(GenreItem);
-            if (editWindow.ShowDialog() == true)
-            {
-                GenreItem.Name = editWindow.GenreItem.Name;
-            }
+            editWindow.ShowDialog();
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            SqlDatabase.Instance.GenresListAdapter.Delete(GenreItem.Id);
+            GenreItem.Delete();
             (Parent as WrapPanel).Children.Remove(this);
         }
     }

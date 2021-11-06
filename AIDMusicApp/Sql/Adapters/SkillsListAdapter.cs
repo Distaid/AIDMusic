@@ -8,11 +8,11 @@ namespace AIDMusicApp.Sql.Adapters
 {
     public class SkillsListAdapter : BaseAdapter
     {
-        public SkillsListAdapter(SqlConnection connection, string file) : base(connection, file) { }
+        public SkillsListAdapter(SqlConnection connection) : base(connection, "SQLCommands\\SQLSkillsList.aid") { }
 
         public IEnumerable<Skill> GetAll()
         {
-            using (var adapter = new SqlDataAdapter(_sqlComands["SQL_Select_SkillsList"], _sqlConnection))
+            using (var adapter = new SqlDataAdapter(_sqlComands["SQL_Select"], _sqlConnection))
             {
                 var ds = new DataSet();
                 adapter.Fill(ds);
@@ -28,48 +28,50 @@ namespace AIDMusicApp.Sql.Adapters
             }
         }
 
-        public int Insert(string name)
+        public Skill Insert(string name)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Insert_SkillsList"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Insert"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@name", name);
 
-                return Convert.ToInt32(adapter.ExecuteScalar());
+                return new Skill
+                {
+                    Id = Convert.ToInt32(command.ExecuteScalar()),
+                    Name = name
+                };
             }
         }
 
         public void Update(int id, string name)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Update_SkillsList"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Update"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@id", id);
-                adapter.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@name", name);
 
-                adapter.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Delete(int id)
         {
-            using (var adapter = new SqlCommand(_sqlComands[$"SQL_Delete_SkillsList"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Delete"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@id", id);
 
-                adapter.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 
         public bool ContainsName(string name)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_SkillsList_Name"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Check_Name"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@name", name);
 
-                var count = Convert.ToInt32(adapter.ExecuteScalar());
-                if (count == 0) return false;
+                var count = Convert.ToInt32(command.ExecuteScalar());
+                return count != 0;
             }
-
-            return true;
         }
     }
 }

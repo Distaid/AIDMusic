@@ -30,7 +30,7 @@ namespace AIDMusicApp.Admin.Windows
             InitializeComponent();
 
             TitleBar.MouseDown += TitleBar_MouseDown;
-            GenreItem = genre.Copy();
+            GenreItem = genre;
             NameText.Text = GenreItem.Name;
             NameText.Focus();
             NameText.CaretIndex = NameText.Text.Length;
@@ -64,10 +64,9 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            var id = SqlDatabase.Instance.GenresListAdapter.Insert(NameText.Text);
+            GenreItem = SqlDatabase.Instance.GenresListAdapter.Insert(NameText.Text);
 
             DialogResult = true;
-            GenreItem = new Genre { Id = id, Name = NameText.Text };
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -94,10 +93,9 @@ namespace AIDMusicApp.Admin.Windows
                 return;
             }
 
-            SqlDatabase.Instance.GenresListAdapter.Update(GenreItem.Id, NameText.Text);
+            GenreItem.Update(NameText.Text);
 
             DialogResult = true;
-            GenreItem.Name = NameText.Text;
         }
     }
 }

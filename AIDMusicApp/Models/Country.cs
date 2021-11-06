@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using AIDMusicApp.Sql;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace AIDMusicApp.Models
@@ -29,13 +30,15 @@ namespace AIDMusicApp.Models
             }
         }
 
-        public Country Copy()
+        public void Delete()
         {
-            return new Country
-            {
-                Id = Id,
-                Name = Name
-            };
+            SqlDatabase.Instance.CountriesListAdapter.Delete(Id);
+        }
+
+        public void Update(string name)
+        {
+            SqlDatabase.Instance.CountriesListAdapter.Update(Id, name);
+            Name = name;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

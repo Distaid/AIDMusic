@@ -27,15 +27,12 @@ namespace AIDMusicApp.Admin.Controls.Countries
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var editWindow = new CountriesWindow(CountryItem);
-            if (editWindow.ShowDialog() == true)
-            {
-                CountryItem.Name = editWindow.CountryItem.Name;
-            }
+            editWindow.ShowDialog();
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            SqlDatabase.Instance.CountriesListAdapter.Delete(CountryItem.Id);
+            CountryItem.Delete();
             (Parent as WrapPanel).Children.Remove(this);
         }
     }
