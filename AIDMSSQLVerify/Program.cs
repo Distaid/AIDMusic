@@ -26,8 +26,7 @@ namespace AIDMSSQLVerify
             "AlbumGenres",
             "SongGenres",
             "Contracts",
-            "CurrentMembers",
-            "FormerMembers",
+            "Members",
             "MusicianSkills",
             "Discography",
             "TrackLists",
@@ -230,7 +229,15 @@ namespace AIDMSSQLVerify
         private static void CreateAdminUser()
         {
             using (var adapter = new SqlCommand(_comands["SQL_Insert_Table_Admin"], _connection))
+            {
+                using (var stream = new MemoryStream())
+                {
+                    Resources.person_default.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                    adapter.Parameters.AddWithValue("@avatar", stream.ToArray());
+                }
+                
                 adapter.ExecuteNonQuery();
+            }
         }
 
         private static void Close()
