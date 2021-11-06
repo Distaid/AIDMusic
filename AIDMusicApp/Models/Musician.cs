@@ -1,36 +1,116 @@
-﻿using System.Collections.Generic;
+﻿using AIDMusicApp.Sql;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace AIDMusicApp.Models
 {
-    public class Musician
+    public class Musician : INotifyPropertyChanged
     {
-        public int Id { get; set; }
+        private int _id;
 
-        public string Name { get; set; }
+        private string _name;
 
-        public byte Age { get; set; }
+        private byte _age;
 
-        public int CountryId { get; set; }
+        private Country _countryId;
 
-        public bool IsDead { get; set; }
+        private bool _isDead;
 
-        public List<Skill> Skills { get; set; }
+        private ObservableCollection<Skill> _skills;
 
-        public Musician Copy()
+        private bool _isFormer;
+
+        public int Id
         {
-            var musician = new Musician
+            get => _id;
+            set
             {
-                Id = Id,
-                Name = Name,
-                Age = Age,
-                CountryId = CountryId,
-                IsDead = IsDead,
-                Skills = new List<Skill>()
-            };
+                _id = value;
+                OnPropertyChanged("Id");
+            }
+        }
 
-            Skills.ForEach(item => musician.Skills.Add(item.Copy()));
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged("Name");
+            }
+        }
 
-            return musician;
+        public byte Age
+        {
+            get => _age;
+            set
+            {
+                _age = value;
+                OnPropertyChanged("Age");
+            }
+        }
+
+        public Country CountryId
+        {
+            get => _countryId;
+            set
+            {
+                _countryId = value;
+                OnPropertyChanged("CountryId");
+            }
+        }
+
+        public bool IsDead
+        {
+            get => _isDead;
+            set
+            {
+                _isDead = value;
+                OnPropertyChanged("IsDead");
+            }
+        }
+
+        public ObservableCollection<Skill> Skills
+        {
+            get => _skills;
+            set
+            {
+                _skills = value;
+                OnPropertyChanged("Skills");
+            }
+        }
+
+        public bool IsFormer
+        {
+            get => _isFormer;
+            set
+            {
+                _isFormer = value;
+                OnPropertyChanged("IsFormer");
+            }
+        }
+
+        public void Delete()
+        {
+            SqlDatabase.Instance.MusiciansAdapter.Delete(Id);
+        }
+
+        public void Update(string name, byte age, Country countryId, bool isDead)
+        {
+            SqlDatabase.Instance.MusiciansAdapter.Update(Id, name, age, countryId.Id, isDead);
+            Name = name;
+            Age = age;
+            CountryId = countryId;
+            IsDead = isDead;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }
