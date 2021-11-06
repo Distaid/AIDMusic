@@ -29,7 +29,7 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Text="ID" Style="{StaticResource AIDTextBlockStyle}" Margin="10 3" HorizontalAlignment="Left"/>
             <TextBlock Grid.Row="0" Grid.Column="1" x:Name="IdText" Text="{Binding Source={StaticResource LabelItem}, Path=Id, Mode=TwoWay}" Style="{StaticResource AIDTextBlockStyle}" Margin="10 3" HorizontalAlignment="Right" x:FieldModifier="private"/>
 
-            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" x:Name="NameText" Text="{Binding Source={StaticResource LabelItem}, Path=Name, TargetNullValue=NAME, Mode=TwoWay}" Style="{StaticResource AIDTextBlockStyle}" x:FieldModifier="private"
+            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" x:Name="NameText" Text="{Binding Source={StaticResource LabelItem}, Path=Name, Mode=TwoWay}" Style="{StaticResource AIDTextBlockStyle}" x:FieldModifier="private"
                        Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center"/>
 
             <Separator Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource AIDSeparatorHorizontalStyle}"/>
