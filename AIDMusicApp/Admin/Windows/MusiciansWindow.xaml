@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AIDMusicApp.Admin.Windows"
         mc:Ignorable="d"
-        Height="450" Width="800"
+        Height="400" Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Style="{StaticResource AIDWindowStyle}">
@@ -53,36 +53,15 @@
             <TextBox Grid.Row="1" Grid.Column="1" x:Name="AgeText" Style="{StaticResource AIDTextBoxStyle}" Margin="0 5 10 5" x:FieldModifier="private"/>
             <ComboBox Grid.Row="2" Grid.Column="1" x:Name="CountryId" Style="{StaticResource AIDComboBoxStyle}" Margin="0 5 10 5" x:FieldModifier="private"/>
             <ComboBox Grid.Row="3" Grid.Column="1" x:Name="IsDeadText" Style="{StaticResource AIDComboBoxStyle}" Margin="0 5 10 5" x:FieldModifier="private">
-                <ComboBoxItem Content="Мертв"/>
                 <ComboBoxItem Content="Живой" IsSelected="True"/>
+                <ComboBoxItem Content="Мертв"/>
             </ComboBox>
 
-            <Grid Grid.Row="4" Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <ListBox Grid.RowSpan="3" Grid.Column="0" x:Name="SkillsItems" Margin="0 5" Style="{StaticResource AIDListBoxStyle}" x:FieldModifier="private"/>
-
-                <ComboBox Grid.Row="0" Grid.Column="1" x:Name="SkillId" Style="{StaticResource AIDComboBoxStyle}" Margin="10 5" x:FieldModifier="private"/>
-
-                <Grid Grid.Row="1" Grid.Column="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <Button Grid.Column="0" x:Name="AddSkill" Content="Добавить" Style="{StaticResource AIDButtonStyle}" Margin="10 5" Width="130" x:FieldModifier="private"/>
-                    <Button Grid.Column="1" x:Name="RemoveSkill" Content="Удалить" Style="{StaticResource AIDButtonStyle}" Margin="10 5" Width="130" x:FieldModifier="private"/>
-                </Grid>
-            </Grid>
+            <Border Grid.Row="4" Grid.Column="1" BorderThickness="1" CornerRadius="2" Background="#191919" BorderBrush="{StaticResource AIDCyan}" Margin="0 5 10 5">
+                <StackPanel x:Name="SkillsItems" Margin="0 5" x:FieldModifier="private">
+                    <Button x:Name="AddSkill" Content="Добавить навык" Style="{StaticResource AIDButtonStyle}" Margin="5 2" Width="150"/>
+                </StackPanel>
+            </Border>
 
             <Grid Grid.Row="5" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
