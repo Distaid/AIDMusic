@@ -63,15 +63,18 @@ namespace AIDMusicApp.Sql
 
             try
             {
-                UsersAdapter = new UsersAdapter(_sqlConnection, "SQLCommands\\SQLUsers.aid");
-                CountriesListAdapter = new CountriesListAdapter(_sqlConnection, "SQLCommands\\SQLCountriesList.aid");
-                GenresListAdapter = new GenresListAdapter(_sqlConnection, "SQLCommands\\SQLGenresList.aid");
-                LabelsListAdapter = new LabelsListAdapter(_sqlConnection, "SQLCommands\\SQLLabelsList.aid");
-                SkillsListAdapter = new SkillsListAdapter(_sqlConnection, "SQLCommands\\SQLSkillsList.aid");
-                AlbumFormatsListAdapter = new AlbumFormatsListAdapter(_sqlConnection, "SQLCommands\\SQLAlbumFormatsList.aid");
-                AccessAdapter = new AccessAdapter(_sqlConnection, "SQLCommands\\SQLAccessRights.aid");
-                MusiciansAdapter = new MusiciansAdapter(_sqlConnection, "SQLCommands\\SQLMusicians.aid");
-                MusicianSkillsAdapter = new MusicianSkillsAdapter(_sqlConnection, "SQLCommands\\SQLMusicianSkills.aid");
+                AccessAdapter = new AccessAdapter(_sqlConnection);
+
+                CountriesListAdapter = new CountriesListAdapter(_sqlConnection);
+                GenresListAdapter = new GenresListAdapter(_sqlConnection);
+                LabelsListAdapter = new LabelsListAdapter(_sqlConnection);
+                SkillsListAdapter = new SkillsListAdapter(_sqlConnection);
+                AlbumFormatsListAdapter = new AlbumFormatsListAdapter(_sqlConnection);
+
+                UsersAdapter = new UsersAdapter(_sqlConnection);
+                MusiciansAdapter = new MusiciansAdapter(_sqlConnection);
+
+                MusicianSkillsAdapter = new MusicianSkillsAdapter(_sqlConnection);
             }
             catch
             {

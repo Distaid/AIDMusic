@@ -24,27 +24,19 @@ namespace AIDMusicApp.Admin.Controls.Users
     /// </summary>
     public partial class UserItemControl : UserControl
     {
-        public User UserItem { get; private set; }
+        //public User UserItem { get; private set; }
 
         public UserItemControl(User user)
         {
             InitializeComponent();
 
-            UserItem = user;
-            IdText.Text = UserItem.Id.ToString();
-            LoginText.Text = UserItem.Login;
-            EmailText.Text = UserItem.Email;
-            PhoneText.Text = UserItem.Phone;
-            AccessText.Text = UserItem.AccessId.Name;
-
-            if (UserItem.Avatar != null)
-            {
-                var image = new BitmapImage();
-                image.BeginInit();
-                image.StreamSource = new MemoryStream(UserItem.Avatar); ;
-                image.EndInit();
-                AvatarImage.ImageSource = image;
-            }
+            UserItem.Id = user.Id;
+            UserItem.Login = user.Login;
+            UserItem.Password = user.Password;
+            UserItem.Email = user.Email;
+            UserItem.Phone = user.Phone;
+            UserItem.AccessId = user.AccessId;
+            UserItem.Avatar = user.Avatar;
 
             if (UserItem.AccessId.Name == "Администратор")
                 RemoveButton.IsEnabled = false;
@@ -53,31 +45,25 @@ namespace AIDMusicApp.Admin.Controls.Users
             RemoveButton.Click += RemoveButton_Click;
         }
 
+        public User UserItem => (User)Resources["UserItem"];
+
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var editWindow = new UsersWindow(UserItem);
             if (editWindow.ShowDialog() == true)
             {
-                UserItem = editWindow.UserItem;
-                LoginText.Text = UserItem.Login;
-                EmailText.Text = UserItem.Email;
-                PhoneText.Text = UserItem.Phone;
-                AccessText.Text = UserItem.AccessId.Name;
-
-                if (UserItem.Avatar != null)
-                {
-                    var image = new BitmapImage();
-                    image.BeginInit();
-                    image.StreamSource = new MemoryStream(UserItem.Avatar); ;
-                    image.EndInit();
-                    AvatarImage.ImageSource = image;
-                }
+                UserItem.Login = editWindow.UserItem.Login;
+                UserItem.Password = editWindow.UserItem.Login;
+                UserItem.Email = editWindow.UserItem.Email;
+                UserItem.Phone = editWindow.UserItem.Phone;
+                UserItem.AccessId = editWindow.UserItem.AccessId;
+                UserItem.Avatar = editWindow.UserItem.Avatar;
             }
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            SqlDatabase.Instance.UsersAdapter.Delete(UserItem.Id);
+            UserItem.Delete();
             (Parent as WrapPanel).Children.Remove(this);
         }
     }

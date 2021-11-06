@@ -1,10 +1,13 @@
-﻿using AIDMusicApp.Sql;
+﻿using AIDMusicApp.Converters;
+using AIDMusicApp.Sql;
 using AIDMusicApp.Windows;
 using System;
+using System.IO;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace AIDMusicApp.Controls
 {
@@ -81,8 +84,11 @@ namespace AIDMusicApp.Controls
                     return;
                 }
             }
-
-            SqlDatabase.Instance.UsersAdapter.Insert(LoginTextBox.Text, PasswordTextBox.Password, PhoneTextBox.Text, EmailTextBox.Text, 1, null);
+            BitmapImage image = (BitmapImage)Application.Current.Resources["DefaultImage"];
+            var stream = Application.GetResourceStream(image.UriSource).Stream;
+            byte[] avatar = new byte[stream.Length];
+            stream.Read(avatar, 0, avatar.Length);
+            SqlDatabase.Instance.UsersAdapter.Insert(LoginTextBox.Text, PasswordTextBox.Password, PhoneTextBox.Text, EmailTextBox.Text, 1, avatar);
 
             AIDMessageWindow.Show("Пользователь успешно добавлен!");
 

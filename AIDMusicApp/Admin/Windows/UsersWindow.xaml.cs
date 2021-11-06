@@ -57,7 +57,7 @@ namespace AIDMusicApp.Admin.Windows
             TitleBar.MouseDown += TitleBar_MouseDown;
             LoadImage.Click += LoadImage_Click;
 
-            UserItem = user.Copy();
+            UserItem = user;
             TitleText.Text = "Изменение Пользователя";
             ConfirmButton.Content = "Изменить";
             ConfirmButton.Click += EditButton_Click;
@@ -81,16 +81,13 @@ namespace AIDMusicApp.Admin.Windows
                 AccessId.Items.Add(item);
             }
 
-            if (UserItem.Avatar != null)
-            {
-                var image = new BitmapImage();
-                image.BeginInit();
-                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.StreamSource = new MemoryStream(UserItem.Avatar);
-                image.EndInit();
-                AvatarImage.ImageSource = image;
-            }
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+            image.CacheOption = BitmapCacheOption.OnLoad;
+            image.StreamSource = new MemoryStream(UserItem.Avatar);
+            image.EndInit();
+            AvatarImage.ImageSource = image;
         }
 
         private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -174,27 +171,24 @@ namespace AIDMusicApp.Admin.Windows
                 }
             }
 
-            UserItem = new User
+            var accessId = (Access)(AccessId.SelectedItem as ComboBoxItem).Tag;
+            var stream = (AvatarImage.ImageSource as BitmapImage).StreamSource;
+            byte[] avatar;
+            if (stream == null)
             {
-                Login = LoginText.Text,
-                Password = PasswordText.Password,
-                Phone = PhoneText.Text,
-                Email = EmailText.Text,
-                AccessId = (Access)(AccessId.SelectedItem as ComboBoxItem).Tag
-            };
-
-            if (AvatarImage.ImageSource as BitmapImage != null)
+                var image = (BitmapImage)Application.Current.Resources["DefaultImage"];
+                var resStream = Application.GetResourceStream(image.UriSource).Stream;
+                avatar = new byte[resStream.Length];
+                resStream.Read(avatar, 0, avatar.Length);
+            }
+            else
             {
-                var stream = (AvatarImage.ImageSource as BitmapImage).StreamSource;
-                if (stream.Length != 0)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                    UserItem.Avatar = new byte[stream.Length];
-                    stream.Read(UserItem.Avatar, 0, UserItem.Avatar.Length);
-                }
+                stream.Seek(0, SeekOrigin.Begin);
+                avatar = new byte[stream.Length];
+                stream.Read(avatar, 0, avatar.Length);
             }
 
-            UserItem.Id = SqlDatabase.Instance.UsersAdapter.Insert(UserItem.Login, UserItem.Password, UserItem.Phone, UserItem.Email, UserItem.AccessId.Id, UserItem.Avatar);
+            UserItem = SqlDatabase.Instance.UsersAdapter.Insert(LoginText.Text, PasswordText.Password, PhoneText.Text, EmailText.Text, accessId.Id, avatar);
 
             DialogResult = true;
         }
@@ -252,25 +246,26 @@ namespace AIDMusicApp.Admin.Windows
                 }
             }
 
-            UserItem.Login = LoginText.Text;
-            UserItem.Password = PasswordText.Password;
-            UserItem.Phone = PhoneText.Text;
-            UserItem.Email = EmailText.Text;
-            UserItem.AccessId = (Access)(AccessId.SelectedItem as ComboBoxItem).Tag;
-
-            if (AvatarImage.ImageSource as BitmapImage != null)
+            var accessId = (Access)(AccessId.SelectedItem as ComboBoxItem).Tag;
+            var stream = (AvatarImage.ImageSource as BitmapImage).StreamSource;
+            byte[] avatar;
+            if (stream == null)
             {
-                var stream = (AvatarImage.ImageSource as BitmapImage).StreamSource;
-                if (stream.Length != 0)
-                {
-                    stream.Seek(0, SeekOrigin.Begin);
-                    UserItem.Avatar = new byte[stream.Length];
-                    stream.Read(UserItem.Avatar, 0, UserItem.Avatar.Length);
-                }
+                var image = (BitmapImage)Application.Current.Resources["DefaultImage"];
+                var resStream = Application.GetResourceStream(image.UriSource).Stream;
+                avatar = new byte[resStream.Length];
+                resStream.Read(avatar, 0, avatar.Length);
+            }
+            else
+            {
+                stream.Seek(0, SeekOrigin.Begin);
+                avatar = new byte[stream.Length];
+                stream.Read(avatar, 0, avatar.Length);
             }
 
+            UserItem.Update(LoginText.Text, PasswordText.Password, PhoneText.Text, EmailText.Text, accessId, avatar);
+
             DialogResult = true;
-            SqlDatabase.Instance.UsersAdapter.Update(UserItem.Id, UserItem.Login, UserItem.Password, UserItem.Phone, UserItem.Email, UserItem.AccessId.Id, UserItem.Avatar);
         }
     }
 }

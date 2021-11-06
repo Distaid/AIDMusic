@@ -9,11 +9,11 @@ namespace AIDMusicApp.Sql.Adapters
 {
     public class UsersAdapter : BaseAdapter
     {
-        public UsersAdapter(SqlConnection connection, string file) : base(connection, file) { }
+        public UsersAdapter(SqlConnection connection) : base(connection, "SQLCommands\\SQLUsers.aid") { }
 
         public IEnumerable<User> GetAll()
         {
-            using (var adapter = new SqlDataAdapter(_sqlComands["SQL_Select_Users"], _sqlConnection))
+            using (var adapter = new SqlDataAdapter(_sqlComands["SQL_Select"], _sqlConnection))
             {
                 var ds = new DataSet();
                 adapter.Fill(ds);
@@ -36,53 +36,65 @@ namespace AIDMusicApp.Sql.Adapters
 
         public User GetByLogin(string login)
         {
-            var comand = _sqlComands["SQL_Select_Users_ByLogin"].Replace("@login", $"\'{login}\'");
-            using (var adapter = new SqlDataAdapter(comand, _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Select_ByLogin"], _sqlConnection))
             {
-                var ds = new DataSet();
-                adapter.Fill(ds);
+                command.Parameters.AddWithValue("@login", login);
 
-                var row = ds.Tables[0].Rows[0];
-
-                return new User
+                using (var adapter = new SqlDataAdapter(command))
                 {
-                    Id = Convert.ToInt32(row[0]),
-                    Login = Convert.ToString(row[1]),
-                    Password = Convert.ToString(row[2]),
-                    Phone = Convert.ToString(row[3]),
-                    Email = Convert.ToString(row[4]),
-                    AccessId = SqlDatabase.Instance.AccessAdapter.GetById(Convert.ToInt32(row[5])),
-                    Avatar = row[6].Equals(DBNull.Value) ? null : (byte[])row[6]
-                };
+                    var ds = new DataSet();
+                    adapter.Fill(ds);
+
+                    var row = ds.Tables[0].Rows[0];
+
+                    return new User
+                    {
+                        Id = Convert.ToInt32(row[0]),
+                        Login = Convert.ToString(row[1]),
+                        Password = Convert.ToString(row[2]),
+                        Phone = Convert.ToString(row[3]),
+                        Email = Convert.ToString(row[4]),
+                        AccessId = SqlDatabase.Instance.AccessAdapter.GetById(Convert.ToInt32(row[5])),
+                        Avatar = row[6].Equals(DBNull.Value) ? null : (byte[])row[6]
+                    };
+                }
             }
         }
 
-        public int Insert(string login, string password, string phone, string email, int access, byte[] avatar)
+        public User Insert(string login, string password, string phone, string email, int accessId, byte[] avatar)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Insert_Users"], _sqlConnection))
+            using (var adapter = new SqlCommand(_sqlComands["SQL_Insert"], _sqlConnection))
             {
                 adapter.Parameters.AddWithValue("@login", login);
                 adapter.Parameters.AddWithValue("@password", password);
                 adapter.Parameters.AddWithValue("@phone", !string.IsNullOrWhiteSpace(phone) ? phone : SqlString.Null);
                 adapter.Parameters.AddWithValue("@email", !string.IsNullOrWhiteSpace(email) ? email : SqlString.Null);
-                adapter.Parameters.AddWithValue("@access", access);
+                adapter.Parameters.AddWithValue("@access_id", accessId);
                 adapter.Parameters.AddWithValue("@avatar", avatar ?? SqlBinary.Null);
 
-
-                return Convert.ToInt32(adapter.ExecuteScalar());
+                return new User
+                {
+                    Id = Convert.ToInt32(adapter.ExecuteScalar()),
+                    Login = login,
+                    Password = password,
+                    Phone = !string.IsNullOrWhiteSpace(phone) ? phone : "",
+                    Email = !string.IsNullOrWhiteSpace(email) ? email : "",
+                    AccessId = SqlDatabase.Instance.AccessAdapter.GetById(accessId),
+                    Avatar = avatar
+                };
             }
         }
 
-        public void Update(int id, string login, string password, string phone, string email, int access, byte[] avatar)
+        public void Update(int id, string login, string password, string phone, string email, int access_id, byte[] avatar)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Update_Users"], _sqlConnection))
+            using (var adapter = new SqlCommand(_sqlComands["SQL_Update"], _sqlConnection))
             {
                 adapter.Parameters.AddWithValue("@id", id);
                 adapter.Parameters.AddWithValue("@login", login);
                 adapter.Parameters.AddWithValue("@password", password);
                 adapter.Parameters.AddWithValue("@phone", !string.IsNullOrWhiteSpace(phone) ? phone : SqlString.Null);
                 adapter.Parameters.AddWithValue("@email", !string.IsNullOrWhiteSpace(email) ? email : SqlString.Null);
-                adapter.Parameters.AddWithValue("@access", access);
+                adapter.Parameters.AddWithValue("@access_id", access_id);
                 adapter.Parameters.AddWithValue("@avatar", avatar ?? SqlBinary.Null);
 
                 adapter.ExecuteNonQuery();
@@ -91,7 +103,7 @@ namespace AIDMusicApp.Sql.Adapters
 
         public void Delete(int id)
         {
-            using (var adapter = new SqlCommand(_sqlComands[$"SQL_Delete_Users"], _sqlConnection))
+            using (var adapter = new SqlCommand(_sqlComands[$"SQL_Delete"], _sqlConnection))
             {
                 adapter.Parameters.AddWithValue("@id", id);
 
@@ -101,22 +113,9 @@ namespace AIDMusicApp.Sql.Adapters
 
         public bool ContainsLogin(string login)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_Users_Login"], _sqlConnection))
+            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_Login"], _sqlConnection))
             {
                 adapter.Parameters.AddWithValue("@login", login);
-
-                var count = Convert.ToInt32(adapter.ExecuteScalar());
-                if (count == 0) return false;
-            }
-
-            return true;
-        }
-
-        public bool ContainsPassword(string password)
-        {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_Users_Password"], _sqlConnection))
-            {
-                adapter.Parameters.AddWithValue("@password", password);
 
                 var count = Convert.ToInt32(adapter.ExecuteScalar());
                 if (count == 0) return false;
@@ -129,7 +128,7 @@ namespace AIDMusicApp.Sql.Adapters
         {
             if (string.IsNullOrWhiteSpace(phone)) return false;
 
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_Users_Phone"], _sqlConnection))
+            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_Phone"], _sqlConnection))
             {
                 adapter.Parameters.AddWithValue("@phone", phone);
 
@@ -144,7 +143,7 @@ namespace AIDMusicApp.Sql.Adapters
         {
             if (string.IsNullOrWhiteSpace(email)) return false;
 
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_Users_Email"], _sqlConnection))
+            using (var adapter = new SqlCommand(_sqlComands["SQL_Check_Email"], _sqlConnection))
             {
                 adapter.Parameters.AddWithValue("@email", email);
 

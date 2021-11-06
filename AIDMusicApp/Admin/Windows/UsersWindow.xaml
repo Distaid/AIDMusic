@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Style="{StaticResource AIDWindowStyle}">
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -46,7 +46,7 @@
 
             <Ellipse Grid.Column="0" Grid.RowSpan="3" Height="90" Width="90" Margin="10 5">
                 <Ellipse.Fill>
-                    <ImageBrush x:Name="AvatarImage" ImageSource="/AIDMusicApp;component/Images/person-default.png" x:FieldModifier="private"/>
+                    <ImageBrush x:Name="AvatarImage" ImageSource="{Binding Source={StaticResource DefaultImage}}" x:FieldModifier="private"/>
                 </Ellipse.Fill>
             </Ellipse>
 
