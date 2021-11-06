@@ -4,9 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AIDMusicApp.Admin.Controls.Musicians"
+             xmlns:local1="clr-namespace:AIDMusicApp.Models"
+             xmlns:conv="clr-namespace:AIDMusicApp.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="190" d:DesignWidth="350"
              Height="210" Width="350">
+    <UserControl.Resources>
+        <local1:Musician x:Key="MusicianItem"/>
+        <conv:BoolToVisibilityConverter x:Key="BoolConverter"/>
+    </UserControl.Resources>
     
     <Border Background="#222222" BorderThickness="1" BorderBrush="{StaticResource AIDCyan}" CornerRadius="10">
         <Grid>
@@ -22,7 +28,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="ID" Style="{StaticResource AIDTextBlockStyle}" Margin="10 3" HorizontalAlignment="Left"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="IdText" Text="ID" Style="{StaticResource AIDTextBlockStyle}" Margin="10 3" HorizontalAlignment="Right" x:FieldModifier="private"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="IdText" Text="{Binding Source={StaticResource MusicianItem}, Path=Id, Mode=TwoWay}" Style="{StaticResource AIDTextBlockStyle}" Margin="10 3" HorizontalAlignment="Right" x:FieldModifier="private"/>
 
             <Grid Grid.Row="1" Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
@@ -41,18 +47,31 @@
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Имя" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" Margin="10 3"/>
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Возраст" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" Margin="10 3"/>
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Страна" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" Margin="10 3"/>
-                <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="IsDead" Visibility="Hidden" Text="Мёртв" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" Foreground="Red" TextAlignment="Center" x:FieldModifier="private"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="IsDead" Visibility="{Binding Source={StaticResource MusicianItem}, Path=IsDead, Mode=TwoWay, Converter={StaticResource BoolConverter}, ConverterParameter=is_dead}" Text="Мёртв" Style="{StaticResource AIDTextBlockStyle}" VerticalAlignment="Center" Foreground="Red" TextAlignment="Center" x:FieldModifier="private"/>
 
-                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="NameText" Style="{StaticResource AIDTextBlockStyle}" Margin="0 3 10 3" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" x:FieldModifier="private"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" x:Name="AgeText" Style="{StaticResource AIDTextBlockStyle}" Margin="0 3 10 3" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" x:FieldModifier="private"/>
-                <TextBlock Grid.Row="2" Grid.Column="1" x:Name="CountryText" Style="{StaticResource AIDTextBlockStyle}" Margin="0 3 10 3" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" x:FieldModifier="private"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="NameText" Text="{Binding Source={StaticResource MusicianItem}, Path=Name, Mode=TwoWay}" Style="{StaticResource AIDTextBlockStyle}" Margin="0 3 10 3" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" x:FieldModifier="private"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" x:Name="AgeText" Text="{Binding Source={StaticResource MusicianItem}, Path=Age, Mode=TwoWay}" Style="{StaticResource AIDTextBlockStyle}" Margin="0 3 10 3" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" x:FieldModifier="private"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" x:Name="CountryText" Text="{Binding Source={StaticResource MusicianItem}, Path=CountryId, Mode=TwoWay, StringFormat={}{0}}" Style="{StaticResource AIDTextBlockStyle}" Margin="0 3 10 3" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" x:FieldModifier="private"/>
 
                 <ScrollViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Style="{StaticResource AIDScrollViewerStyle}" Background="Transparent" Margin="10 2">
-                    <StackPanel x:Name="SkillsItems" Orientation="Horizontal">
+                    <ItemsControl x:Name="SkillItems" ItemsSource="{Binding Source={StaticResource MusicianItem}, Path=Skills, Mode=TwoWay}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource AIDTextBlockStyle}" Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <!--<StackPanel x:Name="SkillsItems" Orientation="Horizontal">
                         <StackPanel.Resources>
                             <Style TargetType="TextBlock" BasedOn="{StaticResource AIDTextBlockStyle}"/>
                         </StackPanel.Resources>
-                    </StackPanel>
+                        <StackPanel.
+                    </StackPanel>-->
                 </ScrollViewer>
 
                 <!--<ListBox Margin="30" Style="{StaticResource AIDListBoxStyle}">

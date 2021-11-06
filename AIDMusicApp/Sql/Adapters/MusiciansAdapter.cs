@@ -1,6 +1,7 @@
 ﻿using AIDMusicApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -8,11 +9,11 @@ namespace AIDMusicApp.Sql.Adapters
 {
     public class MusiciansAdapter : BaseAdapter
     {
-        public MusiciansAdapter(SqlConnection connection, string file) : base(connection, file) { }
+        public MusiciansAdapter(SqlConnection connection) : base(connection, "SQLCommands\\SQLMusicians.aid") { }
 
         public IEnumerable<Musician> GetAll()
         {
-            using (var adapter = new SqlDataAdapter(_sqlComands["SQL_Select_Musicians"], _sqlConnection))
+            using (var adapter = new SqlDataAdapter(_sqlComands["SQL_Select"], _sqlConnection))
             {
                 var ds = new DataSet();
                 adapter.Fill(ds);
@@ -24,12 +25,12 @@ namespace AIDMusicApp.Sql.Adapters
                         Id = Convert.ToInt32(row[0]),
                         Name = Convert.ToString(row[1]),
                         Age = Convert.ToByte(row[2]),
-                        CountryId = Convert.ToInt32(row[3]),
+                        CountryId = SqlDatabase.Instance.CountriesListAdapter.GetById(Convert.ToInt32(row[3])),
                         IsDead = Convert.ToBoolean(row[4]),
-                        Skills = new List<Skill>()
+                        Skills = new ObservableCollection<Skill>()
                     };
 
-                    foreach (var skill in SqlDatabase.Instance.MusicianSkillsAdapter.GetAllByMusicianId(musician.Id))
+                    foreach (var skill in SqlDatabase.Instance.MusicianSkillsAdapter.GetSkillsByMusicianId(musician.Id))
                         musician.Skills.Add(skill);
 
                     yield return musician;
@@ -37,40 +38,48 @@ namespace AIDMusicApp.Sql.Adapters
             }
         }
 
-        public int Insert(string name, byte age, int countryId, bool isDead)
+        public Musician Insert(string name, byte age, int countryId, bool isDead)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Insert_Musicians"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Insert"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@name", name);
-                adapter.Parameters.AddWithValue("@age", age);
-                adapter.Parameters.AddWithValue("@country_id", countryId);
-                adapter.Parameters.AddWithValue("@is_dead", isDead);
+                command.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@age", age);
+                command.Parameters.AddWithValue("@country_id", countryId);
+                command.Parameters.AddWithValue("@is_dead", isDead);
 
-                return Convert.ToInt32(adapter.ExecuteScalar());
+                return new Musician
+                {
+                    Id = Convert.ToInt32(command.ExecuteScalar()),
+                    Name = name,
+                    Age = age,
+                    CountryId = SqlDatabase.Instance.CountriesListAdapter.GetById(countryId),
+                    IsDead = isDead,
+                    Skills = new ObservableCollection<Skill>()
+                };
             }
         }
 
         public void Update(int id, string name, byte age, int countryId, bool isDead)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Update_Musicians"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Update"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@id", id);
-                adapter.Parameters.AddWithValue("@name", name);
-                adapter.Parameters.AddWithValue("@age", age);
-                adapter.Parameters.AddWithValue("@country_id", countryId);
-                adapter.Parameters.AddWithValue("@is_dead", isDead);
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@age", age);
+                command.Parameters.AddWithValue("@country_id", countryId);
+                command.Parameters.AddWithValue("@is_dead", isDead);
 
-                adapter.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 
         public void Delete(int id)
         {
-            using (var adapter = new SqlCommand(_sqlComands["SQL_Delete_Musicians"], _sqlConnection))
+            using (var command = new SqlCommand(_sqlComands["SQL_Delete"], _sqlConnection))
             {
-                adapter.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@id", id);
 
-                adapter.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
     }
