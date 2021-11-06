@@ -25,6 +25,11 @@ namespace AIDMusicApp.Admin.Windows
             TitleText.Text = "Добавление Музыканта";
             ConfirmButton.Content = "Добавить";
 
+            CountryId.PreviewMouseWheel += (o, e) =>
+            {
+                e.Handled = !((ComboBox)o).IsDropDownOpen;
+            };
+
             AddSkill.Click += AddSkill_Click;
             ConfirmButton.Click += AddButton_Click;
 
@@ -43,6 +48,12 @@ namespace AIDMusicApp.Admin.Windows
             AgeText.PreviewTextInput += AgeText_PreviewTextInput;
             TitleText.Text = "Редактирование Музыканта";
             ConfirmButton.Content = "Изменить";
+
+            CountryId.PreviewMouseWheel += (o, e) =>
+            {
+                e.Handled = !((ComboBox)o).IsDropDownOpen;
+            };
+
             MusicianItem = musician;
             NameText.Text = MusicianItem.Name;
             AgeText.Text = MusicianItem.Age.ToString();

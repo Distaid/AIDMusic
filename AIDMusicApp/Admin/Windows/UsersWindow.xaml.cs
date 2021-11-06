@@ -25,6 +25,11 @@ namespace AIDMusicApp.Admin.Windows
             TitleBar.MouseDown += TitleBar_MouseDown;
             LoadImage.Click += LoadImage_Click;
 
+            AccessId.PreviewMouseWheel += (o, e) =>
+            {
+                e.Handled = !((ComboBox)o).IsDropDownOpen;
+            };
+
             TitleText.Text = "Добавление Пользователя";
             ConfirmButton.Content = "Добавить";
             ConfirmButton.Click += AddButton_Click;
@@ -47,6 +52,11 @@ namespace AIDMusicApp.Admin.Windows
 
             TitleBar.MouseDown += TitleBar_MouseDown;
             LoadImage.Click += LoadImage_Click;
+
+            AccessId.PreviewMouseWheel += (o, e) =>
+            {
+                e.Handled = !((ComboBox)o).IsDropDownOpen;
+            };
 
             UserItem = user;
             TitleText.Text = "Изменение Пользователя";

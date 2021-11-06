@@ -58,9 +58,11 @@
             </ComboBox>
 
             <Border Grid.Row="4" Grid.Column="1" BorderThickness="1" CornerRadius="2" Background="#191919" BorderBrush="{StaticResource AIDCyan}" Margin="0 5 10 5">
-                <StackPanel x:Name="SkillsItems" Margin="0 5" x:FieldModifier="private">
-                    <Button x:Name="AddSkill" Content="Добавить навык" Style="{StaticResource AIDButtonStyle}" Margin="5 2" Width="150"/>
-                </StackPanel>
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Style="{StaticResource AIDScrollViewerStyle}">
+                    <StackPanel x:Name="SkillsItems" Margin="0 5" x:FieldModifier="private">
+                        <Button x:Name="AddSkill" Content="Добавить навык" Style="{StaticResource AIDButtonStyle}" Margin="5 2" Width="150"/>
+                    </StackPanel>
+                </ScrollViewer>
             </Border>
 
             <Grid Grid.Row="5" Grid.ColumnSpan="2">

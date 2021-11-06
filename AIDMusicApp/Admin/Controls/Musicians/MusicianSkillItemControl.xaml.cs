@@ -15,6 +15,11 @@ namespace AIDMusicApp.Admin.Controls.Musicians
 
             RemoveButton.Click += RemoveButton_Click;
 
+            SkillComboBox.PreviewMouseWheel += (o, e) =>
+            {
+                e.Handled = !((ComboBox)o).IsDropDownOpen;
+            };
+
             foreach (var skill in SqlDatabase.Instance.SkillsListAdapter.GetAll())
             {
                 var item = new ComboBoxItem { Content = skill.Name, Tag = skill };
@@ -27,6 +32,11 @@ namespace AIDMusicApp.Admin.Controls.Musicians
             InitializeComponent();
 
             RemoveButton.Click += RemoveButton_Click;
+
+            SkillComboBox.PreviewMouseWheel += (o, e) =>
+            {
+                e.Handled = !((ComboBox)o).IsDropDownOpen;
+            };
 
             foreach (var skill in SqlDatabase.Instance.SkillsListAdapter.GetAll())
             {

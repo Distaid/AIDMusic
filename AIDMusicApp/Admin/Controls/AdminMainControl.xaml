@@ -29,7 +29,7 @@
             </MenuItem>
         </Menu>
 
-        <Button Grid.Row="0" x:Name="ExitButton" Content="Выход" Style="{StaticResource AIDButtonStyle}" HorizontalAlignment="Right" Margin="5 0" Width="80"/>
+        <Button Grid.Row="0" x:Name="ExitButton" Content="Выход" Style="{StaticResource AIDButtonStyle}" HorizontalAlignment="Right" Margin="10 0" Width="80"/>
 
         <ContentControl x:Name="MainContent" Grid.Row="1"/>
     </Grid>
